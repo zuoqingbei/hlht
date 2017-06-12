@@ -101,6 +101,18 @@ function findSensorByLabCenetrTabAjax(labTypeCode,testUnitId){
 		});
 		//获取曲线具体数据
 		findSensorDataCenetrTabAjax(labTypeCode,testUnitId);
+		findSensorDataCenetrTabAjax2();
+	});
+}
+//获取曲线具体数据
+function findSensorDataCenetrTabAjax2(){
+	$.post("${contextPath}/test/getJsonFile",{"fileName":"myfile.json"},function(data){
+		data=eval("("+data+")");
+		console.log(data.sybh)
+		
+		$.each(data.list,function(index,item){
+			console.log(item.name)
+		})
 	});
 }
 //获取曲线具体数据
@@ -254,12 +266,14 @@ function joinSerise(data,name,index,colorIndex){
 			value=0;
 		}
 		dataArr.push(value);
-		xData.push(data[x].name);
+		xData.push(parseInt(data[x].name));
 	};
 		//console.log(dataArr)
 	var item= {
 	            name:dealBracketForObj(name),
- 	            type:'line',
+	            symbol:'none',  //这句就是去掉点的  
+	            type:'line',  
+	            smooth:true,  //这句就是让曲线变平滑的  
  	            data:dataArr,
  	            itemStyle:{
  	        	  normal:{
@@ -278,11 +292,13 @@ function joinSeriseOther(data,name,colorIndex){
 	xData=[];
 	for(var x=0;x<data.length;x++){
 		dataArr.push(data[x].value);
-		xData.push(data[x].name);
+		xData.push(parseInt(data[x].name));
 	};
 	var item= {
 	            name:dealBracketForObj(name),
- 	            type:'line',
+	            symbol:'none',  //这句就是去掉点的  
+	            type:'line',  
+	            smooth:true,  //这句就是让曲线变平滑的  
  	            data:dataArr,
  	            itemStyle:{
  	        	  normal:{
@@ -314,7 +330,7 @@ function getCharts1(){
 	    },
 	    dataZoom: [{
 	    	start: 0,
-	    	end:5,
+	    	end:50,
 	    	show:false
         }, {
             type: 'inside'
@@ -327,6 +343,9 @@ function getCharts1(){
 	            },
 	            axisLabel : {
 	                show:false
+	            },
+	            splitLine:{
+	            	show:false
 	            },
 	            data:xData
 	        }
@@ -382,7 +401,7 @@ function getCharts1(){
 	 myChart1.clear();
      myChart1.setOption(option);   
      echarts.connect([myChart1, myChart2]);  
-     setInterval(function () {
+    /*  setInterval(function () {
     	 var preStart=myChart1.getOption().dataZoom[0].start;
     	 var preEnd=myChart1.getOption().dataZoom[0].end;
     	 myChart1.setOption({
@@ -406,8 +425,8 @@ function getCharts1(){
     	 }else{
     		 interval_count1=parseFloat(interval_count1)+0.01;
     	 }
-	    	 console.log("myChart1---"+preStart+"--"+preEnd)
-     },1000)
+	    	// console.log("myChart1---"+preStart+"--"+preEnd)
+     },1000) */
                  
 }
 function getCharts2(){
@@ -431,7 +450,7 @@ function getCharts2(){
 	    },
 	    dataZoom: [{
 	    	start: 0,
-	    	end:5,
+	    	end:50,
 	    	show:false
         }, {
             type: 'inside'
@@ -509,7 +528,7 @@ function getCharts2(){
 	 myChart2.clear();
      myChart2.setOption(option2); 
      echarts.connect([myChart1, myChart2]);
-     setInterval(function () {
+    /*  setInterval(function () {
     	 var preStart=myChart2.getOption().dataZoom[0].start;
     	 var preEnd=myChart2.getOption().dataZoom[0].end;
     	 myChart2.setOption({
@@ -534,8 +553,8 @@ function getCharts2(){
     		 interval_count2=parseFloat(interval_count2)+0.01;
     	 }
 	    	 
-	    	 console.log("myChart2---"+preStart+"--"+preEnd)
-     },1000)
+	    	// console.log("myChart2---"+preStart+"--"+preEnd)
+     },1000) */
     /*  myChart2.setOption({
          series:getAnimation(seriesBottomData)
      });

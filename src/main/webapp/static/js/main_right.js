@@ -4478,7 +4478,21 @@ $(function () {
             	labTypeCode=thisLabel;
             	 loadTab2Data();
                  loadTab3Data();
+                 loadTab4Data();
             }
+        }else{
+        	  var index = $(this).parent().index();
+              $(this).attr("src", src.replace("on", "off"))
+                  .parent().siblings().find("img").each(function (index, item) {
+                  $(item).attr("src", $(this).attr("src").replace("on", "off"));
+              });
+              $(this).parents("ul").next().find("li:eq(" + index + ")").css("color","#6cf")
+              .siblings().css("color","#6cf");
+        	//再次点击同一个 返回全部数据
+        	labTypeCode="";
+        	loadTab2Data();
+            loadTab3Data();
+            loadTab4Data();
         }
 
     })

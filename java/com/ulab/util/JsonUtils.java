@@ -9,6 +9,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsonUtils {
+	//判断文件是否存在
+
+	// 从给定位置读取Json文件
+	public static boolean judeFileExists(String path) {
+		// 从给定位置获取文件
+		File file = new File(path);
+		if (file.exists()) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	
 	// 从给定位置读取Json文件
 	public static String readJson(String path) {
 		// 从给定位置获取文件

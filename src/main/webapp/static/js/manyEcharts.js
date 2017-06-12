@@ -4,14 +4,16 @@
 
 var axisLabel = {
     margin: 3 * bodyScale,
+    show: true,
     textStyle: {
-        fontSize: 9 * bodyScale
+        color: '#66ccff',
+        fontSize:11*bodyScale
     }
 };
 var nameGap = 10 * bodyScale;
 var nameTextStyle = {
     color: '#66ccff',
-    fontSize: 8 * bodyScale
+    fontSize:8 * bodyScale
 };
 
 // 折线图
@@ -21,7 +23,7 @@ function getLineEcharts() {
             left: 'center',
             text: '',
             textStyle: {
-                fontSize: 12*bodyScale,
+                fontSize: 9*bodyScale,
                 color: '#66ccff'
             }
         },
@@ -44,7 +46,7 @@ function getLineEcharts() {
             // // itemHeight:10, //图例标记的图形高度
             textStyle: {    //图例文字的样式
                 color: '#66ccff',
-                fontSize: 10*bodyScale
+                fontSize: 9*bodyScale
             }
         },
         color: ['#00e673', '#66ccff'],
@@ -58,22 +60,16 @@ function getLineEcharts() {
             boundaryGap: true,
             nameTextStyle: {
                 color: '#66ccff',
-                fontSize:10*bodyScale
+                fontSize:7*bodyScale
             },
+            nameGap: nameGap,
             splitLine: {
                 show: false
             },
             axisLine: {
                 show: false
             },
-            axisLabel: {
-                show: true,
-                // rotate: 30,
-                textStyle: {
-                    color: '#66ccff',
-                    fontSize:12*bodyScale,
-                }
-            },
+            axisLabel: axisLabel,
             axisTick: {
                 show: false,
                 alignWithLabel: true,
@@ -86,18 +82,13 @@ function getLineEcharts() {
         yAxis: {
             nameTextStyle: {
                 color: '#66ccff',
-                fontSize:10*bodyScale,
+                fontSize:7*bodyScale,
             },
+            nameGap: nameGap,
             axisLine: { //坐标轴
                 show: false
             },
-            axisLabel: {   //坐标值
-                show: true,
-                textStyle: {
-                    color: '#66ccff',
-                    fontSize:12*bodyScale
-                }
-            },
+            axisLabel: axisLabel,
             splitLine: {  //刻度线
                 show: true,
                 lineStyle: {
@@ -121,7 +112,7 @@ function getBarEcharts() {
             left: 'center',
             text: '',
             textStyle: {
-                fontSize: 12*bodyScale,
+                fontSize: 9*bodyScale,
                 color: '#66ccff',
             }
         },
@@ -139,12 +130,12 @@ function getBarEcharts() {
             // // itemHeight:10*bodyScale, //图例标记的图形高度
             textStyle: {    //图例文字的样式
                 color: '#66ccff',
-                fontSize: 10*bodyScale
+                fontSize: 9*bodyScale
             }
         },
         textStyle: {    //图例文字的样式
             color: '#66ccff',
-            fontSize: 10*bodyScale
+            fontSize: 9*bodyScale
         },
         grid: {
 //            show:true,
@@ -157,13 +148,13 @@ function getBarEcharts() {
         yAxis: [
             {
                 name: "",
-                type: 'value',
-                axisLabel: {
-                    textStyle: {
-                        color: "#66ccff",
-                        fontSize: 12*bodyScale
-                    }
+                nameTextStyle: {
+                    color: '#66ccff',
+                    fontSize:7*bodyScale,
                 },
+                nameGap: nameGap,
+                type: 'value',
+                axisLabel: axisLabel,
                 axisLine: {
                     lineStyle: {
                         width: 0
@@ -188,19 +179,14 @@ function getBarEcharts() {
                 name: "",
                 type: 'category',
                 data: [],
-                axisLabel: {
-                    textStyle: {
-                        color: "#66ccff",
-                        fontSize: 12*bodyScale
-                    }
-                },
+                axisLabel: axisLabel,
                 axisTick: {  //刻度值
                     show: false
                 },
                 axisLine: {
                     show: false
                 },
-                // nameGap: 10,
+                nameGap: nameGap,
                 // offset: 5,
 //                minInterval: .5
             }
@@ -256,7 +242,7 @@ function getAreaEcharts() {
             text: ''
         },
         textStyle: {
-            fontSize: 10*bodyScale
+            fontSize: 9*bodyScale
         },
         color: ['#00e673', '#66ccff'],
         tooltip: {
@@ -277,7 +263,7 @@ function getAreaEcharts() {
             // // itemHeight:10, //图例标记的图形高度
             textStyle: {    //图例文字的样式
                 color: '#66ccff',
-                fontSize: 10*bodyScale
+                fontSize: 9*bodyScale
             },
             data: []
         },
@@ -298,8 +284,10 @@ function getAreaEcharts() {
             {
                 name: '月份',
                 nameTextStyle: {
-                    color: '#66ccff'
+                    color: '#66ccff',
+                    fontSize:7*bodyScale,
                 },
+                nameGap: nameGap,
                 type: 'category',
                 boundaryGap: false,
                 data: [],
@@ -309,14 +297,7 @@ function getAreaEcharts() {
                 axisLine: {
                     show: false
                 },
-                axisLabel: {
-                    show: true,
-                    // rotate: 30,
-                    textStyle: {
-                        color: '#66ccff',
-                        fontSize:12*bodyScale
-                    }
-                },
+                axisLabel: axisLabel,
                 axisTick: {
                     show: false,
                     alignWithLabel: true,
@@ -330,19 +311,15 @@ function getAreaEcharts() {
             {
                 name: "数量",
                 nameTextStyle: {
-                    color: '#66ccff'
+                    color: '#66ccff',
+                    fontSize:7*bodyScale,
                 },
+                nameGap: nameGap,
                 type: 'value',
                 axisLine: { //坐标轴
                     show: false
                 },
-                axisLabel: {   //坐标值
-                    show: true,
-                    textStyle: {
-                        color: '#66ccff',
-                        fontSize:12*bodyScale
-                    },
-                },
+                axisLabel: axisLabel,
                 splitLine: {  //刻度线
                     show: true,
                     lineStyle: {
@@ -378,7 +355,11 @@ function getRadarEcharts() {
         },
         legend: {
             x: 'center',
-            data: []
+            data: [],
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
         },
         toolbox: {
             show: false,
@@ -415,7 +396,7 @@ function getLineAndBar() {
             left: 'center',
             text: '',
             textStyle: {
-                fontSize: 12*bodyScale,
+                fontSize: 9*bodyScale,
                 color: '#66ccff'
             }
         },
@@ -439,7 +420,11 @@ function getLineAndBar() {
             }
         },
         legend: {
-            data: []
+            data: [],
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
         },
         xAxis: {
             type: 'category',
@@ -447,8 +432,9 @@ function getLineAndBar() {
             boundaryGap: false,
             nameTextStyle: {
                 color: '#66ccff',
-                fontSize:10*bodyScale
+                fontSize:7*bodyScale
             },
+            nameGap: nameGap,
             axisPointer: {
                 type: 'shadow',
                 show: false
@@ -456,13 +442,7 @@ function getLineAndBar() {
             axisLine: {
                 show: false
             },
-            axisLabel: {
-                show: true,
-                // rotate: 30,
-                textStyle: {
-                    color: '#66ccff'
-                }
-            },
+            axisLabel: axisLabel,
             axisTick: {
                 show: false,
                 alignWithLabel: true,
@@ -482,17 +462,13 @@ function getLineAndBar() {
             name:'数量',
             nameTextStyle: {
                 color: '#66ccff',
-                fontSize:10*bodyScale
+                fontSize:7*bodyScale
             },
+            nameGap: nameGap,
             axisLine: { //坐标轴
                 show: false
             },
-            axisLabel: {   //坐标值
-                show: true,
-                textStyle: {
-                    color: '#66ccff'
-                }
-            },
+            axisLabel: axisLabel,
             splitLine: {  //刻度线
                 show: false,
                 lineStyle: {
@@ -594,11 +570,11 @@ function getCenterPie() {
             // orient :' horizontal',  //布局  纵向布局
             // // width:80,      //图行例组件的宽度,默认自适应
             x : 'right',   //图例显示在右边
-            itemWidth:10*bodyScale,  //图例标记的图形宽度
-            itemHeight:5*bodyScale, //图例标记的图形高度
+            itemWidth:6*bodyScale,  //图例标记的图形宽度
+            itemHeight:6*bodyScale, //图例标记的图形高度
             textStyle: {    //图例文字的样式
                 color: '#66ccff',
-                fontSize: 10*bodyScale
+                fontSize: 9*bodyScale
             }
         },
         title: {
@@ -636,7 +612,12 @@ function getHuanXing() {
         legend: {
             x: 'center',
             y: 'center',
-            data: []
+            data: [],
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
+
         },
         title: {
             text: '',
@@ -730,7 +711,11 @@ function getManyHuan() {
             data: [
                 'GoogleMaps', 'Facebook', 'Youtube', 'Google+', 'Weixin',
                 'Twitter', 'Skype', 'Messenger', 'Whatsapp', 'Instagram'
-            ]
+            ],
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
         },
         title: {
             text: 'The App World',
@@ -904,7 +889,11 @@ function getRoseEcharts() {
         legend: {
             x: 'right',
             y: 'top',
-            data: []
+            data: [],
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
         },
         toolbox: {
             show: false,
@@ -935,7 +924,11 @@ function  getScatterEcharts() {
         },
         legend: {
             data: ['Punch Card'],
-            left: 'right'
+            left: 'right',
+            textStyle: {    //图例文字的样式
+                color: '#66ccff',
+                fontSize: 9*bodyScale
+            }
         },
         tooltip: {
             position: 'top',
@@ -953,6 +946,11 @@ function  getScatterEcharts() {
         xAxis: {
             type: 'category',
             data: [],
+            nameTextStyle: {
+                color: '#66ccff',
+                fontSize:7*bodyScale
+            },
+            nameGap: nameGap,
             boundaryGap: false,
             // splitLine: {
             //     show: true,
@@ -963,14 +961,21 @@ function  getScatterEcharts() {
             // },
             axisLine: {
                 show: false
-            }
+            },
+            axisLabel: axisLabel,
         },
         yAxis: {
             type: 'category',
             data: [],
-            axisLine: {
+            nameTextStyle: {
+                color: '#66ccff',
+                fontSize:7*bodyScale
+            },
+            nameGap: nameGap,
+            axisLine: { //坐标轴
                 show: false
             },
+            axisLabel: axisLabel,
         },
         series: [{
 

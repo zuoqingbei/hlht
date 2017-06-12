@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title> ${title!'U-lab全球互联数据中心'}</title>
+<script> var contextPath = '${contextPath!}';</script>
+<script src="${contextPath!}/static/asserts/js/jquery-2.2.4.js"></script>
+<script>
+    var bodyScale = 1;
+    var pageH;
+    var pageW;
+    pageH = $(window).height()-17;
+    pageW = pageH * 16 * 7 / (9 * 3);
+
+    function pageResize() {
+        $("#content").css("width", pageW);
+        var bodyFontSize = pageH / 595 * 100 + "%";
+        bodyScale = pageH / 595;
+        $("body").css("font-size", bodyFontSize);
+//        console.log("UUUUUUUUUU~~~~~~~~~~窗口高度：" + pageH + ",\n宽度:"+pageW+" \nbody字号：" + bodyFontSize)
+    }
+    pageResize();
+</script>
+</head>
+<body class="zh_CN">
+<!-- 引入公共头header -->
+${layoutContent}
+<!-- 引入公共低 footer-->
+</body>
+
+<!--屏幕描述
+一共 7x3 个屏幕，
+每一块屏幕是1920x1080
+总共的大小就是13440x3240
+3/7的宽度是5760,
+在笔记本上比例不变适应高度后，宽度为3186px
+-->
+</html>
+  

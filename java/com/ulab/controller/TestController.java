@@ -15,6 +15,7 @@ import com.ulab.model.LabModel;
 import com.ulab.model.Line;
 import com.ulab.model.SensorTypeDto;
 import com.ulab.model.Value;
+import com.ulab.util.BrowseUtil;
 import com.ulab.util.JsonUtils;
 /**
  * 
@@ -135,6 +136,10 @@ public class TestController extends BaseController {
     	String path=getWebRootPath()+"/src/main/webapp/static/data/"+fileName;
     	String json=JsonUtils.readJson(path);
     	renderText(json);
+    }
+    public void openURL(){
+    	BrowseUtil.openURL("http://10.130.96.27/doc/page/login.asp?_1493774940116");
+    	renderText("");
     }
     public static void main(String[] args) {
     	String path="D://unit.json";

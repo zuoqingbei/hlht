@@ -1,0 +1,224 @@
+     <div id="l">
+        <header>
+            <span class="mainLogo"></span>
+            <h1>全球实验室数据中心</h1>
+            <h1>Haier U-lab Data Center</h1>
+        </header>
+        <div class="btnGroup">
+            <span class="oneBtn">
+                <span class="sphere-btnTip">地球</span>
+                <img class="sphere" src="${contextPath!}/static/img/ico/btn_sphere_on.png">
+            </span>
+            <span class="oneBtn">
+                <span class="flat-btnTip">平面</span>
+                <img class="sphere" src="${contextPath!}/static/img/ico/btn_flat_off.png">
+            </span>
+        </div>
+        <div class="switchGroup">
+            <div class="switch sphere">
+                <div class="sphere-left">
+                    <div class="sphere-left-top">
+                        <div class="chartBorder">
+                            <h3>海尔工业园区分布</h3>
+                            <h4 class="noBG">覆盖：
+                            	<strong id="area_num">0</strong>大洲
+                                <strong id="country_num">0</strong>个国家
+                                <strong id="belong_num">0</strong>工业园区
+
+                            </h4>
+                            <div class="myChart"></div>
+                        </div>
+                    </div>
+                    <div class="sphere-left-bottom">
+                        <div class="chartBorder">
+                            <h3>覆盖产品</h3>
+                            <h4 class="noBG"><strong>50+</strong>类家电产品</h4>
+                            <div class="myChart">
+                                <iframe id="wordCloud" src="${contextPath!}/lab/wordCloud"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mapArea">
+                    <h2>数据互联&emsp;&emsp;实时共享&emsp;&emsp;提效增值</h2>
+                    <!--球体地图位置-->
+                    <iframe src="${contextPath!}/lab/sphereMap"></iframe>
+                </div>
+                <div class="sphere-right">
+                    <div class="sphere-right-top">
+                        <!--
+                                                <div class="chartBorder">
+                                                    <h3>实验室总数及分布</h3>
+                                                    <h4>互联实验室数<strong id="lab_all_count_1">388</strong></h4>
+                                                    <div class="myChart"></div>
+                                                </div>
+                        -->
+                        <div class="chartBorder">
+                            <h3>实验室总数及分布</h3>
+                            <h4 class="noBG">实验室总数： <strong id="lab_all_count"> 0 </strong></h4>
+                            <ul id="pro_line">
+                            </ul>
+                            <div class="myChart"></div>
+                        </div>
+
+                    </div>
+                    <div class="sphere-right-bottom">
+                        <div class="chartBorder">
+                            <h3>互联实验室</h3>
+                            <h4 class="noBG">互联实验室： <strong id="linked_status_num">  </strong></h4>
+                            <ul class="header">
+                                <li>实验室名称</li>
+                                <li>所在地</li>
+                                <li>类型</li>
+                            </ul>
+                            <div class="scroll">
+                                <ul>
+                                    ##for(type in labInfo){
+                                    <li>
+                                        <ul>
+                                            <li>${type.title!}</li>
+                                            <li>${type.lab_type!}</li>
+                                            <li>${type.location!}</li>
+                                        </ul>
+                                    </li>
+                                    ##}
+                                </ul>
+                                <ul class="scrollAux"></ul>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="switch flat">
+                <div class="flat-main">
+                    <div class="flat-left">
+                        <div class="flat-left-top">
+                            <!--
+                                                        <div class="chartBorder">
+                                                            <h3>产线统计</h3>
+                                                            <h4>实验室总数： <strong id="lab_all_count"> 0 </strong></h4>
+                                                            <ul id="pro_line" style="margin-top:10px;">
+                                                            </ul>
+                                                            <div class="myChart"></div>
+                                                        </div>
+                            -->
+                            <div class="chartBorder">
+                                <h3>实验室主要功能分类</h3>
+                                <!--<h4>互联实验室数<strong id="lab_all_count_1">388</strong></h4>-->
+                                <div class="myChart"></div>
+                            </div>
+                        </div>
+                        <div class="flat-left-bottom">
+                            <div class="chartBorder">
+                                <h3>产品生命周期全流程测试</h3>
+<!--
+                                <h4>P1:对比试验 P2:新品调试 P3:新品确认<br>
+                                    P4:小批验证 入厂/出厂 P5:年度型检 监督抽测"</h4>
+-->
+                                <div class="myChart"></div>
+                                <!--<p><span>P1</span><span>P2</span><span>P3</span><span>P4</span><span>P5</span></p>-->
+                                <div class="added"><span>a：P1对比试验</span>&emsp;<span>b：P2新品调试</span>
+                                    <br>
+                                    <span>c：P3新品确认</span>&emsp;<span>d,e：P4小批验证 入厂/出厂</span>
+                                    <span>f,g：P5年度型检 监督抽测</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mapArea" style="z-index: 999">
+                        <!--平面地图位置-->
+                    </div>
+                    <!--  <div id="maskSphere"></div> -->
+                    <div class="flat-right">
+                        <div class="flat-right-bottom">
+                            <div class="chartBorder">
+                                <h3 id="professional_code_div">覆盖专业领域：0</h3>
+                                <div class="myChart">
+                                    <div class="myChart_header">各专业领域覆盖实验室数</div>
+                                    <ul class="myChart_num" id="left_professional_code_num">
+                                    </ul>
+                                    <img src="${contextPath!}/static/img/flatRT_text.png">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flat-right-top">
+                            <div class="chartBorder">
+                                <h3 id="properties_code_div">覆盖专业能力：0</h3>
+                                <div class="myChart">
+                                    <!--<img src="${contextPath!}/static/img/flatRT.png">-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--平面地图下面的导航-->
+                <div class="flat-footer controlBar">
+                    <div class="legend">
+                        <div class="legend-l navSwitch">产线</div>
+                        <div class="legend-r navSwitch">实验室</div>
+                        <div class="selectAll">
+                            <label for="navSelectAll"><span class="icon"></span> 全选</label>
+                            <input id="navSelectAll" checked type="checkbox" class="hidden">
+                        </div>
+                        <div class="labLine">
+                            <div class="animateBox">
+                                <ul class="lab">
+                                    ##for(type in labType){
+                                    <li class="active" code="${type.id!}"><a href=""><span class="icon"></span>${type.short_name!}</a>
+                                    </li>
+                                    ##}
+                                </ul>
+                                <ul class="line">
+                                    ##for(type in productLine){
+                                    <li class="active" code="${type.id!}"><a href=""><span class="icon"></span>${type.name!}</a>
+                                    </li>
+                                    ##}
+                                    <!--<li  ><a href=""><span class="icon"></span>其它</a> </li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <ul class="legend-bottom">
+                        	<li><a href=""><span class="icon"></span>中海博睿</a></li>
+                        	 ##for(type in productLine){
+                        	 		##if(!typeLP.last){
+                        	 			<li class=""><a href=""><span class="icon"></span> ${type.name!}</a></li>
+                        	 		##}
+                        	  ##}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+ 
+ <script src="${contextPath!}/static/asserts/echarts/echarts-3.5.2.js"></script>
+<script src="${contextPath!}/static/js/statistics.js?time=New Date()"></script>
+<script src="${contextPath!}/static/js/main_left.js?time=New Date()"></script>
+<script>
+    var myCharts;
+    var myChartFlatRT;
+    var myChartFlatRB;
+    var myChartFlatLB;
+    var pathSymbols = {
+        bar_chip: '${contextPath!}/static/img/bar_chip.png'
+    };
+    $(function () {
+        //右上角的图表
+        myChartFlatRT = echarts.init($("#l").find(".flat-right-top .myChart")[0]);
+        //平面左上的环形图
+        myChartFlatLT = echarts.init($("#l").find(".flat-left-top .myChart")[0]);
+        //右下角的图表
+//        myChartFlatRB = echarts.init($("#l").find(".flat-right-bottom .myChart")[0]);
+
+        //左下角的图表
+        myChartFlatLB = echarts.init($("#l").find(".flat-left-bottom .myChart")[0]);
+        myCharts = [myChartFlatLT, myChartFlatRT, myChartFlatLB];
+        //左侧平面地图及其他左侧数据
+        reloadLeftData();
+
+
+    });
+</script>

@@ -12,10 +12,17 @@
 </html>
 <script>
 var contextPath='${contextPath!}';
-alert(123)
+$(function(){
+	openURL();
+})
 //产线维度实验室数量统计
 function proLineStatis(){
 	$.post(contextPath+'/lab/proLineStatisAjax',{},function(data){
+		console.log(data)
+	})
+}
+function openURL(){
+	$.post(contextPath+'/test/openURL',{},function(data){
 		console.log(data)
 	})
 }

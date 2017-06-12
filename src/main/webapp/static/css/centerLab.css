@@ -17,8 +17,12 @@
     background-size: 100% 100%;
 }
 .zhbr_lab h3.lab_title {
-    left: 10.5%;
+    left: 9.5%;
 }
 .zhbr_lab{
     height: 97%;
+}
+.shishi_right .video_box{
+	width: 97%;
+    height: 98%;
 }

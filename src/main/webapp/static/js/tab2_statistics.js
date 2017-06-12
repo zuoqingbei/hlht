@@ -16,9 +16,9 @@ function loadTab2Data() {
     //不同产线的能力状态分布
     abilityByProductLine();
     //人员状态 散点
-    personForTab2Ajax("myChart25", "1", 2);
+    personForTab2Ajax("myChart25", "1", 3);
     personForTab2Ajax("myChart26", "2", 2);
-    personForTab2Ajax("myChart27", "3", 2);
+    personForTab2Ajax("myChart27", "3", 3);
     //人员状态 柱状
     findPersonStatusTab2Ajax("myChart22", 1);
     findPersonStatusTab2Ajax("myChart23", 2);
@@ -52,18 +52,18 @@ function equipmentStatisForPlForLab2Ajax(type) {
                 //判断上升或者下降
                 if (parseFloat(item.change_num) > 0) {
                     //上升
-                    htmls += ' <img src="' + rise_pic + '" alt=""></span>'
+                    htmls += ' <img src="' + rise_pic + '" alt=""></span>';
                 } else if (parseFloat(item.change_num) < 0) {
                     //下降
-                    htmls += ' <img src="' + reduce_pic + '" alt=""></span>'
+                    htmls += ' <img src="' + reduce_pic + '" alt=""></span>';
                 } else {
                     //没有变化
-                    htmls += ' <img src="' + no_change + '" alt=""></span>'
+                    htmls += ' <img src="' + no_change + '" alt=""></span>';
                 }
                 if (parseFloat(item.change_num) < 0) {
-                    htmls += ' <span>' + (0 - parseFloat(item.change_num)) + '%</span></td>';
+                    htmls += ' <span style="color:red;">' + (0 - parseFloat(item.change_num)) + '%</span></td>';
                 } else {
-                    htmls += ' <span>' + item.change_num + '%</span></td>';
+                    htmls += ' <span >' + item.change_num + '%</span></td>';
                 }
                 if (index == 0) {
                     htmls += ' <td>(同比)</td>';
@@ -136,7 +136,7 @@ function findPersonStatusTab2Ajax(myChartIds, type) {
                 {
                     type: "bar",
                     data: tab2PersonDataData(data),
-                    barWidth: 10,
+                    barWidth: 12* bodyScale,
                     itemStyle: {
                         normal: {
                             //好，这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
@@ -240,7 +240,7 @@ function personForTab2Ajax(myChartIds, type, divisor) {
                     // rotate: 30,
                     textStyle: {
                         color: '#66ccff',
-                        fontSize: 10 * bodyScale
+                        fontSize: 9 * bodyScale
                     },
                     interval: 0
                 },
@@ -266,7 +266,7 @@ function personForTab2Ajax(myChartIds, type, divisor) {
                     // rotate: 30,
                     textStyle: {
                         color: '#66ccff',
-                        fontSize: 12 * bodyScale
+                        fontSize: 11* bodyScale
                     }
                 },
                 axisTick: {
@@ -380,10 +380,9 @@ function standardDispersedStatus(mychartId, filedVaule) {
                 top: 'center',
                 textStyle: {
                     color: '#fff',
-                    fontSize: 12 * bodyScale,
+                    fontSize: 10 * bodyScale
                 }
             },
-
             polar: [
                 {
                     indicator: tab2IndicatorData(data),
@@ -474,8 +473,9 @@ function abilityByProductLine() {
                         },
                         axisLabel: {
                             textStyle: {
-                                fontSize: 10 * bodyScale
-                            }
+                                fontSize: 11 * bodyScale
+                            },
+                            interval: 0,
                         },
                     }
                 ],
@@ -497,14 +497,15 @@ function abilityByProductLine() {
                     {
                         type: "bar",
                         data: seriesData,
-                        barWidth: 8*bodyScale,
+                        barWidth: 12*bodyScale,
+                       
                         label: {
                             normal: {
                                 show: true,
                                 position: 'right',
                                 // formatter: "{a}%",
                                 textStyle: {
-                                    fontSize: 10,
+                                    fontSize: 10*bodyScale,
                                     color: "#ff9933"
                                 },
                                 formatter: '{c}'

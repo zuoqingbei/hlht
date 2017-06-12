@@ -19,7 +19,7 @@
     background-size: 100% 100%;
     color: #66ccff;
     cursor: pointer;
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 
 .white {
@@ -83,7 +83,7 @@
 
 /*鎬荤姸鎬�*/
 .total_state {
-    width: 100%;
+    width: 99%;
     height: 92%;
     text-align: center;
     display: flex;
@@ -103,21 +103,22 @@
 .total_name {
     position: absolute;
     top: 31%;
-    left: 1px;
+    left: -0.1%;
     width: 1.6em;
     text-align: center;
     vertical-align: middle;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.4em;
 
 }
 
 .total_center .total_name {
-    top: 35%;
+    top: 32%;
+    left: -0.1%;
 }
 
 .total_bottom .total_name {
-    top: 35%;
+    top: 32%;
 }
 
 .total_state .total_center {
@@ -157,12 +158,12 @@
 }
 
 .echarts_title {
-    width: 43%;
+    width: 50%;
     color: white;
     background: url("../img/TotalState/title-border.png") no-repeat;
     background-size: 100% 100%;
     margin: 6% auto 1% auto;
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding: 0.2em;
 }
 
@@ -173,9 +174,12 @@
 
 .echarts_title2 {
     margin-top: 4%;
-    width: 33%;
+    width: 45%;
 }
-
+.total_bottom_right .echarts_title2 {
+    margin-top: 4%;
+    width: 36%;
+}
 #myChart1 {
     width: 80%;
     height: 63%;
@@ -546,10 +550,12 @@
 }
 .total_bottom_tab select{
     background-color: transparent;
+    border: 1px solid #66CCFE;
 }
-.shuju_apply_top .total_bottom_tab{
-	height: 65%;
+.total_bottom_tab select .optgroup{
+    height: 50px;
 }
+
 .tab4 .total_bottom_tab {
     margin-left: .1%;
 }
@@ -659,12 +665,14 @@
 
 .sheshi_title {
     position: absolute;
-    top: 0;
-    left: 3%;
+    top: 0.01%;
+    left: 2.6%;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
-
+.sheshi_bottom .sheshi_title{
+    font-size: 1.199999em;
+}
 .sheshi_top_left {
     flex: 1;
     background: url("../img/sheshiState/border .png") no-repeat;
@@ -717,7 +725,7 @@
 
 .sheshi_top_left .zaixian table tr td{
     width: 19%;
-    padding: 0.5em 0;
+    padding: 0.3em 0;
     color:  #66ccff;
     font-size: 1em;
     position: relative;
@@ -732,13 +740,13 @@
 }
 
 .sheshi_top_left .zaixian table tr td:nth-of-type(2) {
-    width: 50%;
+    width: 48%;
 }
 
 .sheshi_top_left .zaixian table tr td .progress {
     width: 50%;
     margin-bottom: 0;
-    height: 0.5em;
+    height: 0.3em;
     background-color: #234f65;
 }
 
@@ -791,7 +799,7 @@
     margin: 0 auto;
 }
 .sheshi_top_rihght .renyuan_top .renyuan_top_title>div{
-    width: 36%;
+    width: 40%;
     margin: 0 auto;
     background: url(../img/sheshiState/gznx-bg.png) no-repeat;
     background-size: 100% 100%;
@@ -870,7 +878,7 @@
 }
 
 .biaozhun_left_left {
-    width: 75%;
+    width: 70%;
     height: 75%;
     margin: 4% auto;
     background: url("../img/sheshiState/bg.png") no-repeat;
@@ -912,10 +920,10 @@
 }
 
 .biaozhun_left_left .biaozhun_total {
-    top: 40%;
-    left: 39%;
+    top: 42%;
+    left: 33%;
     color: white;
-    font-size: 0.6em;
+    font-size: 0.8em;
 }
 
 .sheshi_bottom_left .biaozhun_right {
@@ -1019,31 +1027,31 @@
 }
 
 .nengli_bottom ul .echarts_line1 {
-    left: 13.6%;
+    left: 15.6%;
 }
 
 .nengli_bottom ul .echarts_line2 {
-    left: 27.3%;
+    left: 29.3%;
 }
 
 .nengli_bottom ul .echarts_line3 {
-    left: 39.6%;
+    left: 41.6%;
 }
 
 .nengli_bottom ul .echarts_line4 {
-    left: 52.2%;
+    left: 54.2%;
 }
 
 .nengli_bottom ul .echarts_line5 {
-    left: 63.9%;
+    left: 65.9%;
 }
 
 .nengli_bottom ul .echarts_line6 {
-    left: 76.5%;
+    left: 78.5%;
 }
 
 .nengli_bottom ul .echarts_line7 {
-    left: 89%;
+    left: 91%;
 }
 
 .nengli_bottom ul li:first-of-type {
@@ -1057,7 +1065,7 @@
     bottom: -24%;
     left: -1.9em;
     color: #66ccff;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 #myChart32, #myChart33, #myChart34, #myChart35, #myChart36, #myChart37, #myChart38 {
@@ -1150,14 +1158,14 @@
     position: absolute;
     top: 0;
     left: 1%;
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 .shuju_title1 {
     position: absolute;
     top: 0;
-    left: 2.5%;
-    font-size: 1.2em;
+    left:1.5%;
+    font-size: 1.4em;
 }
 
 .shuju_result_top_center {
@@ -1402,7 +1410,9 @@
     display: none;
     flex-direction: column;
 }
-
+.shuju_apply .echarts_title2{
+    width: 38%;
+}
 .shuju_apply_top {
     margin-top: 1%;
     flex: 1;
@@ -1411,10 +1421,18 @@
     display: flex;
     flex-direction: row;
     text-align: center;
-    width: 100%;
+    width: 99%;
     height: 100%;
+    position: relative;
 }
-
+.shuju_apply_top .total_bottom_tab{
+    position: absolute;
+    left: 28%;
+    width: 11%;
+    height: 62%;
+    background-color: transparent;
+    z-index: 100;
+}
 .shuju_apply_center {
     flex: 1;
 }
@@ -1439,6 +1457,7 @@
     height: 65%;
     position: relative;
     float: left;
+    font-size: 1.1em;
 }
 
 .shuju_apply_bottom_bar1, .shuju_apply_bottom_bar2 {

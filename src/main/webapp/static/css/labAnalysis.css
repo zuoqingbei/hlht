@@ -54,12 +54,12 @@
 	color:#fff;
 	margin-top:4%;
 	text-align:center;
-	font-size:1.1em;
+	font-size:1.3em;
 	
 	}
 	
 .la_datal_content{
-	width:96%;
+	width:108%;
 	height:70%;
 	font-size:1em;
 	margin:5.5% 1% 1% 1%;
@@ -80,14 +80,14 @@
 }	
 .la_datal_legend ul {
 	height:90%;
-	margin:4% 1% 1% 5%;
-	
+	margin:4% 0 1% 5%;
+	font-size: 1.1em;
 	
 }	
 	
 .la_datal_legend ul li{
 	height:33%;
-	padding:3% 1% 1% 5%;
+	/*padding:3% 1% 1% 5%;*/
 	text-align:left;
 	white-space: nowrap;
 }			

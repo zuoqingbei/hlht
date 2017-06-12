@@ -1,6 +1,6 @@
 .labMain_cb_left h3.lab_title{
-	top: 1.6%;
-	left: 12.5%;
+	top: 1.2%;
+	left: 12%;
 }
 .leftContent{
 	display: flex;
@@ -40,28 +40,31 @@
 .leftContent>div{
 	flex:1;
 	display: flex;
-	padding: 0.6%;
+	padding: 0.6% 0;
 }
 .l-top>div,
 .l-mid>div,
 .l-bottom>div{
 	display: inline-block;
+	position: relative;
+	font-size: 1.1em;
 }
 /*.l-top-title{*/
 [class$=-title]{
 	/*flex:1;*/
 	margin: 1%;
-	width:1.8em;
+	width:2.3em;
 	color: #fff;
 	font-size: 1.2em;
 	background-image: url("../img/labMain/labOprateState_title.png");
 	background-size: 100% 100%;
 }
 [class$=-title] h3{
-	position: relative;
-	top: 24%;
+	position: absolute;
+	top: 22%;
 	text-align: center;
-	line-height: 1.3em;
+	/*line-height: 1.3em;*/
+	font-size: 1.4em;
 }
 [class$=-header]{
 	margin-right: 2%;
@@ -88,6 +91,9 @@
 	line-height: 0;
 	text-align: justify;
 }
+[class$=-header] [class^=item] h5{
+	width: 8em;
+}
 [class$=-header] [class^=item] h5 span,
 [class$=-body] [class^=item] h5 span{
 	display: inline-block;
@@ -95,14 +101,14 @@
 }
 
 [class^=item] .progress {
-	width: 24%;
+	width: 19%;
 	height: .8em;
 	display: inline-block;
-	margin: 0 3%;
+	margin: 0 1%;
 	background-color: #224f64;
 }
 [class$=-body] .progress{
-	height: 0.8em;
+	height: 0.6em;
 }
 .progress-bar{
 	background-color: #6cf;
@@ -126,7 +132,7 @@
 }
 [class$=-body] h4{
 	color: #fff;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	text-align: center;
 	margin-bottom: 6%;
 	margin-top: 3%;

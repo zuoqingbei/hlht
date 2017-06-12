@@ -2,6 +2,7 @@ package com.ulab.client.IntegrationService;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -12,6 +13,9 @@ import com.ulab.client.webServiceRerigerator.TestUnitInfo;
 import com.ulab.client.webServiceRerigerator.SensorTypeInfo;
 import com.ulab.client.webServiceRerigerator.SensorInfo;
 import com.ulab.model.LabAllData;
+import com.ulab.model.LabData;
+import com.ulab.model.LabSingleData;
+import com.ulab.model.LabTestUnit;
 
 public class TestWebService {
 
@@ -52,8 +56,18 @@ public class TestWebService {
 //		}
 //		}
 		IntegrationServiceClient client = new IntegrationServiceClient();
-		LabAllData labAllData = client.searchLabAllData();
-		System.out.println(ToStringBuilder.reflectionToString(labAllData));
+//		LabAllData labAllData = client.searchLabAllData();
+//		System.out.println(ToStringBuilder.reflectionToString(labAllData));
+//		for(LabSingleData labSingleData : labAllData.getLabSingleDataList()){
+//			System.out.println(ToStringBuilder.reflectionToString(labSingleData));
+//		}
+		List<LabData> list = client.searchLabData();
+		for(LabData labData : list){
+			System.out.println(ToStringBuilder.reflectionToString(labData));
+			for(LabTestUnit labTestUnit : labData.getTestUnitList()){
+				System.out.println(ToStringBuilder.reflectionToString(labTestUnit));
+			}
+		}
 
 	}
 

@@ -15,9 +15,9 @@ function loadTab4Data(){
 function loadTab4JianData(xhId,xName){
 	$.post(contextPath+'/lab/jianCeXhProForTab1Ajax',{"xhCode":xhId},function(xhPro){
 		$("#tab4_jiance_xh_name").html("\""+xName+"\"");
-		$("#tab4_jiance_xh_result").html("结论："+xhPro.jielun);
+		$("#tab4_jiance_xh_result").html("结论："+"过程稳定");
 		$("#tab4_jiance_xh_name2").html("\""+xName+"\"");
-		$("#tab4_jiance_xh_result2").html("结论："+xhPro.jielun);
+		$("#tab4_jiance_xh_result2").html("cpk:"+xhPro.cpk+"</br>"+"结论："+xhPro.jielun);
 		//模块商质量水平分布
 		mkSqualityLevelForTab4(xhPro);
 		//SPC分析
@@ -329,7 +329,7 @@ function cpkDataForTab4(xhPro){
                 style: {
                     color: '#f93',
                    /* fontWeight: 'bold',*/
-                    fontSize:12
+                    fontSize:12*bodyScale
                 } 
             },
             zIndex:100,  //值越大，显示越向前，默认标示线显示在数据线之后
@@ -341,12 +341,12 @@ function cpkDataForTab4(xhPro){
             width:1  ,               //标示线的宽度，2px
             label:{
                 text:'USL',//标签的内容
-                align:'center',                //标签的水平位置，水平居左,默认是水平居中center
+                verticalAlign:'center',                //标签的水平位置，水平居左,默认是水平居中center
                 x:5,                         //标签相对于被定位的位置水平偏移的像素，重新定位，水平居左10px
                 style: {
                     color: '#f93',
                     /*fontWeight: 'bold',*/
-                    fontSize:12
+                    fontSize:12*bodyScale
                 }
             },
             zIndex:100,  //值越大，显示越向前，默认标示线显示在数据线之后
@@ -393,7 +393,7 @@ var mHeightChartTab4=$('#myChart16').highcharts({
     chart: {
         type: 'column',
         backgroundColor: 'rgba(0,0,0,0)',
-        marginBottom: 5*bodyScale,
+        spacingBottom: 7 * bodyScale,
         marginRight: 5*bodyScale,
     },
     credits: {
@@ -412,7 +412,16 @@ var mHeightChartTab4=$('#myChart16').highcharts({
         gridLineWidth: 0,
         min:71,
         max:77,
-        plotLines:[]
+        plotLines: [],
+        tickColor: "rgba(0,0,0,0)",
+        labels:{
+       	 	 y: 10*bodyScale,
+	       	 style: {
+	             /* fontWeight: 'bold',*/
+	             fontSize: 7* bodyScale,
+	             color:"#439ef7"
+	         }
+       }
     },
     yAxis: [{
         title: {

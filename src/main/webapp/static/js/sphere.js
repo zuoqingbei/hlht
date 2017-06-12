@@ -241,7 +241,14 @@ function mapSphere() {
                     },
                     data:[{
                         name: '中国',
-                        selected: true
+                        selected: true,
+                        itemStyle:{
+                            emphasis:{
+                                areaStyle:{
+                                    color:'#00ffff'
+                                }
+                            }
+                        }
                     }],
                     flat: false, /*是否使用平面图*/
                     flatAngle: 0,
@@ -256,12 +263,12 @@ function mapSphere() {
                     },
                     itemStyle: {
                         normal: {
-                            width: 2*parent.bodyScale,
-                            borderWidth: 1*parent.bodyScale,
+                            width: 0.5*parent.bodyScale,
+                            borderWidth: 0.5*parent.bodyScale,
                             borderColor: '#00ffff',
                             areaStyle: {
                                 color: 'rgba(0, 0, 0, 0)'
-                            }
+                            },
                         }
                     },
                     markPoint: {

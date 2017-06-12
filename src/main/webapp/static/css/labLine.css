@@ -4,7 +4,7 @@
     left: 12%;
 }
 .labMain_cb_left{
-    padding-top: 3%;
+    padding-top: 2%;
 }
 .shishi_left{
     height: 95%;
@@ -29,14 +29,16 @@
 	width:100%;
 	height:100%;
 	vertical-align:middle;
-	padding-top:3%
+	padding-top:3%;
+    text-align: center;
 }
 .sheshi_right_top ul li{
 	display:inline-block;
-	width:33%;
+	width:auto;
 	font-size: 1.2em;
 	text-align:center;
 	color:white;
+    margin-left: 1%;
 }
 
 .sheshi_right_top ul li span{
@@ -48,26 +50,32 @@
 }
 .sheshi_tab{
     margin: 0 auto;
-    width: 50%;
+    width: 58%;
     height: 6%;
     margin-top: 5%;
     background: url("../img/labMain/border-blue.png") no-repeat;
     background-size: 100% 100%;
-    font-size: 1.1em;
+    font-size: 1.4em;
     padding-top: 2%;
     cursor: pointer;
 }
-.sheshi_tab:hover{
+/*.sheshi_tab:hover{*/
+    /*color: #66ffcc;*/
+    /*background: url("../img/labMain/border-green.png") no-repeat;*/
+    /*background-size: 100% 100%;*/
+/*}*/
+.sheshi_tab_active{
     color: #66ffcc;
     background: url("../img/labMain/border-green.png") no-repeat;
     background-size: 100% 100%;
 }
 .sheshi_tab_list{
-    height: 50%;
-    width: 50%;
+    height:81%;
+    width: 61%;
     overflow: hidden;
     margin: 0 auto;
     margin-top: 3%;
+
 }
 .sheshi_tab_list>ul{
     width: 100%;
@@ -76,38 +84,40 @@
     /*padding-left: 10%;*/
     background: url("../img/labMain/dropmenu.png") no-repeat;
     background-size: 100% 100%;
+
 }
 .sheshi_tab_list>ul>li{
     width: 100%;
     height: auto;
-    margin-left: 2%;
     text-align: left;
     position: relative;
     padding-top: 5%;
 
 }
 .sheshi_tab_list>ul>li a{
-    margin-left: 25%;
+    margin-left: 9%;
+    font-size: 1.2em;
 }
-.sheshi_tab_list>ul>li>span{
-    display: inline-block;
-    width: 1.3em;
-    height: 1.3em;
-    vertical-align: middle;
-    margin-right: 5%;
-    background: url("../img/labMain/sb.png") no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-    top: 30%;
-    left: 10%;
-
-
-}
+/*.sheshi_tab_list>ul>li>span{*/
+    /*display: inline-block;*/
+    /*width: 1.4em;*/
+    /*height: 1.4em;*/
+    /*vertical-align: middle;*/
+    /*!*margin-right: 5%;*!*/
+    /*!*background: url("../img/labMain/sb.png") no-repeat;*!*/
+    /*background-size: 100% 100%;*/
+    /*position: absolute;*/
+    /*!*top:32%;*!*/
+    /*!*left: 9%;*!*/
+/*}*/
+/*.sheshi_tab_list>ul>li:hover span{*/
+    /*top: 0;*/
+/*}*/
 .sheshi_tab_list>ul>li>span a{
     font-size: 1em;
 }
 #main1,#main2{
-    width: 90%;
+    width: 89%;
     height: 45%;
 }
 .shishi_right .sheshi_right_left{
@@ -116,43 +126,76 @@
     float: left;
 }
 .shishi_right .sheshi_right_right{
-    width:15%;
-    height: 100%;
+    width: 16%;
+    height: 92.5%;
     float: left;
     padding-top: 2%;
     position: absolute;
     top: 0;
     right: 0;
-    padding-right: 5%;
+    /* padding-right: 3%; */
+    overflow-y: auto;
+    margin-right: 3%;
+    /*margin-top: 1%;*/
 }
 .shishi_right .sheshi_right_right .legend_ul{
     width: 100%;
 }
 
-.taiwei_hide{
-    display: none;
-}
-.sheshi_tab_list>ul>li:hover{
-    height: auto;
-}
+
+/*.sheshi_tab_list>ul>li:hover{*/
+    /*height: auto;*/
+/*}*/
 .sheshi_tab_list>ul>li:hover a{
     color: #66ffcc;
 }
-.sheshi_tab_list>ul>li:hover .taiwei_hide{
-    display: block;
-}
-.sheshi_tab_list>ul>li:hover span{
-    top:5%;
-}
+/*.sheshi_tab_list>ul>li:hover .taiwei_hide{*/
+    /*display: block;*/
+/*}*/
+/*.sheshi_tab_list>ul>li:hover span{*/
+    /*top:5%;*/
+/*}*/
 .taiwei_hide li{
-    display: inline-block;
     width: 100%;
     background-color: rgba(102,204,254,0.2);
     padding-left: 20%;
+    display: inline-block;
+    cursor: pointer;
 }
 .taiwei_hide li:hover{
-    /*background-color: #66ccff;*/
+    background-color: #66ccff;
     color: white;
     border-bottom: 1px solid white;
     border-top: 1px solid white;
+}
+
+.taiwei_hide_active{
+    background-color: #66ccff;
+    color: white;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    display: block;
+}
+.taiwei_hide{
+    display: none;
+}
+.sheshi_right_left .message_box{
+    width: 93%;
+    height: 89%;
+    background-color: rgba(35,79,101,0.75);
+    z-index: 999;
+    position: absolute;
+    top: 3%;
+    left: 2%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    display: none;
+}
+.sheshi_right_left .message_box div{
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 25%;
 }

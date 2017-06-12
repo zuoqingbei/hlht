@@ -46,6 +46,11 @@ function reloadLeftData2(){
 function professionalStatis(){
 	$.post(contextPath+'/lab/labStatisByFiledAjax',{field:"professional_code","labType":labType,"sort":"asc"},function(data){
 		$("#professional_code_div").html("覆盖专业领域："+data.length);
+		var htmls="";
+		$.each(data,function(index,item){
+			htmls+='<li>'+item.count+'</li>';
+		});
+		$("#left_professional_code_num").html(htmls);
 	})
 }
 //实验室数量统计
@@ -103,7 +108,7 @@ function worldTyleEchart(data){
 	            position: 'center',
 //	                模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。
 	            formatter: function (params) {
-	                return allNum -  params.value
+	                return allNum -  params.value;
 	            },
 	            textStyle: {
 	                fontSize:bodyScale*13,
@@ -322,10 +327,10 @@ function labPropertiesStatis(){
 	        },
 	        grid: {
 //	            show:true,
-	        	 x: "30%",
+	        	 x: "23%",
 	             x2: "23%",
-	             y:"18%",
-	             y2:"25%"
+	             y:"14%",
+	             y2:"15%"
 	        },
 	        xAxis: [
 	            {
@@ -360,12 +365,17 @@ function labPropertiesStatis(){
 	                data: statisticLengend(data),
                     nameGap: nameGap,
                     nameTextStyle: nameTextStyle,
-                    axisLabel: axisLabel,
+                    axisLabel: {
+                        margin: 3 * bodyScale,
+                        textStyle: {
+                            fontSize: 9 * bodyScale
+                        },
+						interval:0
+					},
                     axisTick: {  //刻度值
                         show: false,
                     },
 	                offset: 0,
-//	                minInterval: .5
 	            }
 	        ],
 	        series: [
@@ -408,7 +418,7 @@ function labLifeCycleStatis(){
 	        grid: {
 	            left:"10%",
 	            right: '10%',
-	            top:"33%,",
+	            top:"35%,",
 				bottom:"2%"
 	        },
 	        legend: {
@@ -472,7 +482,7 @@ function labLifeCycleStatis(){
 	            	 type: 'value',
 	                 name: '检测订单量(百)',
                     nameTextStyle:{
-                        fontSize:bodyScale*7
+                        fontSize:bodyScale*5
                     },
                     nameGap:10,
 	                 min: 0,
@@ -511,10 +521,10 @@ function labLifeCycleStatis(){
                     data: statisticSeriesDataData(data),
                     lineStyle:{
                         normal:{
-                            width:1
+                            width:2*bodyScale
                         }
                     },
-                    symbolSize:2,
+                    symbolSize:2*bodyScale,
 
                     areaStyle: {
                         normal: {
@@ -542,10 +552,10 @@ function labLifeCycleStatis(){
 	                data:[47.39, 202.33, 56.83,3.81, 168.01, 28.39, 7.59],
                     lineStyle:{
                         normal:{
-                            width:1
+                            width:2*bodyScale
                         }
                     },
-                    symbolSize:2,
+                    symbolSize:2*bodyScale,
 	                areaStyle: {
 	                    normal: {
 	                        color: {

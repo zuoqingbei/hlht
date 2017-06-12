@@ -1,53 +1,166 @@
-#echartTips{position: absolute;top: 0;left: 0;z-index: 1500}
-
-.echart_tip{position:absolute;left:0;top:0;opacity:1;  }
-
-.echart_tip.fade_out{opacity:0;
-    transition: opacity 11000ms;
-    -moz-transition: opacity 11000ms;
-    -webkit-transition: opacity 11000ms;
-    -o-transition: opacity 11000ms;
+#echartTips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1500
 }
 
-.echart_tip.fade_in{opacity:1;
-transition: opacity 300ms;
+.echart_tip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+}
+
+.echart_tip.fade_out {
+    opacity: 0;
+    transition: opacity 10000ms;
+    -moz-transition: opacity 10000ms;
+    -webkit-transition: opacity 10000ms;
+    -o-transition: opacity 10000ms;
+}
+
+.echart_tip.fade_in {
+    opacity: 1;
+    transition: opacity 300ms;
     -moz-transition: opacity 300ms;
     -webkit-transition: opacity 300ms;
     -o-transition: opacity 300ms;
 }
 
-.echart_tip.left.top>.echart_content{bottom:67px;right:42px;}
-.echart_tip.left.top>.echart_tip_arrow{transform: rotate(-32deg);-ms-transform:rotate(-32deg);-moz-transform:rotate(-32deg);-webkit-transform:rotate(-32deg);-o-transform:rotate(-32deg);}
-.echart_tip.right.top>.echart_content{bottom:67px;left:42px;}
-.echart_tip.right.top>.echart_tip_arrow{transform: rotate(32deg);-ms-transform:rotate(32deg);-moz-transform:rotate(32deg);-webkit-transform:rotate(32deg);-o-transform:rotate(32deg);}
-.echart_tip.left.bottom>.echart_content{top:67px;right:42px;}
-.echart_tip.left.bottom>.echart_tip_arrow{transform: rotate(-148deg);-ms-transform:rotate(-148deg);-moz-transform:rotate(-148deg);-webkit-transform:rotate(-148deg);-o-transform:rotate(-148deg);}
-.echart_tip.right.bottom>.echart_content{top: 67px;left: 42px;}
-.echart_tip.right.bottom>.echart_tip_arrow{transform: rotate(148deg);-ms-transform:rotate(148deg);-moz-transform:rotate(148deg);-webkit-transform:rotate(148deg);-o-transform:rotate(148deg);}
-.echart_tip.bottom>.dialog_title.echart_content{top: auto;  bottom: -68px;}
-
-.dialog_title{border-bottom:1px #00B2F8 solid;color:#cccccc;padding-left:10px;padding-bottom:5px;position: absolute;
-    width:150px;font-size:12px;text-align:left;z-index:10;text-shadow:2px 2px 2px rgba(0,0,0,0.9);}
-.dialog_title>a{color: #ffffff;font-size: 14px;
-    line-height: 1.4em;max-height: 2.8em;display:block;
-    display: -webkit-box;text-overflow: ellipsis;word-break: break-all;
-    -webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow : hidden;
-}
-.dialog_label{border:1px #00B2F8 solid;z-index:10;padding:10px;position: absolute;}
-.dialog_label>a{
-    line-height: 1.4em;max-height: 2.8em;color:#afff00;font-size:18px;display:block;
-    display: -webkit-box;text-overflow:ellipsis;  word-break: break-all;
-    -webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow : hidden;
+.echart_tip.left.top > .echart_content {
+    bottom: 3em;
+    right: 1.8em;
 }
 
-.echart_tip_arrow{  position: absolute;  top: 0;  left: 0;  width: 0;  height: 0;  }
-.echart_tip_arrow>.echart_tip_head{
-    width: 30px;height: 30px;border-radius: 100%;border: 2px solid #00B2F8;
-    position: absolute;top: -17px;left: -17px;}
-.echart_tip_arrow>.echart_tip_line{height: 64px;left: 0;top: -80px;border-left: 1px solid #00B2F8;position: absolute;}
+.echart_tip.left.top > .echart_tip_arrow {
+    transform: rotate(-32deg);
+    -ms-transform: rotate(-32deg);
+    -moz-transform: rotate(-32deg);
+    -webkit-transform: rotate(-32deg);
+    -o-transform: rotate(-32deg);
+}
 
-.testclass{
-    -moz-box-shadow:12px 12px 15px #969696;/*firefox*/
-    -webkit-box-shadow:2px 2px 5px #969696;/*webkit*/
-    box-shadow:2px 2px 5px #969696;/*opera或ie9*/
+.echart_tip.right.top > .echart_content {
+    bottom: 3em;
+    right: -2em;
+}
+
+.echart_tip.right.top > .echart_tip_arrow {
+    transform: rotate(32deg);
+    -ms-transform: rotate(32deg);
+    -moz-transform: rotate(32deg);
+    -webkit-transform: rotate(32deg);
+    -o-transform: rotate(32deg);
+}
+
+.echart_tip.left.bottom > .echart_content {
+    bottom: 4.8em;
+    right: 1.9em;
+}
+
+.echart_tip.left.bottom > .echart_tip_arrow {
+    transform: rotate(-148deg);
+    -ms-transform: rotate(-148deg);
+    -moz-transform: rotate(-148deg);
+    -webkit-transform: rotate(-148deg);
+    -o-transform: rotate(-148deg);
+}
+
+.echart_tip.right.bottom > .echart_content {
+    bottom: 4.8em;
+    right: -2em;
+}
+
+.echart_tip.right.bottom > .echart_tip_arrow {
+    transform: rotate(148deg);
+    -ms-transform: rotate(148deg);
+    -moz-transform: rotate(148deg);
+    -webkit-transform: rotate(148deg);
+    -o-transform: rotate(148deg);
+}
+
+.echart_tip.bottom > .dialog_title.echart_content {
+    top: auto;
+    bottom: -3.15em;
+}
+
+.dialog_title {
+    border-bottom: 1px #00B2F8 solid;
+    color: #cccccc;
+    padding-left: 0.8em;
+    padding-bottom: 0.3125em;
+    position: absolute;
+    width: 7.7em;
+    font-size: 1.3em;
+    text-align: left;
+    z-index: 10;
+    text-shadow: 0.143em 0.143em 0.143em rgba(0, 0, 0, 0.9);
+}
+
+.dialog_title > a {
+    color: #ffffff;
+    font-size: 0.8em;
+    line-height: 1.4em;
+    max-height: 2.8em;
+    display: block;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.dialog_label {
+    border: 1px #00B2F8 solid;
+    z-index: 10;
+    padding: 0.8em;
+    position: absolute;
+}
+
+.dialog_label > a {
+    line-height: 1.4em;
+    max-height: 2.8em;
+    color: #afff00;
+    font-size: 1.285em;
+    display: block;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.echart_tip_arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.echart_tip_arrow > .echart_tip_head {
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    border: 0.14em solid #00B2F8;
+    position: absolute;
+    top: -1.2em;
+    left: -1.2em;
+}
+
+.echart_tip_arrow > .echart_tip_line {
+    height: 3.5em;
+    left: 0;
+    top: -4.7em;
+    border-left: 1px solid #00B2F8;
+    position: absolute;
+}
+
+.testclass {
+    -moz-box-shadow: 2.14em 2.14em 1.1em #969696; /*firefox*/
+    -webkit-box-shadow: 2px 2px 5px #969696; /*webkit*/
+    box-shadow: 2px 2px 5px #969696; /*opera或ie9*/
 }

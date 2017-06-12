@@ -2,9 +2,15 @@ package com.ulab.client.IntegrationService;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.ulab.client.webServiceRerigerator.ArrayOfTestMetadata;
 import com.ulab.client.webServiceRerigerator.ArrayOfTestProdInfoItem;
@@ -35,6 +41,9 @@ public class IntegrationServiceClient {
 	public LabAllData searchLabAllData() {
 		LabAllData labAllData = new LabAllData();
 		int labCount = 0;
+		float lowMonthRate = 0f;
+		float highMonthRate = 0f;
+		float aveMonthRate = 0f;
 		int equipmentCount = 0;
 		int finishOrderCount = 0;
 		int testingOrderCount = 0;
@@ -65,10 +74,19 @@ public class IntegrationServiceClient {
 				String flag = getLabFlag(testProdInfoItems, labCode);
 				
 				Calendar calendar =Calendar.getInstance();
+				Date now = calendar.getTime();
+				//获取当年第一天,统计已测订单
 				int year = calendar.get(Calendar.YEAR);
 				StringBuilder firstDaybBuilder = new StringBuilder();
 				firstDaybBuilder.append(year).append("-01-01 00:00:00").append(flag);
 				String firstDayFlag = firstDaybBuilder.toString();
+				//查询订单开始日期，统计负荷率,为避免漏数，前推3个月查询订单，然后筛选1个月内订单
+				calendar.add(Calendar.MONTH, -1);
+				Date orderStart1 = calendar.getTime();
+				calendar.add(Calendar.MONTH, -2);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String orderStart2 = sdf.format(calendar.getTime());
+				String orderStartFlag = orderStart2 + flag;
 				int stopProcessOrderNum = 0;
 				int processingOrderNum = 0;
 				StringBuilder processingUnits = new StringBuilder();
@@ -96,6 +114,52 @@ public class IntegrationServiceClient {
 				}else {
 					labStatus = "停测";			
 				}
+				//月负荷率
+				ArrayOfTestMetadata allTestMetadatas = port2.getMetaData(labCode, -1, orderStartFlag);
+				long alltime = 0;
+				if(null != allTestMetadatas && null != allTestMetadatas.getTestMetadata() && allTestMetadatas.getTestMetadata().size() > 0){
+					for(TestMetadata testMetadata : allTestMetadatas.getTestMetadata()){
+						String testBeginTime = testMetadata.getTestBeginTime();
+						Date testBeginDate = sdf.parse(testBeginTime);
+						//已结束订单
+						if(testMetadata.getIsTesting() == 0){
+							String testEndTime = testMetadata.getTestEndTime();
+							if(StringUtils.isBlank(testEndTime)) continue;
+							Date testEndDate = sdf.parse(testEndTime);
+							if(testEndDate.after(orderStart1)){								
+								if(testBeginDate.after(orderStart1)){
+									alltime = alltime + (testEndDate.getTime() - testBeginDate.getTime());
+								}else {
+									alltime = alltime + (testEndDate.getTime() - orderStart1.getTime());
+								}
+							}
+						} else {
+							//在测订单
+							if(testBeginDate.after(orderStart1)){
+								alltime = alltime + (now.getTime() - testBeginDate.getTime());
+							}else {
+								alltime = alltime + (now.getTime() - orderStart1.getTime());
+							}
+						}
+					}
+				}
+				float rate = (float)alltime/((now.getTime() - orderStart1.getTime()) * testUnitAll);
+				if(lowMonthRate == 0f){
+					lowMonthRate = rate;
+				} else {
+					if(rate < lowMonthRate){
+						lowMonthRate = rate;
+					}
+				}
+				if (highMonthRate == 0f) {
+					highMonthRate = rate;
+				} else {
+					if(rate > highMonthRate){
+						highMonthRate = rate;
+					}
+				}
+				aveMonthRate = aveMonthRate + rate;
+				labSingleData.setMonthRate(getRate(rate));
 				labSingleData.setLabStatus(labStatus);
 				String testUnitStatus = processingUnitNum+"/"+testUnitAll;
 				labSingleData.setTestUnitStatus(testUnitStatus);
@@ -106,9 +170,14 @@ public class IntegrationServiceClient {
 				java.util.logging.Logger.getLogger(Service.class.getName())
                 .log(java.util.logging.Level.INFO, 
                      "Can not initialize the default wsdl from {0}", connInfo.getUrl());
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
 		}
 		labAllData.setLabCount(labCount);
+		labAllData.setLowMonthRate(getRate(lowMonthRate));
+		labAllData.setHighMonthRate(getRate(highMonthRate));
+		labAllData.setAveMonthRate(getRate(aveMonthRate/labCount));
 		labAllData.setEquipmentCount(equipmentCount);
 		labAllData.setFinishOrderCount(finishOrderCount);
 		labAllData.setTestingOrderCount(testingOrderCount);
@@ -182,6 +251,20 @@ public class IntegrationServiceClient {
 			flagBuilder.append("@");
 		}
 		return flagBuilder.toString();
+	}
+	
+	/**
+	 * @Title: getRate
+	 * @Description: 返回百分比
+	 * @param rate
+	 * @return    设定文件
+	 * @return String    返回类型
+	 * @throws
+	 */
+	private String getRate(float rate){
+		NumberFormat format = NumberFormat.getPercentInstance();// 获取格式化类实例
+        format.setMinimumFractionDigits(2);// 设置小数位
+        return format.format(rate);
 	}
 
 }

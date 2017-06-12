@@ -80,8 +80,11 @@ h3 {
   display: flex;
   width:3186px;
   height:100%;
-  background: url("../img/bg_star2.jpg") ;
-  background-size: 100%;
+  background: url("../img/bg-2.jpg") no-repeat;
+  background-size: 100% 100%;
+  /*background-color: #0a1f35;*/
+  /*background-color: #000208;*/
+  /*background-color: #04032d;*/
 }
 @media (min-width: 13000px) {
   #content{

@@ -47,7 +47,7 @@
         }
 
         p a {
-            font-size: .5em;
+            /*font-size: 1.3em;*/
             color: #ba0c0c;
         }
 
@@ -61,18 +61,18 @@
 <script src="${contextPath!}/static/asserts/js/jquery-2.2.4.js"></script>
 <!--<script src="../../../static/asserts/js/jquery-2.2.4.js"></script>-->
 <script>
-    var radius = 100;//3D 球的半径
-    //    radius = $("#div1").css("width");
+    var radius = 210;//3D 球的半径
+//       var  radius = $("#div1").css("width")/2-10;
     var dtr = Math.PI / 180;
-    var d = 300;
+    var d = 600;
 
     var mcList = [];
-    var active = false;
+    var active = active;
     var lasta = 1;
     var lastb = 1;
     var distr = true;
-    var tspeed = 2;//文字移动速度
-    var size = 30;
+    var tspeed = 5;//文字移动速度
+    var size = 250;
 
     var mouseX = 0;
     var mouseY = 0;
@@ -91,8 +91,8 @@
             b = (Math.min(Math.max(-mouseX, -size), size) / radius ) * tspeed;
         }
         else {
-            a = lasta * 1;
-            b = lastb * 1;
+            a = lasta * 0.98;
+            b = lastb * 0.98;
         }
 
         lasta = a;
@@ -169,10 +169,11 @@
         var max = mcList.length;
         var i = 0;
 
+
         var aTmp = [];
         var oFragment = document.createDocumentFragment();
 
-        //�������
+        //???????
         for (i = 0; i < aA.length; i++) {
             aTmp.push(aA[i]);
         }
@@ -199,7 +200,7 @@
                 phi = Math.random() * (Math.PI);
                 theta = Math.random() * (2 * Math.PI);
             }
-            //���任
+            //???任
             mcList[i - 1].cx = radius * Math.cos(theta) * Math.sin(phi);
             mcList[i - 1].cy = radius * Math.sin(theta) * Math.sin(phi);
             mcList[i - 1].cz = radius * Math.cos(phi);
@@ -230,19 +231,18 @@
         cc = Math.cos(c * dtr);
     }
 
-    function resizeText(bodyScale) {
-        radius = 100 * bodyScale;
-    }
+    //    function resizeText(bodyScale) {
+    //        radius =5 * bodyScale;
+    //    }
 
     $(function () {
         var h = $(window.parent).height();
-        var bodyFontSize = h / 595 * 100 + "%";
-        bodyScale = h / 595;
+        var  bodyFontSize= h / 625 * 100 + "%";
+        bodyScale = h / 625;
         $("body").css("font-size", bodyFontSize);
-        radius = 70 * bodyScale;
-        console.log("h:" + h + "~~~~~~~~~~~~~~~~radius:", radius)
-        tspeed = 2 * bodyScale;
-
+//        radius = 5000 * bodyScale;
+//        console.log("h:" + h + "~~~~~~~~~~~~~~~~radius:", radius,bodyFontSize);
+//        tspeed = 5;
 
         var i = 0;
         var oTag = null;
@@ -261,7 +261,7 @@
                 html: items.join("")
             }).appendTo("body");
             //console.log($('div'));
-            radius = Math.floor($("#div1").width() / 3.14 * bodyScale);
+//            radius = Math.floor($("#div1").width() / 3.14 * bodyScale);
             oDiv = document.getElementById('div1');
             aA = oDiv.getElementsByTagName('a');
 
@@ -293,9 +293,9 @@
                 mouseX /= 5;
                 mouseY /= 5;
             };
-            setTimeout(function () {
-                setInterval(update, 100);
-            }, 2000)
+             setTimeout(function () {  
+                setInterval(update, 150);
+              }, 2000)  
 
         });
     });

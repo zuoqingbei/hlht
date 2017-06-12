@@ -11,7 +11,7 @@ public class Constants {
 	//用户
 	public static final String SESSION_USER="session_user";
 	public static final String	ATTR_TEMPLTE_DIR					= "tpl_dir";
-	public static final String	LAYOUT_TEMPLTE_DIR					= "/layout/";//layout模板路径
+	public static final String	LAYOUT_TEMPLTE_DIR					= "/WEB-INF/pages/layout/";//layout模板路径
 	public static final String	TAG_TEMPLTE_DIR					= "/tag/";//tag模板路径
 	public static final int SHOW_IN_MAP=1;//显示在地图
 	public static final int DEL_FALG=0;//未删除标志

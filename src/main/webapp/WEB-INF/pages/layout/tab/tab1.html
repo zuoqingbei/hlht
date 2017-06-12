@@ -1,0 +1,302 @@
+<div class="box total_state selected">
+    <div class="total_top">
+        <div class="total_name">运营状态</div>
+        <div class="total_top_1">
+            <div class="echarts_title">设施状态</div>
+            <div id="myChart1"></div>
+
+        </div>
+        <div class="total_top_2">
+            <div class="echarts_title">人员状态</div>
+            <div class="total_top_2_box">
+                <ul>
+                    <li class="total_top_2_left xueli">学历
+                        <ul id="tab1_person_detail_1">
+
+                            <!--  <li>
+                                 <span class="bar_name">研究生</span>
+                                 <div class="progress">
+                                     <div class="progress-bar1" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;height: 110%"></div>
+                                 </div>
+                                 <span>50%</span>
+                             </li>
+                             <li>
+                                 <span class="bar_name">本科</span>
+                                 <div class="progress">
+                                     <div class="progress-bar1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;height: 110%"></div>
+                                 </div>
+                                 <span>40%</span>
+                             </li>
+                             <li>
+                                 <span class="bar_name">其他</span>
+                                 <div class="progress">
+                                     <div class="progress-bar1" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;height: 110%"></div>
+                                 </div>
+                                 <span>10%</span>
+                             </li> -->
+                        </ul>
+                    </li>
+                    <li class=" total_top_2_left nianxian">工作年限
+                        <ul id="tab1_person_detail_2">
+
+                            <!--   <li>F
+                                  <span class="bar_name">3-8年</span>
+                                  <div class="progress">
+                                      <div class="progress-bar2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;height: 110%"></div>
+                                  </div>
+                                  <span>50%</span>
+                              </li>
+                              <li>
+                                  <span class="bar_name">8-15年</span>
+                                  <div class="progress">
+                                      <div class="progress-bar2" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;height: 110%"></div>
+                                  </div>
+                                  <span>30%</span>
+                              </li>
+                              <li>
+                                  <span class="bar_name">3年以下</span>
+                                  <div class="progress">
+                                      <div class="progress-bar2" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;height: 110%"></div>
+                                  </div>
+                                  <span>10%</span>
+                              </li>
+
+                              <li>
+                                  <span class="bar_name">15年以上</span>
+                                  <div class="progress">
+                                      <div class="progress-bar2" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;height: 110%"></div>
+                                  </div>
+                                  <span>10%</span>
+                              </li> -->
+                        </ul>
+                    </li>
+                    <li class="total_top_2_left zizhi">资历
+                        <ul id="tab1_person_detail_3">
+
+                            <!--   <li>
+                                  <span class="bar_name">权限检测</span>
+                                  <div class="progress">
+                                      <div class="progress-bar3" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;height: 110%"></div>
+                                  </div>
+                                  <span>50%</span>
+                              </li>
+                              <li>
+                                  <span class="bar_name">标准权限</span>
+                                  <div class="progress">
+                                      <div class="progress-bar3" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;height: 110%"></div>
+                                  </div>
+                                  <span>30%</span>
+                              </li>
+                              <li>
+                                  <span class="bar_name">审核权限</span>
+                                  <div class="progress">
+                                      <div class="progress-bar3" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%;height: 110%"></div>
+                                  </div>
+                                  <span>15%</span>
+                              </li>
+                              <li>
+                                  <span class="bar_name">出具报告权限</span>
+                                  <div class="progress">
+                                      <div class="progress-bar3" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;height: 110%"></div>
+                                  </div>
+                                  <span>5%</span>
+                              </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="total_top_3">
+            <div class="echarts_title">标准状态</div>
+            <div class="total_top_3_left">
+                <ul>
+                    <li>标准起草数</li>
+                    <li id="reviseNum">0</li>
+                    个
+                </ul>
+                <ul>
+                    <li>标准总数</li>
+                    <li id="standardNum">0</li>
+                    个
+                </ul>
+            </div>
+            <div class="total_top_3_right">
+                <div class="biaozhun_line"></div>
+                <div id="myChart2"></div>
+            </div>
+        </div>
+        <div class="total_top_4">
+            <div class="echarts_title">能力状态</div>
+            <div id="myChart3"></div>
+            <div class="echarts_line">
+                <span>应具备数</span></br><span id="ability_all_num">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="total_center">
+        <div class="total_name">数据结果</div>
+        <div class="total_center_1">
+            <div class="echarts_title">一次合格率</div>
+            <div class="echarts_title_left">
+                <ul>
+                    <li>当年一次合格率<span id="tab1_pass_rate_id"></span></li>
+                    <li style="display: inline-block">同比上升</li>
+                    <span id="tab1_pass_rate_rise_id"></span>
+                </ul>
+            </div>
+            <div id="myChart4"></div>
+        </div>
+        <div class="total_center_2">
+            <div class="echarts_title">问题闭环率</div>
+            <div class="echarts_title_left">
+                <ul id="tab1_question_closed_title">
+                </ul>
+            </div>
+            <div id="myChart5"></div>
+        </div>
+        <div class="total_center_3">
+            <div class="echarts_title">订单及时率</div>
+            <h3 id="tab1_order_js_compare" style="font-size: 1.1em"><!-- 当年订单及时率<span class="orange bigger">79.39%，</span>同比上升<span class="orange bigger">4.5%</span> --></h3>
+            <div id="myChart6"></div>
+        </div>
+        <div class="total_center_4">
+            <div class="echarts_title" style="font-size: 1.1em">用户满意度</div>
+            <h3 id="tab1_use_my_title"></h3>
+            <div id="myChart7"></div>
+        </div>
+    </div>
+    <div class="total_bottom">
+        <div class="total_name">数据应用</div>
+        <div class="total_bottom_left tab1">
+            <div class="echarts_title echarts_title2">模块商过程能力分析</div>
+            <div class="total_bottom_pie">
+                <h3>模块商质量水平分布</h3>
+                <div class="rename-ppm">ppm</div>
+                <div id="myChart8"></div>
+            </div>
+            <div class="total_bottom_tab">
+<!--
+            	<ul>
+            		##for(p in providerDic){
+                		<li class="main main${p.id!}">${p.name!}</li>
+                		<li>
+	                		<ul>
+		                		##for(c in p.children){
+		                			##if(pLP.first&&cLP.first){
+			                			<li class="main${p.id}-sub active" data="${c.id}" onclick="loadTab1JianData('${c.id}','${c.name}')">${c.name}</li>
+			                		##}else{
+			                			<li class="main${p.id}-sub" data="${c.id}" onclick="loadTab1JianData('${c.id}','${c.name}')">${c.name}</li>
+			                		##}
+		                		##}
+	                		 </ul>
+                		 </li>
+                	##}
+            	</ul>
+-->
+               <!--  <ul>
+                    <li class="main main1">常州福兰德电器</li>
+                    <li>
+                        <ul>
+                            <li class="main1-sub active">WY77H-C1</li>
+                            <li class="main1-sub">WY75H-C7</li>
+                            <li class="main1-sub">WY-S704</li>
+                        </ul>
+                    </li>
+                    <li class="main">章丘海尔电机</li>
+                    <li style="display: none">
+                        <ul>
+                            <li class="main2-sub">200E</li>
+                            <li class="main2-sub">300E</li>
+                            <li class="main2-sub">400E</li>
+                        </ul>
+                    </li>
+
+                    <li class="main">海尔智能电子</li>
+                    <li>
+                        <ul></ul>
+                    </li>
+                    <li class="main">广州万宝集团</li>
+                    <li>
+                        <ul></ul>
+                    </li>
+                    <li class="main">黄石东贝压缩机</li>
+                    <li>
+                        <ul></ul>
+                    </li>
+                    <li class="main">斐雪派克电器</li>
+                    <li>
+                        <ul></ul>
+                    </li>
+                    <li class="main">重庆合信包装</li>
+                    <li>
+                        <ul></ul>
+                    </li>
+                    <li class="main">青岛宝井钢材</li>
+                </ul> -->
+                <form action="">
+                    <select name="请选择" onchange="tab1JianSelected(this)">
+                        ##for(p in providerDic){
+                            <optgroup class="main main${p.id!}" label=${p.name!}>
+                                ##for(c in p.children){
+                                    ##if(pLP.first&&cLP.first){
+                                    <option class="main${p.id}-sub active" data="${c.id}">${c.name}</option>
+                                    ##}else{
+                                    <option class="main${p.id}-sub" data="${c.id}">${c.name}</option>
+                                    ##}
+                                ##}
+                            </optgroup>
+                        ##}
+                    </select>
+                </form>
+            </div>
+            <!--<select>
+                <option value="">&#45;&#45;请选择城市&#45;&#45;</option>
+                <optgroup label="四川省">
+                    <option value="成都市">├成都市</option>
+                    <option value="绵阳市">├绵阳市</option>
+                    <option value="眉山市">├眉山市</option>
+                    <option value="德阳市">└德阳市</option>
+                </optgroup>
+                <optgroup label="湖南省">
+                    <option value="长沙市">长沙市</option>
+                    <option value="湘潭市">湘潭市</option>
+                    <option value="岳阳市">岳阳市</option>
+                    <option value="怀化市">怀化市</option>
+                </optgroup>
+            </select>-->
+            <div class="total_bottom_bar1">
+                <!--<div class="echarts_title echarts_title1">量产一致性对比分析</div>-->
+                <h3><span class="white" id="tab1_jiance_xh_name"></span> SPC分析</h3>
+                <p class="result" id="tab1_jiance_xh_result"></p>
+                <div id="myChart9"></div>
+                <div id="myChart9_2"></div>
+
+            </div>
+            <div class="total_bottom_bar2">
+                <h3><span class="white" id="tab1_jiance_xh_name2"></span> CpK分析</h3>
+                <p class="result" id="tab1_jiance_xh_result2"></p>
+                <div id="myChart10"></div>
+            </div>
+
+        </div>
+        <div class="total_bottom_right">
+            <div class="echarts_title echarts_title2">共产一致性保障</div>
+            <div class="total_bottom_pie">
+                <div id="myChart11"></div>
+            </div>
+            <div class="total_bottom_bar1">
+
+                <div id="myChart12"></div>
+            </div>
+            <!--<div class="total_bottom_bar2">-->
+            <!--<div class="echarts_title echarts_title1">共产不一致型号数</div>-->
+            <!--<div id="myChart13"></div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>中海博瑞实验室</title>
+    <link rel="stylesheet" href="../static/asserts/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/labMain.css">
+
+</head>
+<body>
+<div class="labMain_content">
+    <div class="labMain_content_top">
+        <h1>中海博睿介绍</h1>
+        <div class="labMain_ct_btn">
+            <p><img src="${contextPath!}/static/img/labMain/home.png"></p>
+            <h3>中海博睿实验室</h3>
+        </div>
+        <div class="labMain_ct_btn">
+            <p><img src="${contextPath!}/static/img/labMain/home.png"></p>
+            <h3>返回实验室状态</h3>
+        </div>
+    </div><!--头部content_top-->
+    <div class="labMain_content_bottom">
+        <div class="labMain_cb_left">
+            <h3 class="lab_title">中海博睿实验室</h3>
+            <div class="labMain_cbl_one">
+                <img src="${contextPath!}/static/img/labMain/lab_com.jpg"/>
+            </div>
+            <div class="labMain_cbl_two">
+                <div class="labMain_cblt_tone">
+                    <h3>基本介绍</h3>
+                    <p>实验室建成时间为20xx年，占地面积为12000平方米，实验室共25个，高、精、尖专业测试设备800余套</p>
+                </div>
+                <div class="labMain_cblt_ttwo">
+                    <h3>监测项目</h3>
+                    <p>可进行电子电器产品的运输、安全、性能、EMC、噪音、可靠性等测试及零部件的性能、材料、ROHS等500多项标
+                        准2000多个项目的测试。</p>
+
+                    <p>公司具有完善的环境可靠性试验能力，人工气候室可以模拟再现自然界的各种严酷气候环境，全球环境室可以模拟热
+                        带、寒带、温带各种气候变化，从而提升产品适应能力。
+                    </p>
+                    <p>
+                        可靠性试验室通过输出顾客化的加速试验方案并验证，从而优化设计提高产品可靠性。
+                    </p>
+                </div>
+            </div><!--labMain_cbl_two-->
+        </div><!--labMain_cb_left-->
+        <div class="labMain_cb_right">
+            <div class="labMain_cbr_one">
+                <h3 class="lab_one_title">运营状态</h3>
+                <div class="labMain_cbro_ul">
+                    <ul>
+                        <li><span class="li_bg li_bg_01"></span><a>实验室状态</a></li>
+                        <li><span class="li_bg li_bg_02"></span><a>设备状态</a></li>
+                        <li><span class="li_bg li_bg_03"></span><a>订单状态</a></li>
+                    </ul>
+                </div><!--labMain_cbro_ul-->
+                <div class="labMain_cbro_content">
+                    dddd
+                    <div></div>
+                </div><!--labMain_cbr_content-->
+            </div><!--labMain_cbr_one-->
+            <div class="labMain_cbr_two">
+                <h3 class="lab_one_title">数据分析</h3>
+                <div class="labMain_cbro_ul">
+                    <ul>
+                        <li><span class="li_bg li_bg_04"></span><a>一次合格率</a></li>
+                        <li><span class="li_bg li_bg_05"></span><a>订单及时率</a></li>
+                        <li><span class="li_bg li_bg_06"></span><a>用户满意度</a></li>
+                    </ul>
+                </div><!--labMain_cbro_ul-->
+                <div class="labMain_cbro_content">
+                    <div></div>
+                </div><!--labMain_cbr_content-->
+            </div><!--labMain_cbr_two-->
+            <div class="labMain_cbr_three">
+                <h3 class="lab_one_title">实施监测</h3>
+                <div class="labMain_cbro_ul">
+                    <ul>
+                        <li><span></span></li>
+                        <li><span class="li_bg li_bg_07"></span><a>视频监控</a></li>
+                        <li><span class="li_bg li_bg_08"></span><a>曲线监控</a></li>
+                    </ul>
+                </div><!--labMain_cbro_ul-->
+                <div class="labMain_cbro_content">
+                    <div></div>
+                </div><!--labMain_cbr_content-->
+            </div><!--labMain_cbr_three-->
+        </div>
+        <!--labMain_cb_right-->
+    </div><!--content_bottom-->
+</div><!--content-->
+</body>
+</html>
+<script src="../static/asserts/js/jquery-2.2.4.js"></script>
+<script src="../static/asserts/echarts/echarts-3.5.2.js"></script>
+<script src="../static/asserts/js/bootstrap.min.js"></script>
+<script>
+    var bodyScale = 1;//原始比例1
+    $(document).ready(function (e) {
+        pageResize();
+        function pageResize() {
+            var h = $(window).height();
+            var w = h * 16 * 4 / (9 * 3);
+            // $("#labMain_content").css("width", h * 16 * 7 / (9 * 3));
+            $(".labMain_content").css("width", h * 16 * 4 / (9 * 3));
+            var bodyFontSize = h / 638 * 100 + "%";
+
+            bodyScale = h / 638;
+            $("body").css("font-size", bodyFontSize);
+            console.log("屏幕高度：" + h + ", body字号：" + bodyFontSize)
+        }
+
+    });
+</script>
