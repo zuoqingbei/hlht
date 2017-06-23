@@ -54,7 +54,8 @@ public class IntegrationServiceClient {
 		
 		ArrayOfConnInfo connInfos = port.getConnInfoAll();
 		for(ConnInfo connInfo : connInfos.getConnInfo()){
-			if("aircondition".equals(connInfo.getLabCode()) || "washerkekao01".equals(connInfo.getLabCode()) || !connInfo.getUrl().startsWith("http")) continue;
+//			if("aircondition".equals(connInfo.getLabCode()) || "washerkekao01".equals(connInfo.getLabCode()) || !connInfo.getUrl().startsWith("http")) continue;
+			if(!connInfo.getUrl().startsWith("http")) continue;
 			labCount++;
 			String labCode = connInfo.getLabCode();
 			LabSingleData labSingleData = new LabSingleData();
@@ -200,7 +201,7 @@ public class IntegrationServiceClient {
 		ArrayOfConnInfo connInfos = port.getConnInfoAll();
 		for(ConnInfo connInfo : connInfos.getConnInfo()){			
 			String labCode = connInfo.getLabCode();			
-			if("aircondition".equals(connInfo.getLabCode()) || "washerkekao01".equals(connInfo.getLabCode()) || !connInfo.getUrl().startsWith("http")) continue;
+			if(!connInfo.getUrl().startsWith("http")) continue;
 			LabData labData = new LabData();
 			labData.setLabCode(labCode);
 			labData.setLabName(connInfo.getWsName());
