@@ -21,6 +21,10 @@ public class LabTestUnit {
 	 * @Fields realTimeData : 实时数据
 	 */
 	String realTimeData;
+	/**
+	 * @Fields labStatus : 台位状态（在用/停测)
+	 */
+	String testUnitStatus;
 	
 	
 	public int getTestUnitId() {
@@ -40,6 +44,12 @@ public class LabTestUnit {
 	}
 	public void setRealTimeData(String realTimeData) {
 		this.realTimeData = realTimeData;
+	}
+	public String getTestUnitStatus() {
+		return testUnitStatus;
+	}
+	public void setTestUnitStatus(String testUnitStatus) {
+		this.testUnitStatus = testUnitStatus;
 	}
 
 }

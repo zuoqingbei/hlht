@@ -209,12 +209,34 @@ public class IntegrationServiceClient {
 			try {
 				com.ulab.client.webServiceRerigerator.Service service2 = new com.ulab.client.webServiceRerigerator.Service(new URL(connInfo.getUrl()));
 				com.ulab.client.webServiceRerigerator.ServicePortType port2 = service2.getServiceHttpPort();
-				ArrayOfTestUnitInfo testUnitInfos = port2.getTestUnitInfo(labCode);
+				//录入条目
+				ArrayOfTestProdInfoItem testProdInfoItems = port2.getTestProdInfoItemByLabCode(labCode);
+				String flag = getLabFlag(testProdInfoItems, labCode);
+				//在测订单
+				ArrayOfTestMetadata testMetadatas = port2.getMetaData(labCode, 1, flag);
+				//在测台位列表
+				List<Integer> processingUnits = new ArrayList<Integer>();
+				if(null != testMetadatas && null != testMetadatas.getTestMetadata() && testMetadatas.getTestMetadata().size() > 0){
+					for(TestMetadata testMetadata : testMetadatas.getTestMetadata()){
+						if(!(processingUnits.contains(testMetadata.getTestUnitId()))){
+							processingUnits.add(testMetadata.getTestUnitId());
+						}				
+					}
+				}
+				//台位明细
+				ArrayOfTestUnitInfo testUnitInfos = port2.getTestUnitInfo(labCode);				
 				List<LabTestUnit> labTestUnitList = new ArrayList<LabTestUnit>();
 				for(TestUnitInfo testUnitInfo : testUnitInfos.getTestUnitInfo()){
 					LabTestUnit labTestUnit = new LabTestUnit();
 					labTestUnit.setTestUnitId(testUnitInfo.getTestUnitId());
 					labTestUnit.setTestUnitName(testUnitInfo.getTestUnitName());
+					String testUnitStatus = "";
+					if(processingUnits.contains(testUnitInfo.getTestUnitId())){
+						testUnitStatus = "在用";
+					} else {
+						testUnitStatus = "停测";
+					}
+					labTestUnit.setTestUnitStatus(testUnitStatus);
 					labTestUnitList.add(labTestUnit);
 				}
 			labData.setTestUnitList(labTestUnitList);
