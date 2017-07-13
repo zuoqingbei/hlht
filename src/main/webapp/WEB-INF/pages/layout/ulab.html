@@ -14,7 +14,8 @@
     var pageH;
     var pageW;
     pageH = $(window).height();
-    pageW = pageH * 16 * 7 / (9 * 3);
+//    pageW = pageH * 16 * 7 / (9 * 3);
+    pageW = pageH * 16 * 7 / (12 * 3);   //改为 4:3
 
     function pageResize() {
         $("#content").css("width", pageW);

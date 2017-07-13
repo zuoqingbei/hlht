@@ -1,3 +1,6 @@
+.labMain_content{
+    flex: 4;
+}
 .labMain_cb_left{
     display: none;
 }
