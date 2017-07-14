@@ -4443,6 +4443,7 @@ function resetSizeRight() {
     for (var i = 0; i < right_echarts.length; i++) {
         right_echarts[i].resize();
     }
+    console.log(right_echarts.length)
 }
 
 $(function () {
@@ -4525,6 +4526,7 @@ $(function () {
         */
             if(thisLabel!=labTypeCode){
             	labTypeCode=thisLabel;
+            	 right_echarts=[];
             	 loadTab2Data();
                  loadTab3Data();
                  loadTab4Data();
@@ -4537,6 +4539,7 @@ $(function () {
               });
         	//再次点击同一个 返回全部数据
         	labTypeCode="";
+        	right_echarts=[];
         	loadTab2Data();
             loadTab3Data();
             loadTab4Data();
