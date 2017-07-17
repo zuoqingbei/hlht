@@ -3,10 +3,11 @@ package com.ulab.util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class JsonUtils {
 	//判断文件是否存在
@@ -32,7 +33,7 @@ public class JsonUtils {
 		StringBuffer data = new StringBuffer();
 		//
 		try {
-			reader = new BufferedReader(new FileReader(file));
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 			// 每次读取文件的缓存
 			String temp = null;
 			while ((temp = reader.readLine()) != null) {
