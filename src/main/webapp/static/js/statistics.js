@@ -45,7 +45,7 @@ function reloadLeftData2(){
 //专业领域
 function professionalStatis(){
 	var names=['化学','机械','电气','日用消费品','EMC'];
-	$.post(contextPath+'/lab/labStatisByFiledAjax',{field:"professional_code","labType":labType,"sort":"asc"},function(data){
+	$.post(contextPath+'/lab/labStatisByFiledAjax',{field:"professional_code","labType":labType,"productCode":productCode,"sort":"asc"},function(data){
 		$(".professional_code_div").html("覆盖专业领域："+data.length);
 		var htmls="";
 		$.each(names,function(index,item){
