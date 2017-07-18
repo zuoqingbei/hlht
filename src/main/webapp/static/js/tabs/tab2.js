@@ -344,12 +344,22 @@ function equipmentStatisForPlForLab2Ajax(type) {
 function findPersonStatusTab1Ajax(type) {
     $.post(contextPath + '/lab/findPersonStatusTab1Ajax', {"type": type}, function (data) {
         var htmls = "";
-        $.each(data, function (index, item) {
-            htmls += '<li><span class="bar_name">' + item.name + '</span>';
-            htmls += '<div class="progress">';
-            htmls += '<div class="progress-bar1" role="progressbar" aria-valuenow="' + item.rate + '" aria-valuemin="0" aria-valuemax="100" style="width:' + item.rate + '%;height: 110%"></div>';
-            htmls += '</div><span>' + item.rate + '%</span></li>';
-        });
+        if(type==3){
+        	for(var x=data.length-1;x>=0;x--){
+        		var item=data[x];
+        		htmls += '<li><span class="bar_name">' + item.name + '</span>';
+        		htmls += '<div class="progress">';
+        		htmls += '<div class="progress-bar1" role="progressbar" aria-valuenow="' + item.rate + '" aria-valuemin="0" aria-valuemax="100" style="width:' + item.rate + '%;height: 110%"></div>';
+        		htmls += '</div><span>' + item.rate + '%</span></li>';
+        	}
+        }else{
+        	$.each(data, function (index, item) {
+        		htmls += '<li><span class="bar_name">' + item.name + '</span>';
+        		htmls += '<div class="progress">';
+        		htmls += '<div class="progress-bar1" role="progressbar" aria-valuenow="' + item.rate + '" aria-valuemin="0" aria-valuemax="100" style="width:' + item.rate + '%;height: 110%"></div>';
+        		htmls += '</div><span>' + item.rate + '%</span></li>';
+        	});
+        }
         $("#tab1_person_detail_" + type).html(htmls)
     })
 }
@@ -393,7 +403,19 @@ function personForTab2Ajax(myChartIds, type, divisor) {
              data3.push([item[3].name, item[3].product_name, parseInt(item[3].all_num) / divisor*bodyScale, item[3].name]);*/
             if (index == 0) {
                 $.each(item, function (ind, it) {
-                    xData.push(it.name);
+                	if(type==4){
+                		var result="";
+                		var str=it.name+"";
+                		console.log(str)
+                		for(var i=0,len=str.length;i<len;i++){
+                		    result += str[i];
+                		    if(i % 2 == 1) result += '\n';
+                		}
+                		 xData.push(result);
+                	}else{
+                		 xData.push(it.name);
+                	}
+                   
                 })
             }
         });
