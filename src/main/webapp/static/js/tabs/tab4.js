@@ -813,7 +813,7 @@ function mkSqualityLevelForTab4(xhPro) {
             x: "13%",
             x2: "21%",
             y: '17%',
-            y2: "20%"
+            y2: "5%"
         },
         yAxis: [
             {
@@ -870,6 +870,7 @@ function mkSqualityLevelForTab4(xhPro) {
                     show: true,
                     textStyle: {
                         color: '#66ccff',
+                        fontSize:15*bodyScale
                     }
                 },
                 axisTick: {  //刻度值
@@ -884,7 +885,12 @@ function mkSqualityLevelForTab4(xhPro) {
 				name:"\n\n模块商数量",
                 nameGap: nameGap,
                 nameTextStyle: nameTextStyle,
-                axisLabel: axisLabel,
+                axisLabel: {
+                    textStyle: {
+                        color: '#66ccff',
+
+                    }
+				},
                 splitLine: {  //刻度线
                     show: true,
                     lineStyle: {
@@ -905,22 +911,16 @@ function mkSqualityLevelForTab4(xhPro) {
         ],
         series: [
             {
-                symbolSize: ['40%', '60%'],
                 data: [{
-                    value: 1,
-                    symbol: bar_chip
+                    value: 1
                 }, {
-                    value: 5,
-                    symbol: bar_chip
+                    value: 5
                 }, {
-                    value: 8,
-                    symbol: bar_chip
+                    value: 8
                 }, {
-                    value: 3,
-                    symbol: bar_chip
+                    value: 3
                 }, {
-                    value: 0,
-                    symbol: bar_chip
+                    value: 0
                 }
                 ]
             }

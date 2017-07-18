@@ -17,21 +17,21 @@
 <div class="labMain_content_country" style="display: none;">
     <!--<div class="labMain_content" >-->
     <div class="labMain_content_top">
-        <h1>中海博睿数据中心</h1>
+        <h1 id="labName">中海博睿数据中心</h1>
         <div class="labMain_ct_btn">
             <div class="icon"></div>
             <h3>返回上一级</h3>
         </div>
         <div class="labMain_ct_btn">
             <div class="icon"></div>
-            <h3>中海博睿实验室</h3>
+            <h3 id="labnameIcon">中海博睿实验室</h3>
         </div>
     </div><!--头部content_top-->
 
     <div class="labMain_content_bottom">
         <!--中海博睿实验室-->
         <div class="labMain_cb_left labMain_cb_left_column zhbr_lab labMain_cb_left_show">
-            <h3 class="lab_title">中海博睿实验室</h3>
+            <h3 class="lab_title" id="secondName">中海博睿实验室</h3>
 
             <!--上侧-->
             <div class="labMain_cbl_one">
@@ -758,13 +758,7 @@ function echartsResizeWorld() {
             $(".zhbr_lab").addClass("labMain_cb_left_show").siblings().removeClass("labMain_cb_left_show");
         })
 
-
-//        实验室文本信息
-        var labInfos=[];
-        labInfos[0]="日本研发中心拥有冰箱检测实验室39个，测试台位290个，具备冰箱性能、结构、电子电器以及超前研发技术检测能力。The Japan R&D Center has 39 refrigerator testing labs, 290 test stations, covering the testing capabilitiesof  refrigerator performance, structure, electronic and electrical appliances and advanced R&D technology."
-        labInfos[1]="Haier Thailand ACF have own testing laboratory，which can do the normal cooling capacity testing with our engineer. ACF also can develop new product with local parts."
-        labInfos[2]="3 main labs on Auckland site: Refrigeration Test Lab，Refrigeration Evaluation Lab，Laundry Evaluation Lab2 main labs on Dunedin site: Cooking Evaluation Lab，Dishwashing Evaluation LabLab capacity including hundreds of testing items for both Compliance Testing & Development Testing based on advanced and reliable measurement system and skilled lab techs."
-        //  实验室图片信息
-        var labImgs=["${contextPath!}/static/img/labMain/Japan.jpg","${contextPath!}/static/img/labMain/New Zealand.jpg","${contextPath!}/static/img/labMain/Thailand.jpg"];
     })
+
+
 </script>

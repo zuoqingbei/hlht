@@ -1,9 +1,10 @@
-.shujuWajue{
+.shujuWajue {
     display: flex;
     height: 92%;
     padding: 0.7% .6% .9% 0;
 }
-.shujuWajue>div{
+
+.shujuWajue > div {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -14,11 +15,13 @@
     margin: 1% 1.4% 0;
     padding: 2% 1%;
 }
-.shujuWajue>div>div{
+
+.shujuWajue > div > div {
     /*outline: 1px dashed yellowgreen;*/
-    flex:1;
+    flex: 1;
 }
-.shujuWajue>div>.title{
+
+.shujuWajue > div > .title {
     position: absolute;
     top: 1%;
     color: #fff;
@@ -26,36 +29,43 @@
     left: 18%;
     transform: translateX(-50%);
 }
-.shujuWajue>div>div h3{
+
+.shujuWajue > div > div h3 {
     text-align: center;
     margin-top: 2%;
     font-size: 1.3em;
 }
 
-.shujuWajue_left>.shujuWajue_left_top {
+.shujuWajue_left > .shujuWajue_left_top {
     font-size: 1.1em;
-    flex:.7;
+    flex: .7;
 }
-.shujuWajue_left_top h3{
+
+.shujuWajue_left_top h3 {
     color: #fff;
 }
-.shujuWajue_left_top .rename-ppm{
+
+.shujuWajue_left_top .rename-ppm {
     display: inline-block;
     position: absolute;
     left: 83%;
     top: 11%;
 }
-.shujuWajue_left_top_list>div{
+
+.shujuWajue_left_top_list > div {
     float: left;
     padding: 0.5%;
 }
-.shujuWajue_left_top_list>form{
+
+.shujuWajue_left_top_list > form {
     float: left;
     width: 60%;
+    background-color: transparent;
 }
-.shujuWajue_left_top_list select{
+
+.shujuWajue_left_top_list select {
     padding: 0.5% 1%;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(255, 255, 255, .2);
 }
 
 .shujuWajue_left_bottom {
@@ -64,41 +74,48 @@
 }
 
 /*此處用flex總是出問題*/
-.shujuWajue_left_bottom>div {
-    height:90%;
+.shujuWajue_left_bottom > div {
+    height: 90%;
     float: left;
 }
 
-.shujuWajue_left_bottom_spc{
-    width:60%;
+.shujuWajue_left_bottom_spc {
+    width: 60%;
 }
-.shujuWajue_left_bottom_cpk{
+
+.shujuWajue_left_bottom_cpk {
     width: 32%;
-    /*margin-left: 6%;*/
+    margin-left: 3%;
 }
-.shujuWajue_left_bottom p.result{
+
+.shujuWajue_left_bottom p.result {
     color: #00e673;
     font-size: 1.1em;
     text-align: center;
     margin-top: .5em;
     margin-bottom: -.5em;
 }
-#myChart14,
-#myChart16{
+
+#myChart14 {
     height: 82%;
 }
-#myChart15,
-#myChart15_2{
-    height:46%;
+
+#myChart16 {
+    height: 90%;
 }
 
-.shujuWajue_right_top{
+#myChart15,
+#myChart15_2 {
+    height: 46%;
+}
+
+.shujuWajue_right_top {
     padding-left: 12%;
 }
 
 #myChart17,
-#myChart18{
+#myChart18 {
     /*background-color: pink;*/
-    height:100%;
+    height: 100%;
     /*width: 100%;*/
 }

@@ -23,8 +23,28 @@ var totalLegendNameWorld=[];//图例全称 包含单位 ['1:频率(Hz)','2:M1(�
 var interval_count1World=0;
 var interval_count2World=0;
 var mockxDataWorld=[];//模拟的x轴数据
+
+
+//实验室文本信息
+var labInfos=[];
+labInfos[0]="日本研发中心拥有冰箱检测实验室39个，测试台位290个，具备冰箱性能、结构、电子电器以及超前研发技术检测能力。The Japan R&D Center has 39 refrigerator testing labs, 290 test stations, covering the testing capabilitiesof  refrigerator performance, structure, electronic and electrical appliances and advanced R&D technology."
+labInfos[1]="Haier Thailand ACF have own testing laboratory，which can do the normal cooling capacity testing with our engineer. ACF also can develop new product with local parts."
+labInfos[2]="3 main labs on Auckland site: Refrigeration Test Lab，Refrigeration Evaluation Lab，Laundry Evaluation Lab2 main labs on Dunedin site: Cooking Evaluation Lab，Dishwashing Evaluation LabLab capacity including hundreds of testing items for both Compliance Testing & Development Testing based on advanced and reliable measurement system and skilled lab techs."
+//  实验室图片信息
+var labImgs=["../static/img/labMain/Japan.png","../static/img/labMain/NewZealand.png","../static/img/labMain/Thailand.png"];
+
+//'#labName'    实验室标题名
+//'#labnameIcon'  实验室标题名按钮
+//'#secondName'  实验室名小标题
+var labname=['日本实验室','泰国实验室','新西兰实验室']
 //加载实验室与台位对照关系 生刷选框
 function loadLabUnitInfoCenterTabAjaxWorld(type){
+	console.log(labInfos[type])
+	 $(".labMain_cblt_tone").html("<h3>基本介绍</h3>"+"<p style:'font-size:1.3em'>"+labInfos[type]+"</p>");
+	 $(".labMain_cblt_ttwo img").attr("src",labImgs[type]);
+     $('#labName').html(labname[type]);
+    $('#labnameIcon').html(labname[type]);
+    $('#secondName').html(labname[type]);
 	 var htmls="";
      //console.log(data)
 	 if(type==0){

@@ -19,3 +19,6 @@
     width: 100%;
     overflow: hidden;
 }
+.labMain_content_country .labMain_cblt_tone p{
+	font-size:1.3em;
+}

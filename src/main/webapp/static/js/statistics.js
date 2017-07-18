@@ -422,7 +422,7 @@ function labPropertiesStatis(){
 	                    }
 	                },
 	                splitLine: {  //刻度线
-	                    show: true,
+                        show: false,
 	                    lineStyle: {
 	                        color: "#234f65"
 	                    }
@@ -454,6 +454,7 @@ function labPropertiesStatis(){
 	        ],
 	        series: [
 	            {
+                    barWidth:30,
 	                name: '专业能力',
 	                type:'bar',
 // 	                type: 'pictorialBar',
@@ -500,7 +501,7 @@ function labPropertiesStatis(){
 	                    }
 	                },
 	                splitLine: {  //刻度线
-	                    show: true,
+	                    show: false,
 	                    lineStyle: {
 	                        color: "#234f65"
 	                    }
@@ -532,6 +533,7 @@ function labPropertiesStatis(){
 	        ],
 	        series: [
 	            {
+                    barWidth:90,
 	                name: '专业能力',
 	                type:'bar',
 	                // type: 'pictorialBar',
