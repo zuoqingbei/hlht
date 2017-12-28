@@ -1,567 +1,426 @@
 package com.enterise.web.htmlgen.xls;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_CENTER;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_CENTER_SELECTION;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_FILL;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_JUSTIFY;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_LEFT;
-import static org.apache.poi.ss.usermodel.CellStyle.ALIGN_RIGHT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASHED;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASH_DOT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DASH_DOT_DOT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DOTTED;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_DOUBLE;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_HAIR;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASHED;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASH_DOT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_MEDIUM_DASH_DOT_DOT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_NONE;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_SLANTED_DASH_DOT;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_THICK;
-import static org.apache.poi.ss.usermodel.CellStyle.BORDER_THIN;
-import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_BOTTOM;
-import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_CENTER;
-import static org.apache.poi.ss.usermodel.CellStyle.VERTICAL_TOP;
 
-import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.Formatter;
+import java.io.OutputStreamWriter;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.format.CellFormat;
-import org.apache.poi.ss.format.CellFormatResult;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.CellAddress;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTRElt;
-public class ExcelToHtml {
-	   private  Workbook wb;  
-	    private  Appendable output;  
-	    private boolean completeHTML;  
-	    private Formatter out;  
-	    private boolean gotBounds;  
-	    private int firstColumn;  
-	    private int endColumn;  
-	    private HtmlHelper helper;  
-	    private HashSet<String> cell_merged= new HashSet<String>();//String = (x,y)  
-	    private HashSet<String> cell_hasValue= new HashSet<String>();//String = (x,y)  
-	    private HashSet<String> cell_hidden = new HashSet<String>();//String=(x,y);  
-	    private Map<String,String> cell_merged_print= new HashMap<String,String>();//String1 = (x,y),String2=rowspan,colspan  
-	    //private int rowspan;  
-	  
-	    private static final String DEFAULTS_CLASS = "excelDefaults";  
-	    private static final String COL_HEAD_CLASS = "colHeader";  
-	    private static final String ROW_HEAD_CLASS = "rowHeader";  
-	  
-	    private static final Map<Short, String> ALIGN = mapFor(ALIGN_LEFT, "left",  
-	            ALIGN_CENTER, "center", ALIGN_RIGHT, "right", ALIGN_FILL, "left",  
-	            ALIGN_JUSTIFY, "left", ALIGN_CENTER_SELECTION, "center");  
-	  
-	    private static final Map<Short, String> VERTICAL_ALIGN = mapFor(  
-	            VERTICAL_BOTTOM, "bottom", VERTICAL_CENTER, "middle", VERTICAL_TOP,  
-	            "top");  
-	  
-	    private static final Map<Short, String> BORDER = mapFor(BORDER_DASH_DOT,  
-	            "dashed 1pt", BORDER_DASH_DOT_DOT, "dashed 1pt", BORDER_DASHED,  
-	            "dashed 1pt", BORDER_DOTTED, "dotted 1pt", BORDER_DOUBLE,  
-	            "double 1pt", BORDER_HAIR, "solid 1px", BORDER_MEDIUM, "solid 1pt",  
-	            BORDER_MEDIUM_DASH_DOT, "dashed 1pt", BORDER_MEDIUM_DASH_DOT_DOT,  
-	            "dashed 1pt", BORDER_MEDIUM_DASHED, "dashed 1pt", BORDER_NONE,  
-	            "none", BORDER_SLANTED_DASH_DOT, "dashed 1pt", BORDER_THICK,  
-	            "solid 1pt", BORDER_THIN, "dashed 1pt");  
-	  
-	    @SuppressWarnings({"unchecked"})  
-	    private static <K, V> Map<K, V> mapFor(Object... mapping) {  
-	        Map<K, V> map = new HashMap<K, V>();  
-	        for (int i = 0; i < mapping.length; i += 2) {  
-	            map.put((K) mapping[i], (V) mapping[i + 1]);  
-	        }  
-	        return map;  
-	    }  
-	  
-	    /** 
-	     * Creates a new converter to HTML for the given workbook. 
-	     * 
-	     * @param wb     The workbook. 
-	     * @param output Where the HTML output will be written. 
-	     * 
-	     * @return An object for converting the workbook to HTML. 
-	     */  
-	    public static ExcelToHtml create(Workbook wb, Appendable output) {  
-	        return new ExcelToHtml(wb, output);  
-	    }  
-	    public ExcelToHtml (Workbook wb, Appendable output){
-	    	this.wb=wb;
-	    	this.output=output;
-	    }
-	    public ExcelToHtml (){
-	    	
-	    }
-	    /** 
-	     * Creates a new converter to HTML for the given workbook.  If the path ends 
-	     * with "<tt>.xlsx</tt>" an {@link XSSFWorkbook} will be used; otherwise 
-	     * this will use an {@link HSSFWorkbook}. 
-	     * 
-	     * @param path   The file that has the workbook. 
-	     * @param output Where the HTML output will be written. 
-	     * 
-	     * @return An object for converting the workbook to HTML. 
-	     */  
-	    public static ExcelToHtml create(String path, Appendable output)  
-	            throws IOException {  
-	        return create(new FileInputStream(path), output);  
-	    }  
-	  
-	    /** 
-	     * Creates a new converter to HTML for the given workbook.  This attempts to 
-	     * detect whether the input is XML (so it should create an {@link 
-	     * XSSFWorkbook} or not (so it should create an {@link HSSFWorkbook}). 
-	     * 
-	     * @param in     The input stream that has the workbook. 
-	     * @param output Where the HTML output will be written. 
-	     * 
-	     * @return An object for converting the workbook to HTML. 
-	     */  
-	    public static ExcelToHtml create(InputStream in, Appendable output)  
-	            throws IOException {  
-	        try {  
-	            Workbook wb = WorkbookFactory.create(in);  
-	            return create(wb, output);  
-	        } catch (InvalidFormatException e){  
-	            throw new IllegalArgumentException("Cannot create workbook from stream", e);  
-	        }  
-	    }  
-	  
-	    private void ToHtml(Workbook wb, Appendable output) {  
-	        if (wb == null)  
-	            throw new NullPointerException("wb");  
-	        if (output == null)  
-	            throw new NullPointerException("output");  
-	        this.wb = wb;  
-	        this.output = output;  
-	    }  
-	  
 
-	  
-	    public void setCompleteHTML(boolean completeHTML) {  
-	        this.completeHTML = completeHTML;  
-	    }  
-	  
-	    public void printPage() throws IOException {  
-	        try {  
-	            ensureOut();  
-	            if (completeHTML) {  
-	                out.format(  
-	                        "<?xml version=\"1.0\" encoding=\"GBK\" ?>%n");  
-	                out.format("<html>%n");  
-	                out.format("<head>%n");  
-	                out.format("</head>%n");  
-	                out.format("<body>%n");  
-	            }  
-	  
-	            print();  
-	  
-	            if (completeHTML) {  
-	                out.format("</body>%n");  
-	                out.format("</html>%n");  
-	            }  
-	        } finally {  
-	            if (out != null)  
-	                out.close();  
-	            if (output instanceof Closeable) {  
-	                Closeable closeable = (Closeable) output;  
-	                closeable.close();  
-	            }  
-	        }  
-	    }  
-	  
-	    public void print() {  
-	        printInlineStyle();  
-	        printSheets();  
-	    }  
-	  
-	    private void printInlineStyle() {  
-	        //out.format("<link href=\"excelStyle.css\" rel=\"stylesheet\" type=\"text/css\">%n");  
-	        out.format("<style type=\"text/css\">%n");  
-	        printStyles();  
-	        out.format("</style>%n");  
-	    }  
-	  
-	    private void ensureOut() {  
-	        if (out == null)  
-	            out = new Formatter(output);  
-	    }  
-	  
-	    public void printStyles() {  
-	        ensureOut();  
-	  
-	        // First, copy the base css  
-	        BufferedReader in = null;  
-	        try {  
-	            in = new BufferedReader(new InputStreamReader(  
-	                    getClass().getResourceAsStream("excelStyle.css")));  
-	            String line;  
-	            while ((line = in.readLine()) != null) {  
-	                out.format("%s%n", line);  
-	            }  
-	        } catch (IOException e) {  
-	            throw new IllegalStateException("Reading standard css", e);  
-	        } finally {  
-	            if (in != null) {  
-	                try {  
-	                    in.close();  
-	                } catch (IOException e) {  
-	                    //noinspection ThrowFromFinallyBlock  
-	                    throw new IllegalStateException("Reading standard css", e);  
-	                }  
-	            }  
-	        }  
-	  
-	        // now add css for each used style  
-	        Set<CellStyle> seen = new HashSet<CellStyle>();  
-	        for (int i = 0; i < wb.getNumberOfSheets(); i++) {  
-	            Sheet sheet = wb.getSheetAt(i);  
-	            Iterator<Row> rows = sheet.rowIterator();  
-	            while (rows.hasNext()) {  
-	                Row row = rows.next();  
-	                for (Cell cell : row) {  
-	                    CellStyle style = cell.getCellStyle();  
-	                    if (!seen.contains(style)) {  
-	                        printStyle(style);  
-	                        seen.add(style);  
-	                    }  
-	                }  
-	            }  
-	        }  
-	    }  
-	  
-	    private void printStyle(CellStyle style) {  
-	        out.format(".%s .%s {%n", DEFAULTS_CLASS, styleName(style));  
-	        styleContents(style);  
-	        out.format("}%n");  
-	    }  
-	  
-	    private void styleContents(CellStyle style) {  
-	        styleOut("text-align", style.getAlignment(), ALIGN);  
-	        styleOut("vertical-align", style.getVerticalAlignment(), VERTICAL_ALIGN);  
-	        fontStyle(style);  
-	       // borderStyles(style);  
-	        try {
-				
-	        	helper  =new XSSFHtmlHelper((XSSFWorkbook) wb);  
-			} catch (Exception e) {
-				// TODO: handle exception
-				helper  =new HSSFHtmlHelper((HSSFWorkbook) wb);  
+import com.ulab.core.Constants;
+/**
+ * 
+ * @time   2017年12月28日 下午1:55:42
+ * @author zuoqb
+ * @todo  将excel转html
+ */
+public class ExcelToHtml {
+	public String readExcelToHtml(String filePath, boolean isWithStyle) {
+
+		InputStream is = null;
+		String htmlExcel = null;
+		try {
+			File sourcefile = new File(filePath);
+			is = new FileInputStream(sourcefile);
+			Workbook wb = WorkbookFactory.create(is);
+			if (wb instanceof XSSFWorkbook) {
+				XSSFWorkbook xWb = (XSSFWorkbook) wb;
+				htmlExcel = ExcelToHtml.getExcelInfo(xWb, isWithStyle);
+			} else if (wb instanceof HSSFWorkbook) {
+				HSSFWorkbook hWb = (HSSFWorkbook) wb;
+				htmlExcel = ExcelToHtml.getExcelInfo(hWb, isWithStyle);
 			}
-	        
-	        helper.colorStyles(style, out);  
-	    }  
-	  
-	    private void borderStyles(CellStyle style) {  
-	        out.format("border-left：%s;%n", "solid 1px");  
-	        out.format("border-right：%s;%n", "solid 1px");  
-	        out.format("border-top：%s;%n", "solid 1px");  
-	        out.format("border-bottom：%s;%n", "solid 1px");  
-	    }  
-	    private String fontStyleDetail(Font font){  
-	        StringBuffer buf = new StringBuffer("");  
-	        XSSFFont font1 = (XSSFFont)font;  
-	        if(!(font1.getXSSFColor()==null||font1.getXSSFColor().isAuto()))  
-	            buf.append("color:#"+font1.getXSSFColor().getARGBHex().substring(2)+";");  
-	         if (font.getBold()){  
-	             buf.append("font-weight: bold;");  
-	         }else{  
-	             buf.append("font-weight: normal;");  
-	         }       
-	         if(font.getItalic())  
-	             buf.append("font-style:italic;");  
-	         buf.append("font-family:"+font.getFontName()+";");  
-	         buf.append("font-size:"+font.getFontHeightInPoints()+"pt;");  
-	         return buf.toString();  
-	    }  
-	      
-	    private void fontStyle(CellStyle style) {  
-	        Font font = wb.getFontAt(style.getFontIndex());  
-	        if (font.getBold())  
-	            out.format("  font-weight: bold;%n");  
-	        if (font.getItalic()){  
-	            out.format("  font-style: italic;%n");  
-	        }  
-	        out.format("  font-family: %s;%n",font.getFontName());   
-	        int fontheight = font.getFontHeightInPoints();  
-	        if (fontheight == 9) {  
-	            //fix for stupid ol Windows  
-	            fontheight = 10;  
-	        }  
-	        out.format("  font-size: %dpt;%n", fontheight);  
-	          
-	        // Font color is handled with the other colors  
-	    }  
-	  
-	    private String styleName(CellStyle style) {  
-	        if (style == null)  
-	            style = wb.getCellStyleAt((short) 0);  
-	        StringBuilder sb = new StringBuilder();  
-	        Formatter fmt = new Formatter(sb);  
-	        fmt.format("style_%02x", style.getIndex());  
-	        return fmt.toString();  
-	    }  
-	  
-	    private <K> void styleOut(String attr, K key, Map<K, String> mapping) {  
-	        String value = mapping.get(key);  
-	        if (value != null) {  
-	            out.format("  %s: %s;%n", attr, value);  
-	        }  
-	    }  
-	  
-	    private static int ultimateCellType(Cell c) {  
-	        int type = c.getCellType();  
-	        if (type == Cell.CELL_TYPE_FORMULA)  
-	            type = c.getCachedFormulaResultType();  
-	        return type;  
-	    }  
-	  
-	    private void printSheets() {  
-	        ensureOut();  
-	        Sheet sheet = wb.getSheetAt(wb.getFirstVisibleTab());  
-	        ensureColumnBounds(sheet);  
-	        saprateCells(sheet);  
-	        printSheet(sheet);  
-	    }  
-	  
-	     
-	  
-	    public void printSheet(Sheet sheet) {  
-	        ensureOut();  
-	        float width = 0f;  
-	        //计算表格长度  
-	        for(int i=firstColumn;i<endColumn;i++){  
-	            width+=sheet.getColumnWidthInPixels(i);  
-	        }  
-	         
-	        out.format("<div align=\"center\"><table class=%s cellspacing=\"0\" border=\"1\" cellpadding=\"0\" style=\"word-break:break-all;width:"+width+"px \">%n", DEFAULTS_CLASS);  
-	        printCols(sheet);  
-	        printSheetContent(sheet);  
-	        out.format("</table>%n</div>%n");  
-	    }  
-	  
-	    private void printCols(Sheet sheet) {  
-	        out.format("<col/>%n");  
-	        for (int i = firstColumn; i < endColumn; i++) {  
-	            out.format("<col/>%n");  
-	        }  
-	    }  
-	  
-	    private void ensureColumnBounds(Sheet sheet) {  
-	        if (gotBounds)  
-	            return;  
-	          
-	        Iterator<Row> iter = sheet.rowIterator();  
-	        firstColumn = (iter.hasNext() ? Integer.MAX_VALUE : 0);  
-	        endColumn = 0;  
-	        while (iter.hasNext()) {  
-	            Row row = iter.next();  
-	            short firstCell = row.getFirstCellNum();  
-	            if (firstCell >= 0) {  
-	                firstColumn = Math.min(firstColumn, firstCell);  
-	                endColumn = Math.max(endColumn, row.getLastCellNum());  
-	            }  
-	        }  
-	        gotBounds = true;  
-	    }  
-	  
-	   /* private void printColumnHeads() { 
-	        out.format("<thead>%n"); 
-	        out.format("  <tr class=%s>%n", COL_HEAD_CLASS); 
-	        out.format("    <th class=%s>◊</th>%n", COL_HEAD_CLASS); 
-	        //noinspection UnusedDeclaration 
-	        StringBuilder colName = new StringBuilder(); 
-	        for (int i = firstColumn; i < endColumn; i++) { 
-	            colName.setLength(0); 
-	            int cnum = i; 
-	            do { 
-	                colName.insert(0, (char) ('A' + cnum % 26)); 
-	                cnum /= 26; 
-	            } while (cnum > 0); 
-	            out.format("    <th class=%s>%s</th>%n", COL_HEAD_CLASS, colName); 
-	        } 
-	        out.format("  </tr>%n"); 
-	        out.format("</thead>%n"); 
-	    }*/  
-	  
-	    private void printSheetContent(Sheet sheet) {  
-	        //printColumnHeads();  
-	  
-	        out.format("<tbody>%n");  
-	        sheet.getActiveCell();  
-	        
-	        //Iterator<Row> rows = sheet.rowIterator();  
-	        for(int num=sheet.getFirstRowNum();num<=sheet.getLastRowNum();num++) {  
-	            Row row = sheet.getRow(num);  
-	            if(row==null){  
-	                out.format("<tr><td >  </td></tr>%n");  
-	                continue;  
-	            }  
-	            if(row.getZeroHeight())  
-	                continue;  
-	            out.format("  <tr style=\"height:+"+row.getHeightInPoints()+"pt;\">%n");  
-	            for(int j = firstColumn;j<endColumn;j++){  
-	                String content = " ";  
-	                String attrs = "";  
-	                CellStyle style = null;  
-	                String point = "("+j+","+num+")";  
-	                if(cell_hidden.contains(point))  
-	                    continue;  
-	                if(!cell_hasValue.contains(point)){  
-	                     out.format("    <td class=%s %s>%s</td>%n", styleName(style),  
-	                             attrs, content);  
-	                     continue;  
-	                }  
-	                Cell cell = row.getCell(j);  
-	                if (shouldPrint(cell)) {  
-	                    style = cell.getCellStyle();  
-	                    attrs = tagStyle(cell, style);  
-	                      
-	                    try {  
-	                        XSSFRichTextString rich = (XSSFRichTextString)cell.getRichStringCellValue();  
-	                        StringBuffer contents = new StringBuffer("");  
-	                        if(rich.hasFormatting()){  
-	                            int startIndex = 0;   
-	                            for(CTRElt ct : rich.getCTRst().getRList()){  
-	                                XSSFFont font =rich.getFontAtIndex(startIndex);  
-	                                startIndex += ct.getT().length();  
-	                                contents.append("<font style=\""+fontStyleDetail(font)+" \">"+ct.getT()+"</font>") ;  
-	                            }  
-	                            content = contents.toString();  
-	                        }else{  
-	                            content = rich.getString();  
-	                        }             
-	                    } catch (Exception e) {  
-	                         CellFormat cf;  
-	                        if(style.getDataFormatString()!=null){  
-	                             cf = CellFormat.getInstance(  
-	                                     style.getDataFormatString());  
-	                        }else{  
-	                             cf = CellFormat.getInstance(  
-	                                    "General");  
-	                        }  
-	                        CellFormatResult result = cf.apply(cell);  
-	                        content = result.text;  
-	                    }  
-	                     
-	                     
-	                    if (content.equals(""))  
-	                        content = " ";  
-	                    out.format("    <td class=%s %s>%s</td>%n", styleName(style),  
-	                            attrs, content.replaceAll("\\n", "<br/>"));  
-	                }  
-	            }  
-	            out.format("  </tr>%n");  
-	        }  
-	        out.format("</tbody>%n");  
-	    }  
-	    private boolean shouldPrint(Cell cell){  
-	        String point = "("+cell.getAddress().getColumn()+","+cell.getAddress().getRow()+")";  
-	        if(cell_merged.contains(point)){  
-	            //不是第一次渲染则不渲染  
-	            if(!cell_merged_print.containsKey(point)){  
-	                return false;  
-	            }else{  
-	                //cell.getSheet().autoSizeColumn(cell.getAddress().getColumn());  
-	            }  
-	                  
-	        }  
-	        return true;  
-	    }  
-	    private String tagStyle(Cell cell, CellStyle style) {  
-	        //调整align  
-	        StringBuffer buf = new StringBuffer("style=\"");  
-	        //调整宽度  
-	       // String width = cell.getSheet().getColumnWidthInPixels(cell.getColumnIndex())+"px;";  
-	        Font font = wb.getFontAt(style.getFontIndex());  
-	        String width = cell.getSheet().getColumnWidth(cell.getColumnIndex())/256*font.getFontHeight()/20+"pt";//通过字体大小计算Cell宽度  
-	        buf.append("width:"+width);  
-	        buf.append("\" ");  
-	        String point = "("+cell.getAddress().getColumn()+","+cell.getAddress().getRow()+")";  
-	        if(cell_merged_print.containsKey(point)){  
-	            String[] str = cell_merged_print.get(point).split(",");  
-	            int rowspan =Integer.parseInt(str[0]);  
-	            int colspan =Integer.parseInt(str[1]);  
-	            if(rowspan>1)buf.append("rowspan=\""+rowspan+"\" ");  
-	            if(colspan>1)buf.append("colspan=\""+colspan+"\" ");  
-	        }  
-	         
-	        return buf.toString();  
-	    }  
-	    /** 
-	     * 用于分组全并的单元格，与其中要打印的单元格 
-	     * @author liuyizhi 
-	     * */  
-	    private void saprateCells(Sheet sheet) {  
-	        for(CellRangeAddress addr :sheet.getMergedRegions()){  
-	             int rowspan = addr.getLastRow()-addr.getFirstRow()+1;  
-	             int colspan = addr.getLastColumn()-addr.getFirstColumn()+1;  
-	            for(int x=addr.getFirstColumn();x<=addr.getLastColumn();x++)  
-	                for(int y=addr.getFirstRow();y<=addr.getLastRow();y++){  
-	                    cell_merged.add("("+x+","+y+")");   
-	                    if(x==addr.getFirstColumn()&&y==addr.getFirstRow())  
-	                        cell_merged_print.put("("+x+","+y+")",rowspan+","+colspan);  
-	                }  
-	        }  
-	        //过滤隐藏的列  
-	        for(int i= firstColumn;i<endColumn;i++){  
-	            if(sheet.isColumnHidden(i))  
-	                for(int j = sheet.getFirstRowNum();j<=sheet.getLastRowNum();j++)  
-	                    cell_hidden.add("("+i+","+j+")");  
-	        }     
-	          
-	        //过滤有值的cell  
-	        Iterator<Row> iter = sheet.rowIterator();  
-	        while(iter.hasNext()){  
-	            Row row = iter.next();  
-	            for(int i = row.getFirstCellNum();i<row.getLastCellNum();i++){  
-	                Cell cell = row.getCell(i);  
-	                  
-	                if(cell ==null)  
-	                    continue;  
-	                CellAddress address = cell.getAddress();  
-	                cell_hasValue.add("("+address.getColumn()+","+address.getRow()+")");  
-	            }  
-	              
-	        }  
-	    }  
-	    public static void main(String[] args) {
-	    	   ExcelToHtml toHtml;
-	    	   try {
-					String fileName="中国保监会山东监管局-2012年行政处罚事项九-441";
-					toHtml = ExcelToHtml.create("I:/海联/项目/关于行政处罚类数据采集需求评估及POC/代码/clj/采集附件-海联/中国保监会山东监管局-2012年行政处罚事项九-441.xls", 
-							new PrintWriter(new File("D:/kubi/"+fileName+".html"),"gbk"));
-					toHtml.setCompleteHTML(true);  
-					toHtml.printPage(); 
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return htmlExcel;
+	}
+
+	public static String getExcelInfo(Workbook wb, boolean isWithStyle) {
+
+		StringBuffer sb = new StringBuffer();
+		Sheet sheet = wb.getSheetAt(0);//获取第一个Sheet的内容
+		int lastRowNum = sheet.getLastRowNum();
+		Map<String, String> map[] = getRowSpanColSpanMap(sheet);
+		sb.append("<table style='border-collapse:collapse;' width='100%'>");
+		Row row = null; //兼容
+		Cell cell = null; //兼容
+
+		for (int rowNum = sheet.getFirstRowNum(); rowNum <= lastRowNum; rowNum++) {
+			row = sheet.getRow(rowNum);
+			if (row == null) {
+				sb.append("<tr><td > &nbsp;</td></tr>");
+				continue;
+			}
+			sb.append("<tr>");
+			int lastColNum = row.getLastCellNum();
+			for (int colNum = 0; colNum < lastColNum; colNum++) {
+				cell = row.getCell(colNum);
+				if (cell == null) { //特殊情况 空白的单元格会返回null
+					sb.append("<td>&nbsp;</td>");
+					continue;
+				}
+
+				String stringValue = getCellValue(cell);
+				if (map[0].containsKey(rowNum + "," + colNum)) {
+					String pointString = map[0].get(rowNum + "," + colNum);
+					map[0].remove(rowNum + "," + colNum);
+					int bottomeRow = Integer.valueOf(pointString.split(",")[0]);
+					int bottomeCol = Integer.valueOf(pointString.split(",")[1]);
+					int rowSpan = bottomeRow - rowNum + 1;
+					int colSpan = bottomeCol - colNum + 1;
+					sb.append("<td rowspan= '" + rowSpan + "' colspan= '" + colSpan + "' ");
+				} else if (map[1].containsKey(rowNum + "," + colNum)) {
+					map[1].remove(rowNum + "," + colNum);
+					continue;
+				} else {
+					sb.append("<td ");
+				}
+
+				//判断是否需要样式
+				if (isWithStyle) {
+					dealExcelStyle(wb, sheet, cell, sb);//处理单元格样式
+				}
+
+				sb.append(">");
+				if (stringValue == null || "".equals(stringValue.trim())) {
+					sb.append(" &nbsp; ");
+				} else {
+					// 将ascii码为160的空格转换为html下的空格（&nbsp;）
+					sb.append(stringValue.replace(String.valueOf((char) 160), "&nbsp;"));
+				}
+				sb.append("</td>");
+			}
+			sb.append("</tr>");
+		}
+
+		sb.append("</table>");
+		return sb.toString();
+	}
+
+	private static Map<String, String>[] getRowSpanColSpanMap(Sheet sheet) {
+
+		Map<String, String> map0 = new HashMap<String, String>();
+		Map<String, String> map1 = new HashMap<String, String>();
+		int mergedNum = sheet.getNumMergedRegions();
+		CellRangeAddress range = null;
+		for (int i = 0; i < mergedNum; i++) {
+			range = sheet.getMergedRegion(i);
+			int topRow = range.getFirstRow();
+			int topCol = range.getFirstColumn();
+			int bottomRow = range.getLastRow();
+			int bottomCol = range.getLastColumn();
+			map0.put(topRow + "," + topCol, bottomRow + "," + bottomCol);
+			// System.out.println(topRow + "," + topCol + "," + bottomRow + "," + bottomCol);
+			int tempRow = topRow;
+			while (tempRow <= bottomRow) {
+				int tempCol = topCol;
+				while (tempCol <= bottomCol) {
+					map1.put(tempRow + "," + tempCol, "");
+					tempCol++;
+				}
+				tempRow++;
+			}
+			map1.remove(topRow + "," + topCol);
+		}
+		Map[] map = { map0, map1 };
+		return map;
+	}
+
+	/**
+	 * 获取表格单元格Cell内容
+	 * @param cell
+	 * @return
+	 */
+	private static String getCellValue(Cell cell) {
+
+		String result = new String();
+		switch (cell.getCellType()) {
+		case Cell.CELL_TYPE_NUMERIC:// 数字类型  
+			if (HSSFDateUtil.isCellDateFormatted(cell)) {// 处理日期格式、时间格式  
+				SimpleDateFormat sdf = null;
+				if (cell.getCellStyle().getDataFormat() == HSSFDataFormat.getBuiltinFormat("h:mm")) {
+					sdf = new SimpleDateFormat("HH:mm");
+				} else {// 日期  
+					sdf = new SimpleDateFormat("yyyy-MM-dd");
+				}
+				Date date = cell.getDateCellValue();
+				result = sdf.format(date);
+			} else if (cell.getCellStyle().getDataFormat() == 58) {
+				// 处理自定义日期格式：m月d日(通过判断单元格的格式id解决，id的值是58)  
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				double value = cell.getNumericCellValue();
+				Date date = org.apache.poi.ss.usermodel.DateUtil.getJavaDate(value);
+				result = sdf.format(date);
+			} else {
+				double value = cell.getNumericCellValue();
+				CellStyle style = cell.getCellStyle();
+				DecimalFormat format = new DecimalFormat();
+				String temp = style.getDataFormatString();
+				// 单元格设置成常规  
+				if (temp.equals("General")) {
+					format.applyPattern("#");
+				}
+				result = format.format(value);
+			}
+			break;
+		case Cell.CELL_TYPE_STRING:// String类型  
+			result = cell.getRichStringCellValue().toString();
+			break;
+		case Cell.CELL_TYPE_BLANK:
+			result = "";
+			break;
+		default:
+			result = "";
+			break;
+		}
+		return result;
+	}
+
+	/**
+	 * 处理表格样式
+	 * @param wb
+	 * @param sheet
+	 * @param cell
+	 * @param sb
+	 */
+	private static void dealExcelStyle(Workbook wb, Sheet sheet, Cell cell, StringBuffer sb) {
+
+		CellStyle cellStyle = cell.getCellStyle();
+		if (cellStyle != null) {
+			short alignment = cellStyle.getAlignment();
+			sb.append("align='" + convertAlignToHtml(alignment) + "' ");//单元格内容的水平对齐方式
+			short verticalAlignment = cellStyle.getVerticalAlignment();
+			sb.append("valign='" + convertVerticalAlignToHtml(verticalAlignment) + "' ");//单元格中内容的垂直排列方式
+
+			if (wb instanceof XSSFWorkbook) {
+
+				XSSFFont xf = ((XSSFCellStyle) cellStyle).getFont();
+				short boldWeight = xf.getBoldweight();
+				sb.append("style='");
+				sb.append("font-weight:" + boldWeight + ";"); // 字体加粗
+				sb.append("font-size: " + xf.getFontHeight() / 2 + "%;"); // 字体大小
+				int columnWidth = sheet.getColumnWidth(cell.getColumnIndex());
+				sb.append("width:" + columnWidth + "px;");
+
+				XSSFColor xc = xf.getXSSFColor();
+				if (xc != null && !"".equals(xc)) {
+					sb.append("color:#" + xc.getARGBHex().substring(2) + ";"); // 字体颜色
+				}
+
+			/*	XSSFColor bgColor = (XSSFColor) cellStyle.getFillForegroundColorColor();
+				if (bgColor != null && !"".equals(bgColor)) {
+					sb.append("background-color:#" + bgColor.getARGBHex().substring(2) + ";"); // 背景颜色
+				}*/
+				sb.append(getBorderStyle(0, cellStyle.getBorderTop(),
+						((XSSFCellStyle) cellStyle).getTopBorderXSSFColor()));
+				sb.append(getBorderStyle(1, cellStyle.getBorderRight(),
+						((XSSFCellStyle) cellStyle).getRightBorderXSSFColor()));
+				sb.append(getBorderStyle(2, cellStyle.getBorderBottom(),
+						((XSSFCellStyle) cellStyle).getBottomBorderXSSFColor()));
+				sb.append(getBorderStyle(3, cellStyle.getBorderLeft(),
+						((XSSFCellStyle) cellStyle).getLeftBorderXSSFColor()));
+
+			} else if (wb instanceof HSSFWorkbook) {
+
+				HSSFFont hf = ((HSSFCellStyle) cellStyle).getFont(wb);
+				short boldWeight = hf.getBoldweight();
+				short fontColor = hf.getColor();
+				sb.append("style='");
+				HSSFPalette palette = ((HSSFWorkbook) wb).getCustomPalette(); // 类HSSFPalette用于求的颜色的国际标准形式
+				HSSFColor hc = palette.getColor(fontColor);
+				sb.append("font-weight:" + boldWeight + ";"); // 字体加粗
+				sb.append("font-size: " + hf.getFontHeight() / 2 + "%;"); // 字体大小
+				String fontColorStr = convertToStardColor(hc);
+				if (fontColorStr != null && !"".equals(fontColorStr.trim())) {
+					sb.append("color:" + fontColorStr + ";"); // 字体颜色
+				}
+				int columnWidth = sheet.getColumnWidth(cell.getColumnIndex());
+				sb.append("width:" + columnWidth + "px;");
+				short bgColor = cellStyle.getFillForegroundColor();
+				hc = palette.getColor(bgColor);
+				String bgColorStr = convertToStardColor(hc);
+				if (bgColorStr != null && !"".equals(bgColorStr.trim())) {
+					sb.append("background-color:" + bgColorStr + ";"); // 背景颜色
+				}
+				sb.append(getBorderStyle(palette, 0, cellStyle.getBorderTop(), cellStyle.getTopBorderColor()));
+				sb.append(getBorderStyle(palette, 1, cellStyle.getBorderRight(), cellStyle.getRightBorderColor()));
+				sb.append(getBorderStyle(palette, 3, cellStyle.getBorderLeft(), cellStyle.getLeftBorderColor()));
+				sb.append(getBorderStyle(palette, 2, cellStyle.getBorderBottom(), cellStyle.getBottomBorderColor()));
+			}
+
+			sb.append("' ");
+		}
+	}
+
+	/**
+	 * 单元格内容的水平对齐方式
+	 * @param alignment
+	 * @return
+	 */
+	private static String convertAlignToHtml(short alignment) {
+
+		String align = "left";
+		switch (alignment) {
+		case CellStyle.ALIGN_LEFT:
+			align = "left";
+			break;
+		case CellStyle.ALIGN_CENTER:
+			align = "center";
+			break;
+		case CellStyle.ALIGN_RIGHT:
+			align = "right";
+			break;
+		default:
+			break;
+		}
+		return align;
+	}
+
+	/**
+	 * 单元格中内容的垂直排列方式
+	 * @param verticalAlignment
+	 * @return
+	 */
+	private static String convertVerticalAlignToHtml(short verticalAlignment) {
+
+		String valign = "middle";
+		switch (verticalAlignment) {
+		case CellStyle.VERTICAL_BOTTOM:
+			valign = "bottom";
+			break;
+		case CellStyle.VERTICAL_CENTER:
+			valign = "center";
+			break;
+		case CellStyle.VERTICAL_TOP:
+			valign = "top";
+			break;
+		default:
+			break;
+		}
+		return valign;
+	}
+
+	private static String convertToStardColor(HSSFColor hc) {
+
+		StringBuffer sb = new StringBuffer("");
+		if (hc != null) {
+			if (HSSFColor.AUTOMATIC.index == hc.getIndex()) {
+				return null;
+			}
+			sb.append("#");
+			for (int i = 0; i < hc.getTriplet().length; i++) {
+				sb.append(fillWithZero(Integer.toHexString(hc.getTriplet()[i])));
+			}
+		}
+
+		return sb.toString();
+	}
+
+	private static String fillWithZero(String str) {
+		if (str != null && str.length() < 2) {
+			return "0" + str;
+		}
+		return str;
+	}
+
+	static String[] bordesr = { "border-top:", "border-right:", "border-bottom:", "border-left:" };
+	static String[] borderStyles = { "solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid ", "solid ",
+			"solid ", "solid", "solid", "solid", "solid", "solid" };
+
+	private static String getBorderStyle(HSSFPalette palette, int b, short s, short t) {
+
+		if (s == 0)
+			return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+		;
+		String borderColorStr = convertToStardColor(palette.getColor(t));
+		borderColorStr = borderColorStr == null || borderColorStr.length() < 1 ? "#000000" : borderColorStr;
+		return bordesr[b] + borderStyles[s] + borderColorStr + " 1px;";
+
+	}
+
+	private static String getBorderStyle(int b, short s, XSSFColor xc) {
+
+		if (s == 0)
+			return bordesr[b] + borderStyles[s] + "#d0d7e5 1px;";
+		;
+		if (xc != null && !"".equals(xc)) {
+			String borderColorStr = xc.getARGBHex();//t.getARGBHex();
+			borderColorStr = borderColorStr == null || borderColorStr.length() < 1 ? "#000000" : borderColorStr
+					.substring(2);
+			return bordesr[b] + borderStyles[s] + borderColorStr + " 1px;";
+		}
+
+		return "";
+	}
+
+	public static String excel2Html(String fileName) {
+		InputStream is = null;
+		String htmlExcel = null;
+		String htmlName = Constants.CREATE_FILE_PATH + fileName.replaceAll(".xlsx", "").replaceAll(".xls", "")
+				+ "(excel).html";
+		try {
+			File sourcefile = new File(Constants.READ_FILE_PATH + fileName);
+			is = new FileInputStream(sourcefile);
+			Workbook wb = WorkbookFactory.create(is);//此WorkbookFactory在POI-3.10版本中使用需要添加dom4j
+			if (wb instanceof XSSFWorkbook) {
+				XSSFWorkbook xWb = (XSSFWorkbook) wb;
+				htmlExcel = ExcelToHtml.getExcelInfo(xWb, true);
+			} else if (wb instanceof HSSFWorkbook) {
+				HSSFWorkbook hWb = (HSSFWorkbook) wb;
+				htmlExcel = ExcelToHtml.getExcelInfo(hWb, true);
+			}
+			FileOutputStream fOutputStream = new FileOutputStream(htmlName);
+			OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, "gbk");
+			writer.write(htmlExcel);
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return htmlName;
+	}
+
+	public static void main(String[] args) {
+
+		String fileName = "中国保监会山东监管局-山东保监局2015年行政处罚事项（七）-421.xlsx";
+		String htmlName = excel2Html(fileName);
+		String fileName2 = "中国保监会山东监管局-2016527山东保监局2016年行政处罚事项（六）-410.xls";
+		String htmlName2 = excel2Html(fileName2);
+	}
 }

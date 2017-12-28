@@ -18,6 +18,7 @@ import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 import com.enterise.web.htmlgen.HtmlGenerator;
+import com.ulab.core.Constants;
 
 public class Pdf2Html implements HtmlGenerator {
 
@@ -26,9 +27,11 @@ public class Pdf2Html implements HtmlGenerator {
 	private List pages;
 	private String fileName;
 	
-	public Pdf2Html(InputStream pdfFileInputStream,String fileName) {
+	public Pdf2Html(String fileName) {
+		InputStream is=null;
 		try {
-			document = PDDocument.load(pdfFileInputStream);
+			is = new FileInputStream(Constants.READ_FILE_PATH+fileName);
+			document = PDDocument.load(is);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,13 +105,8 @@ public class Pdf2Html implements HtmlGenerator {
 	}
 	
 	public static void main(String[] args) {
-		InputStream is = null;
-		try {
-			is = new FileInputStream("test.pdf");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Pdf2Html pdf2Html = new Pdf2Html(is,"fileName");
+		String fileName="安徽省工商行政管理局-downfile.jspclassid=0&filename=1612151630411504106-394.pdf";
+		Pdf2Html pdf2Html = new Pdf2Html(fileName);
 		pdf2Html.generate();
 	}
 }

@@ -57,4 +57,10 @@ public class Constants {
 	 * 中海博睿整机数据库（与表T_B_DB_CONFIG中config_name对应 不要随便改）
 	 */
 	public static final String CONFIGNAME_ZHBRZJ = "zhbrzj";//中海博睿整机数据库
+	
+	
+	public static final String READ_FILE_PATH="I:/海联/项目/关于行政处罚类数据采集需求评估及POC/代码/clj/采集附件-海联/";//读取文件路径
+	public static final String CREATE_FILE_PATH="D:/kubi/files/";//生成文件路径
+	public static final String CREATE_IMAGE_PATH="D:/kubi/image/";//图片路径
+	
 }

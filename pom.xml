@@ -13,14 +13,14 @@
 			<artifactId>jfinal</artifactId>
 			<version>1.9</version>
 		</dependency>
-		<dependency> 
-		       <groupId>mysql</groupId> 
-		       <artifactId>mysql-connector-java</artifactId> 
-		       <version>5.1.6</version> 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
 		</dependency>
-		
-		  
-	<!-- 如果用main方法启动项目 需要放开jetty-server -->
+
+
+		<!-- 如果用main方法启动项目 需要放开jetty-server -->
 		<dependency>
 			<groupId>com.jfinal</groupId>
 			<artifactId>jetty-server</artifactId>
@@ -28,9 +28,9 @@
 			<scope>provide</scope>
 		</dependency>
 		<dependency>
-		    <groupId>com.jfinal</groupId>
-		    <artifactId>jfinal-ext</artifactId>
-		    <version>3.1.4</version>
+			<groupId>com.jfinal</groupId>
+			<artifactId>jfinal-ext</artifactId>
+			<version>3.1.4</version>
 		</dependency>
 
 		<!-- 解决与tomcat7冲突 -->
@@ -45,10 +45,10 @@
 			<artifactId>beetl-core</artifactId>
 			<version>2.1.4</version>
 		</dependency>
-		
+
 
 		<!-- 工具类 -->
-		
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -79,101 +79,102 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.28</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.apache.httpcomponents</groupId>
-		    <artifactId>httpcore</artifactId>
-		    <version>4.4.1</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.httpcomponents</groupId>
-		    <artifactId>httpclient</artifactId>
-		    <version>4.4</version>
-		</dependency> 
-		
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.19</version>
 		</dependency>
-		<!-- 如果用tomcat启动项目 ojdbc14必须放到lib文件夹下 否则启动不了-->
-	<!-- 	<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2.0.4.0</version>
-			<scope>provided</scope>
-		</dependency> -->
-		
-		
+		<!-- 如果用tomcat启动项目 ojdbc14必须放到lib文件夹下 否则启动不了 -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> <version>10.2.0.4.0</version> <scope>provided</scope> 
+			</dependency> -->
+
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.12</version>
 		</dependency>
-		
-		 <!--jfinal quartz 定时任务-->
-         <dependency>
-             <groupId>cn.dreampie</groupId>
-             <artifactId>jfinal-quartz</artifactId>
-             <version>0.2</version>
-         </dependency>
-         
-         <!-- 读取word内容 -->
+
+		<!--jfinal quartz 定时任务 -->
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-ooxml</artifactId>
-		    <version>3.14</version>
+			<groupId>cn.dreampie</groupId>
+			<artifactId>jfinal-quartz</artifactId>
+			<version>0.2</version>
+		</dependency>
+
+		<!-- 读取word内容 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.xmlbeans</groupId>
-		    <artifactId>xmlbeans</artifactId>
-		    <version>2.3.0</version>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>3.14</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-ooxml-schemas</artifactId>
-		    <version>3.13</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.14</version>
 		</dependency>
-		<dependency>  
-		    <groupId>org.apache.poi</groupId>  
-		    <artifactId>ooxml-schemas</artifactId>  
-		    <version>1.3</version>  
-		</dependency>  
-		
-		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>ooxml-schemas</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+			<dependency>
 		    <groupId>org.apache.pdfbox</groupId>
-		    <artifactId>pdfbox</artifactId>
+		    <artifactId>fontbox</artifactId>
 		    <version>1.7.0</version>
 		</dependency>
-		<dependency>   
-	      <groupId>dom4j</groupId>    
-	      <artifactId>dom4j</artifactId>    
-	      <version>1.6</version>   
-	    </dependency>   
-	
-	  <!-- word转化 -->
-	  <!-- docx doc转化依赖jar不同格式 -->
-         <dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-scratchpad</artifactId>
-		    <version>3.12</version>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<!-- word转化 -->
+		<!-- docx doc转化依赖jar不同格式 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.14</version>
 		</dependency>
 		<dependency>
-		    <groupId>fr.opensagres.xdocreport</groupId>
-		    <artifactId>fr.opensagres.xdocreport.document</artifactId>
-		    <version>1.0.5</version>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.xdocreport.document</artifactId>
+			<version>1.0.6</version>
 		</dependency>
-		<dependency>  
-		    <groupId>fr.opensagres.xdocreport</groupId>  
-		    <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>  
-		    <version>1.0.5</version>  
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>
+			<version>1.0.6</version>
 		</dependency>
 	</dependencies>
 	<build>

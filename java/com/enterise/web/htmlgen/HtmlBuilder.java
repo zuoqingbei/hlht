@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ulab.core.Constants;
+
 public class HtmlBuilder {
 
 	private List pageList;
@@ -45,7 +47,7 @@ public class HtmlBuilder {
 			try {
 				//File htmlFile = new File("D://kubi/"+pageId + ".html");
 				//Writer writer = new FileWriter(htmlFile);
-				 FileOutputStream fOutputStream=new FileOutputStream("D://kubi/"+pageId + ".html");
+				 FileOutputStream fOutputStream=new FileOutputStream(Constants.CREATE_FILE_PATH+pageId + ".html");
 				OutputStreamWriter writer=new OutputStreamWriter(fOutputStream, "gbk");
 				writer.write(page.getPageContent());
 				writer.close();
