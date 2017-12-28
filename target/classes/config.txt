@@ -35,6 +35,13 @@ jnxd.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnectio
 jnxd.user = Haier_DBReader
 jnxd.password= Haier2017
 
+
+#俄罗斯数据库 SQL Server 2008R2
+russia.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
+russia.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_RUS_2017
+russia.user = Haier_DBReader
+russia.password= Haier2017
+
 # 重庆实验室hive测试库信息
 #hive.driver=com.cloudera.impala.jdbc41.Driver
 #hive.url=jdbc:impala://10.138.8.211:10000/db_hive_ulab;AuthMech=0
