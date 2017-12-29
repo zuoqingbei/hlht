@@ -12,6 +12,7 @@ import org.dom4j.Element;
 
 import com.enterise.gis.image.ImageScale;
 import com.enterise.web.htmlgen.HtmlPage;
+import com.ulab.core.Constants;
 
 public class PdfHtmlPage extends HtmlPage {
 
@@ -22,13 +23,15 @@ public class PdfHtmlPage extends HtmlPage {
 	public void addPicture(PDXObjectImage image, String fileExtensionName) {
 		Random r = new Random();
 		String pictureId = String.valueOf(Math.abs(r.nextInt()));
-		String fileName = getDocumentId() + "_" + pictureId + "." + fileExtensionName;
+		String fileName =Constants.CREATE_IMAGE_PATH+getDocumentId() + "_" + pictureId + "." + fileExtensionName;
 		
 		try {
 			BufferedImage srcImage = image.getRGBImage();
-			ImageScale imageScale = new ImageScale(176, 220);
+			//可以选择缩放 目前没有
+			/*ImageScale imageScale = new ImageScale(176, 220);
 			BufferedImage destImage = imageScale.scale(srcImage);
-			ImageIO.write(destImage, fileExtensionName, new File(fileName));
+			ImageIO.write(destImage, fileExtensionName, new File(fileName));*/
+			ImageIO.write(srcImage, fileExtensionName, new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

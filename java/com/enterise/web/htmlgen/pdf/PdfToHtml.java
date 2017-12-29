@@ -2,7 +2,6 @@ package com.enterise.web.htmlgen.pdf;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -19,15 +18,20 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 import com.enterise.web.htmlgen.HtmlGenerator;
 import com.ulab.core.Constants;
-
-public class Pdf2Html implements HtmlGenerator {
+/**
+ * 
+ * @time   2017年12月29日 上午11:23:48
+ * @author zuoqb
+ * @todo   pdf转html
+ */
+public class PdfToHtml implements HtmlGenerator {
 
 	private PDDocument document;
 	PdfHtmlBuilder pdfHtmlBuilder = new PdfHtmlBuilder();
 	private List pages;
 	private String fileName;
 	
-	public Pdf2Html(String fileName) {
+	public PdfToHtml(String fileName) {
 		InputStream is=null;
 		try {
 			is = new FileInputStream(Constants.READ_FILE_PATH+fileName);
@@ -38,7 +42,7 @@ public class Pdf2Html implements HtmlGenerator {
 		this.fileName=fileName;
 	}
 	
-	public void generate() {
+	public String generate() {
 		
 		int numberOfPages = document.getNumberOfPages();
 		List pages = document.getDocumentCatalog().getAllPages();
@@ -101,12 +105,13 @@ public class Pdf2Html implements HtmlGenerator {
 			e.printStackTrace();
 		}
 		
-		pdfHtmlBuilder.writeToFile(fileName);
+		return pdfHtmlBuilder.writeToFile(fileName);
 	}
 	
 	public static void main(String[] args) {
 		String fileName="安徽省工商行政管理局-downfile.jspclassid=0&filename=1612151630411504106-394.pdf";
-		Pdf2Html pdf2Html = new Pdf2Html(fileName);
-		pdf2Html.generate();
+		fileName="r10.pdf";
+		PdfToHtml pdf2Html = new PdfToHtml(fileName);
+		System.out.println(pdf2Html.generate());
 	}
 }
