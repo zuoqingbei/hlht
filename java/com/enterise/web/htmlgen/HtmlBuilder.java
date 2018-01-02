@@ -52,9 +52,9 @@ public class HtmlBuilder {
 		Iterator iter = pageList.iterator();
 		 FileOutputStream fOutputStream=null;
 		 OutputStreamWriter writer = null;
-		String htmlName = Constants.CREATE_FILE_PATH + FileUtil.createFileName("PDF");
+		String htmlName =  FileUtil.createFileName("PDF");
 		 try {
-			 fOutputStream=new FileOutputStream(htmlName);
+			 fOutputStream=new FileOutputStream(Constants.CREATE_FILE_PATH +htmlName);
 			 writer=new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
 			 int i = 0;
 				while (iter.hasNext()) {

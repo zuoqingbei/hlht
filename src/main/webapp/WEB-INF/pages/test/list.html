@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>文件处理结果展示页</title>
+<style>
+	ul,li {
+		list-style:none;
+	}
+	li {
+		margin:10px 0;
+	}
+</style>
+<script src="../static/asserts/js/jquery-2.2.4.js"></script>
+</head>
+<body>
+	<h2>列表展示</h2>
+	<div></div>
+		<ul>
+		</ul>
+	</div>
+
+</body>
+<script>
+	$(function() {
+		$.post('${contextPath}/test/listData', {
+		"pageNum": "1",
+		"pageSize": "20"
+		}, function(data) {
+			console.log(data);
+			var htmls="";
+			$.each(data.list,function(index,item){
+				htmls+='<li><a href="${contextPath}/test/getFileFile?fileName='+item.html_name+'" target="_blank">'+item.file_name+'</a></li>';
+			});
+			$("ul").append(htmls);
+		});
+	});
+</script>
+</html>

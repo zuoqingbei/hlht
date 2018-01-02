@@ -1,5 +1,7 @@
 package com.ulab.controller;
 
+import java.io.File;
+
 import com.jfinal.aop.Before;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.plugin.activerecord.Page;
@@ -18,27 +20,31 @@ import com.ulab.util.FileUtil;
 @Before({GlobalInterceptor.class})
 public class TestController extends BaseController {
 	
-    public void test() {
-    	Page<HshPageModel> pages=HshPageModel.dao.paginate(1, 10);
+	public void list() {
+		render("list.html");
+	}
+    public void listData() {
+    	int pageNum=getParaToInt("pageNum",1);
+    	int pageSize=getParaToInt("pageSize",10);
+    	Page<HshPageModel> pages=HshPageModel.dao.paginate(pageNum, pageSize);
         renderJson(pages);
     }
   
-    public void linkEchart2() {
-        render("linkEchart2.html");
-    }
     
     /**
      * 
      * @time   2017年5月26日 下午2:13:12
      * @author zuoqb
-     * @todo   获取json文件数据
+     * @todo   获取File文件数据
      * @param  
      * @return_type   void
      */
-    public void getJsonFile(){
+    public void getFileFile(){
     	String fileName=getPara("fileName","");
     	String path=Constants.CREATE_FILE_PATH+fileName;
     	String htmlText=FileUtil.readFile(path);
+    	//替换图片路径
+    	htmlText=htmlText.replaceAll(Constants.CREATE_IMAGE_PATH, "/file/");
     	renderHtml(htmlText);
     }
     public void tohtml(){

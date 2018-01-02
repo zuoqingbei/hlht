@@ -388,7 +388,7 @@ public class ExcelToHtml {
 	public static String excel2Html(String filePath,String fileName) {
 		InputStream is = null;
 		String htmlExcel = null;
-		String htmlName =Constants.CREATE_FILE_PATH +FileUtil.createFileName("EXCEL");
+		String htmlName =FileUtil.createFileName("EXCEL");
 		try {
 			File sourcefile = new File(filePath + fileName);
 			is = new FileInputStream(sourcefile);
@@ -400,7 +400,7 @@ public class ExcelToHtml {
 				HSSFWorkbook hWb = (HSSFWorkbook) wb;
 				htmlExcel = ExcelToHtml.getExcelInfo(hWb, true);
 			}
-			FileOutputStream fOutputStream = new FileOutputStream(htmlName);
+			FileOutputStream fOutputStream = new FileOutputStream(Constants.CREATE_FILE_PATH +htmlName);
 			OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
 			writer.write(htmlExcel);
 			writer.close();

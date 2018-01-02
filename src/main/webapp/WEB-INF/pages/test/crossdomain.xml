@@ -1,6 +1,0 @@
-<!-- 放置路径C:/Program Files (x86)/SurveillanceSystem/Server/MAG/Apache/htdocs 
-http://localhost:8080/hlht/test/test
--->
-<cross-domain-policy>
-<allow-access-from domain="*"/>
-</cross-domain-policy>

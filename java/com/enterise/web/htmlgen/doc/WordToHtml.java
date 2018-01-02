@@ -61,8 +61,8 @@ public class WordToHtml {
 				options.setFragment(true);
 
 				// 3) 将 XWPFDocument转换成XHTML  
-				String htmlName=Constants.CREATE_FILE_PATH+FileUtil.createFileName("WORD");
-				OutputStream out = new FileOutputStream(htmlName);
+				String htmlName=FileUtil.createFileName("WORD");
+				OutputStream out = new FileOutputStream(Constants.CREATE_FILE_PATH+htmlName);
 				XHTMLConverter.getInstance().convert(document, out, options);
 				return htmlName;
 			} else {
@@ -111,8 +111,8 @@ public class WordToHtml {
 		wordToHtmlConverter.processDocument(wordDocument);
 		Document htmlDocument = wordToHtmlConverter.getDocument();
 
-		String htmlName=Constants.CREATE_FILE_PATH +FileUtil.createFileName("WORD");
-		File htmlFile = new File(htmlName);
+		String htmlName=FileUtil.createFileName("WORD");
+		File htmlFile = new File(Constants.CREATE_FILE_PATH +htmlName);
 		OutputStream outStream = new FileOutputStream(htmlFile);
 
 		//也可以使用字符数组流获取解析的内容
