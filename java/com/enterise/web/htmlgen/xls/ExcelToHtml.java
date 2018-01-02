@@ -32,6 +32,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.ulab.core.Constants;
+import com.ulab.util.FileUtil;
 /**
  * 
  * @time   2017年12月28日 下午1:55:42
@@ -384,13 +385,12 @@ public class ExcelToHtml {
 		return "";
 	}
 
-	public static String excel2Html(String fileName) {
+	public static String excel2Html(String filePath,String fileName) {
 		InputStream is = null;
 		String htmlExcel = null;
-		String htmlName = Constants.CREATE_FILE_PATH + fileName.replaceAll(".xlsx", "").replaceAll(".xls", "")
-				+ "(excel).html";
+		String htmlName =Constants.CREATE_FILE_PATH +FileUtil.createFileName("EXCEL");
 		try {
-			File sourcefile = new File(Constants.READ_FILE_PATH + fileName);
+			File sourcefile = new File(filePath + fileName);
 			is = new FileInputStream(sourcefile);
 			Workbook wb = WorkbookFactory.create(is);//此WorkbookFactory在POI-3.10版本中使用需要添加dom4j
 			if (wb instanceof XSSFWorkbook) {
@@ -401,7 +401,7 @@ public class ExcelToHtml {
 				htmlExcel = ExcelToHtml.getExcelInfo(hWb, true);
 			}
 			FileOutputStream fOutputStream = new FileOutputStream(htmlName);
-			OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, "gbk");
+			OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
 			writer.write(htmlExcel);
 			writer.close();
 		} catch (Exception e) {
@@ -419,8 +419,8 @@ public class ExcelToHtml {
 	public static void main(String[] args) {
 
 		String fileName = "中国保监会山东监管局-山东保监局2015年行政处罚事项（七）-421.xlsx";
-		String htmlName = excel2Html(fileName);
+		String htmlName = excel2Html( Constants.CREATE_FILE_PATH,fileName);
 		String fileName2 = "中国保监会山东监管局-2016527山东保监局2016年行政处罚事项（六）-410.xls";
-		String htmlName2 = excel2Html(fileName2);
+		String htmlName2 = excel2Html( Constants.CREATE_FILE_PATH,fileName2);
 	}
 }

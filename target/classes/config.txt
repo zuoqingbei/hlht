@@ -1,51 +1,6 @@
 devMode = true
-#Ulab数据源 Oracle
-ulab.driver=oracle.jdbc.driver.OracleDriver  
-ulab.url = jdbc:oracle:thin:@10.138.8.233:1521:DBPRO
-ulab.user = lhjx01
-ulab.password= Haier,1234
+#数据源 
+hsh.url =jdbc:mysql://101.200.74.145/qst?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+hsh.user = qst
+hsh.password= qst
 
-#泰国实验室数据源 SQL Server 2008R2
-thailand.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-thailand.url = jdbc:sqlserver://10.35.10.60:1433;databaseName=Haier_Interconnection_2017
-thailand.user = Haier_TH_Reader
-thailand.password= HaierTH123456
-
-#胶州海尔空调数据库 SQL Server 2008R2
-jzhekt.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-jzhekt.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_JZHEKT_2017
-jzhekt.user = Haier_DBReader
-jzhekt.password= Haier2017
-
-#胶南热水器数据库 SQL Server 2008R2
-jnrsq.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-jnrsq.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_JNHERB_2017
-jnrsq.user = Haier_DBReader
-jnrsq.password= Haier2017
-
-#中海博睿整机数据库 SQL Server 2008R2
-zhbrzj.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-zhbrzj.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_ZHBR_2017
-zhbrzj.user = Haier_DBReader
-zhbrzj.password= Haier2017
-
-#胶南洗涤数据库 SQL Server 2008R2
-jnxd.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-jnxd.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_JNXYJ_2017
-jnxd.user = Haier_DBReader
-jnxd.password= Haier2017
-
-
-#俄罗斯数据库 SQL Server 2008R2
-russia.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
-russia.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_RUS_2017
-russia.user = Haier_DBReader
-russia.password= Haier2017
-
-# 重庆实验室hive测试库信息
-#hive.driver=com.cloudera.impala.jdbc41.Driver
-#hive.url=jdbc:impala://10.138.8.211:10000/db_hive_ulab;AuthMech=0
-hive.driver=org.apache.hive.jdbc.HiveDriver
-hive.url =jdbc:hive2://10.138.8.211:10000/db_hive_ulab
-hive.user =hdfs
-hive.password=

@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ulab.core.Constants;
+import com.ulab.util.FileUtil;
 
 public class HtmlBuilder {
 
@@ -51,11 +52,10 @@ public class HtmlBuilder {
 		Iterator iter = pageList.iterator();
 		 FileOutputStream fOutputStream=null;
 		 OutputStreamWriter writer = null;
-		String htmlName = Constants.CREATE_FILE_PATH + fileName.replaceAll(".pdf", "").replaceAll(".PDF", "")
-					+ "(pdf).html";
+		String htmlName = Constants.CREATE_FILE_PATH + FileUtil.createFileName("PDF");
 		 try {
 			 fOutputStream=new FileOutputStream(htmlName);
-			 writer=new OutputStreamWriter(fOutputStream, "gbk");
+			 writer=new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
 			 int i = 0;
 				while (iter.hasNext()) {
 					i++;

@@ -31,7 +31,11 @@ public class PdfHtmlPage extends HtmlPage {
 			/*ImageScale imageScale = new ImageScale(176, 220);
 			BufferedImage destImage = imageScale.scale(srcImage);
 			ImageIO.write(destImage, fileExtensionName, new File(fileName));*/
-			ImageIO.write(srcImage, fileExtensionName, new File(fileName));
+			File imageFile=new File(fileName);
+			if (!imageFile.exists()) {//判断文件夹是否创建，没有创建则创建新文件夹
+				imageFile.mkdirs();
+			}
+			ImageIO.write(srcImage, fileExtensionName, imageFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

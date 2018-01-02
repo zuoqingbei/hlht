@@ -31,10 +31,10 @@ public class PdfToHtml implements HtmlGenerator {
 	private List pages;
 	private String fileName;
 	
-	public PdfToHtml(String fileName) {
+	public PdfToHtml(String filePath,String fileName) {
 		InputStream is=null;
 		try {
-			is = new FileInputStream(Constants.READ_FILE_PATH+fileName);
+			is = new FileInputStream(filePath+fileName);
 			document = PDDocument.load(is);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class PdfToHtml implements HtmlGenerator {
 	public static void main(String[] args) {
 		String fileName="安徽省工商行政管理局-downfile.jspclassid=0&filename=1612151630411504106-394.pdf";
 		fileName="r10.pdf";
-		PdfToHtml pdf2Html = new PdfToHtml(fileName);
+		PdfToHtml pdf2Html = new PdfToHtml(Constants.READ_FILE_PATH,fileName);
 		System.out.println(pdf2Html.generate());
 	}
 }
