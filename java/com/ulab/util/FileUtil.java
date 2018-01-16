@@ -17,6 +17,7 @@ import com.enterise.web.htmlgen.doc.WordToHtml;
 import com.enterise.web.htmlgen.pdf.PdfToHtml;
 import com.enterise.web.htmlgen.xls.ExcelToHtml;
 import com.ulab.core.Constants;
+import com.ulab.model.AttachmentContrastModel;
 import com.ulab.model.HshPageModel;
 
 public class FileUtil {
@@ -158,21 +159,47 @@ public class FileUtil {
 		File[] filelist = file.listFiles();
 		for (int i = 0; i < filelist.length; i++) {
 			temp = filelist[i];
-			// 获得文件名，如果后缀为“”，这个你自己写，就删除文件
+			// 获得文件名，如果后缀为“zip、rar”，就删除文件
 			if (temp.getName().endsWith("zip") || temp.getName().endsWith("rar")) {
 				try {
 					//第一步 解压文件
 					UnCompressFile.unzip(path + temp.getName(), Constants.UNCOMPRESS_PATH);
-					//第二步 备份文件 因为使用的是文件移动，所以备份后原有文件就删除了
+					//第二步  将当期压缩包下所有文件  记录到attachment_admin_contrast中  pid为压缩包id
+					createAttachmentContrast(temp.getName(), path);
+					//第三步 备份文件 因为使用的是文件移动，所以备份后原有文件就删除了
 					moveTotherFolders(Constants.READ_FILE_PATH, temp.getName(), Constants.TEM_PATH);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * @time   2018年1月16日 下午5:26:30
+	 * @author zuoqb
+	 * @todo   针对压缩文件 生成压缩包内文件的附件中间表数据
+	 * @param  @param zipName
+	 * @param  @param path
+	 * @param  @throws Exception
+	 * @return_type   void
+	 */
+	public static void createAttachmentContrast(String zipName,String path) throws Exception{
+		AttachmentContrastModel model=AttachmentContrastModel.dao.getByAttachmentName(zipName);
+		if(model!=null){
+			//获取当前压缩包下文件
+			List<String> files=UnCompressFile.zipFiles(path+zipName);
+			for(String name:files){
+				AttachmentContrastModel m=new AttachmentContrastModel();
+				m.set("pid", model.get("rowid"));
+				m.set("data_id", model.get("data_id"));
+				m.set("table_name", model.get("table_name"));
+				m.set("attachment_name", name);
+				m.save();
+			}
+		}
+	}
 	/**
 	 * 
 	 * @time   2017年12月29日 下午3:59:57

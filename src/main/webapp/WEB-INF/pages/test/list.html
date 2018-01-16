@@ -29,7 +29,7 @@
 			console.log(data);
 			var htmls="";
 			$.each(data.list,function(index,item){
-				htmls+='<li><a href="${contextPath}/test/getFileFile?fileName='+item.html_name+'" target="_blank">'+item.file_name+'</a></li>';
+				htmls+='<li><a href="${contextPath}/test/getFileFile?fileName='+item.html_name+'" target="_blank">文件名 :'+item.file_name+"，表名:"+item.table_name+",源数据rowid:"+item.data_id+'</a></li>';
 			});
 			$("ul").append(htmls);
 		});
