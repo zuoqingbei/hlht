@@ -1,14 +1,14 @@
 package com.ulab.controller;
 
-import java.io.File;
-
 import com.jfinal.aop.Before;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.plugin.activerecord.Page;
 import com.ulab.aop.GlobalInterceptor;
 import com.ulab.core.BaseController;
 import com.ulab.core.Constants;
+import com.ulab.model.CreditModel;
 import com.ulab.model.HshPageModel;
+import com.ulab.model.InsuranceModel;
 import com.ulab.util.FileUtil;
 /**
  * 
@@ -49,6 +49,15 @@ public class TestController extends BaseController {
     }
     public void tohtml(){
     	FileUtil.translateFileToHtml();
+    	renderNull();
+    }
+    
+    public void to1(){
+    	InsuranceModel.dao.updateHash();
+    	renderNull();
+    }
+    public void to2(){
+    	CreditModel.dao.updateHash();
     	renderNull();
     }
    
