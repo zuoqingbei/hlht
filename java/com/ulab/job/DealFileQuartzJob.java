@@ -12,10 +12,10 @@ import com.ulab.util.FileUtil;
  * 
  * @time   2018年1月2日14:48:27
  * @author zuoqb
- * @todo   定时器 文件处理
+ * @todo  文件处理 定时器 
  * 新增的定时器需要在quartz.properties进行配置
  */
-public class TestQuartzJobOne implements Job {
+public class DealFileQuartzJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {

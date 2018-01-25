@@ -9,6 +9,7 @@ import com.ulab.core.Constants;
 import com.ulab.model.CreditModel;
 import com.ulab.model.HshPageModel;
 import com.ulab.model.InsuranceModel;
+import com.ulab.model.LogModel;
 import com.ulab.util.FileUtil;
 /**
  * 
@@ -60,12 +61,22 @@ public class TestController extends BaseController {
     	CreditModel.dao.updateHash();
     	renderNull();
     }
-   
-/*    public void getJsonFile(){
-    	String fileName=getPara("fileName","");
-    	String path=getWebRootPath()+"/src/main/webapp/static/data/"+fileName;
-    	String json=JsonUtils.readJson(path);
-    	renderText(json);
+    /**
+     * 
+     * @time   2018年1月25日 下午3:50:20
+     * @author zuoqb
+     * @todo   网站访问异常监控
+     * @param  
+     * @return_type   void
+     */
+    public void collectionException(){
+		Thread th=new Thread(new Runnable() {
+			@Override
+			public void run() {
+				LogModel.dao.collectionException();
+			}
+		});
+		th.start();
+    	renderText("网站监控已启动");
     }
-   */
 }

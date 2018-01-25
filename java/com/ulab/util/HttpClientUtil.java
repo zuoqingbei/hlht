@@ -4,11 +4,14 @@
 
 package com.ulab.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
@@ -514,14 +517,110 @@ public class HttpClientUtil {
 		}
 	}
 	
-	public static void main(String[] args) {
-		Map<String, String> params=new HashMap<String,String>();
-		params.put("uid", "1");
-		System.out.println(HttpClientUtil.sendGetRequest("http://192.168.253.1:80/test/ajax",params));
-		System.out.println(sendPostRequest(
-						"http://192.168.253.1:80/test/ajax",
-						"app_key=57c17v3sh95t00a3&client_ids=35317v47kqsq000c&title=TYTTTTTT&desc=医师协会维护湘被打医生&transmission_content=/replySend/通知/6",
-						true));
+	public static String sendGetRequestHsh(String reqURL) {
+		Map<String, String> map=new HashMap<String, String>();
+		if(reqURL.indexOf("?")!=-1){
+			//地址当中包含？ 需要拆分
+			String[] splits=reqURL.split("\\?");
+			reqURL=splits[0];
+			//生成参数
+			String[] param=splits[1].split("&");
+			for(String pa:param){
+				map.put(pa.split("=")[0], pa.split("=")[1]);
+			}
+		}
+		reqURL = getUrl(map, reqURL).trim();
+		String decodeCharset = null;
+		@SuppressWarnings("unused")
+		long responseLength = 0; // 鍝嶅簲闀垮害
+		String responseContent = null; // 鍝嶅簲鍐呭
+		HttpClient httpClient = new DefaultHttpClient(); // 鍒涘缓榛樿鐨刪ttpClient瀹炰緥
+		HttpGet httpGet = new HttpGet(reqURL); // 鍒涘缓org.apache.http.client.methods.HttpGet
+		try {
+			HttpResponse response = httpClient.execute(httpGet); // 鎵цGET璇锋眰
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity entity = response.getEntity(); // 鑾峰彇鍝嶅簲瀹炰綋
+				if (null != entity) {
+					responseLength = entity.getContentLength();
+					responseContent = EntityUtils.toString(entity,
+							decodeCharset == null ? "UTF-8" : decodeCharset);
+					// EntityUtils.consume(entity); // Consume response content
+				}
+			} else {
+				return "timeout";
+			}
+		} catch (ClientProtocolException e) {
+			return "timeout";
+		} catch (ParseException e) {
+			return "timeout";
+			// log.error(e.getMessage(), e);
+		} catch (IOException e) {
+			return "timeout";
+		} finally {
+			httpClient.getConnectionManager().shutdown(); // 鍏抽棴杩炴帴,閲婃斁璧勬簮
+		}
+		if (responseContent == null || "".equals(responseContent)) {
+			return "timeout";
+		}
+		if(responseContent.contains("Traffic  Quota  Control")){
+			return "timeout";
+		}
+		return responseContent;
 	}
+	 /**
+     * 向指定URL发送GET方法的请求
+     * 
+     * @param url
+     *            发送请求的URL
+     * @param param
+     *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @return URL 所代表远程资源的响应结果
+     */
+    public static  Map<String,Object> sendGet(String url) {
+        BufferedReader in = null;
+        Map<String,Object> result=new HashMap<String, Object>();
+        try {
+            String urlNameString = url ;
+            URL realUrl = new URL(urlNameString);
+            // 打开和URL之间的连接
+            URLConnection connection = realUrl.openConnection();
+            // 设置通用的请求属性
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            connection.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            // 建立实际的连接
+            connection.connect();
+            // 获取所有响应头字段
+            Map<String, List<String>> map = connection.getHeaderFields();
+            // 遍历所有的响应头字段
+            for (String key : map.keySet()) {
+                //System.out.println(key + "--->" + map.get(key));
+            }
+            // 定义 BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(new InputStreamReader(
+                    connection.getInputStream()));
+          /*  String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }*/
+            result.put("success", true);
+        } catch (Exception e) {
+            System.out.println("发送GET请求出现异常！" + e);
+            result.put("success", false);
+            result.put("msg",  e.getMessage());
+        }
+        // 使用finally块来关闭输入流
+        finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return result;
+    }
 	
 }

@@ -14,7 +14,7 @@ import com.ulab.util.UUIDTool;
  * @author zuoqb
  * @todo   TODO
  */
-@TableBind(tableName = "transform_admin_page",pkName="id")
+@TableBind(tableName = "transform_admin_page",pkName="rowid")
 public class HshPageModel extends Model<HshPageModel> {
 	public static final HshPageModel dao = new HshPageModel();
 	private static final long serialVersionUID = 4762813779629969917L;
