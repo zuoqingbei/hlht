@@ -69,14 +69,24 @@ public class TestController extends BaseController {
      * @param  
      * @return_type   void
      */
-    public void collectionException(){
+    public void siteException(){
 		Thread th=new Thread(new Runnable() {
 			@Override
 			public void run() {
-				LogModel.dao.collectionException();
+				LogModel.dao.siteException();
 			}
 		});
 		th.start();
-    	renderText("网站监控已启动");
+    	renderText("网站访问异常监控已启动");
     }
+    public void collectionException(){
+  		Thread th=new Thread(new Runnable() {
+  			@Override
+  			public void run() {
+  				LogModel.dao.collectionException();
+  			}
+  		});
+  		th.start();
+      	renderText("网站采集异常监控已启动");
+      }
 }
