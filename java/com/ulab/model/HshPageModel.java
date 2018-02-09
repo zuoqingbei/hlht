@@ -35,6 +35,6 @@ public class HshPageModel extends Model<HshPageModel> {
 		return model.save();
 	}
 	public Page<HshPageModel> paginate(int pageNumber, int pageSize) {
-		return paginate(pageNumber, pageSize, " select a.data_id,a.table_name,t.*   ", " from transform_admin_page t left join attachment_admin_contrast a on a.rowid=t.attachment_id where t.del_flag=0");
+		return paginate(pageNumber, pageSize, " select a.data_id,a.table_name,t.*   ", " from transform_admin_page t left join attachment_admin_contrast a on a.rowid=t.attachment_id where t.del_flag=0 ORDER BY t.create_time desc ");
 	}
 }

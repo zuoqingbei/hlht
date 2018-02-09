@@ -42,18 +42,13 @@ public class PdfToHtml implements HtmlGenerator {
 		this.fileName=fileName;
 	}
 	
-	public String generate() {
+	public String generate() throws Exception{
 		
 		int numberOfPages = document.getNumberOfPages();
 		List pages = document.getDocumentCatalog().getAllPages();
 		
 		PDFTextStripper pdfTextStripper = null;
-		try {
-			pdfTextStripper = new PDFTextStripper();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		pdfTextStripper = new PDFTextStripper();
 		for (int i = 1; i <= numberOfPages; i++) {
 			
 			pdfHtmlBuilder.addHtmlPage(new PdfHtmlPage());
@@ -69,49 +64,39 @@ public class PdfToHtml implements HtmlGenerator {
 			}
 			Reader reader = new StringReader(text);
 			BufferedReader bufferedReader = new BufferedReader(reader);
-			try {
-				String textLine = null;
-				while ((textLine = bufferedReader.readLine()) != null) {
-					page.addTextLine(textLine);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			String textLine = null;
+			while ((textLine = bufferedReader.readLine()) != null) {
+				page.addTextLine(textLine);
 			}
 			
 			PDPage pDPage = (PDPage)pages.get(i - 1);
 			PDResources resources = pDPage.getResources();
-			try {
-				Map images;
-				images = resources.getImages();
-				if( images != null )
-	            {
-	                Iterator imageIter = images.keySet().iterator();
-	                while( imageIter.hasNext() )
-	                {
-	                    String key = (String)imageIter.next();
-	                    PDXObjectImage image = (PDXObjectImage)images.get( key );
-	                    //page.addPicture(image, image.getSuffix());
-	                    page.addPicture(image, "png");
-	                }
-	            }
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			Map images;
+			images = resources.getImages();
+			if( images != null ){
+                Iterator imageIter = images.keySet().iterator();
+                while( imageIter.hasNext() )
+                {
+                    String key = (String)imageIter.next();
+                    PDXObjectImage image = (PDXObjectImage)images.get( key );
+                    //page.addPicture(image, image.getSuffix());
+                    page.addPicture(image, "png");
+                }
+            }
 		}
-
-        try {
-			document.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		document.close();
 		
 		return pdfHtmlBuilder.writeToFile(fileName);
 	}
 	
 	public static void main(String[] args) {
-		String fileName="安徽省工商行政管理局-downfile.jspclassid=0&filename=1612151630411504106-394.pdf";
-		fileName="r10.pdf";
-		PdfToHtml pdf2Html = new PdfToHtml(Constants.READ_FILE_PATH,fileName);
-		System.out.println(pdf2Html.generate());
+		try {
+			String fileName="安徽省工商行政管理局-downfile.jspclassid=0&filename=1612151630411504106-394.pdf";
+			fileName="r10.pdf";
+			PdfToHtml pdf2Html = new PdfToHtml(Constants.READ_FILE_PATH,fileName);
+			System.out.println(pdf2Html.generate());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -19,6 +20,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -385,42 +387,37 @@ public class ExcelToHtml {
 		return "";
 	}
 
-	public static String excel2Html(String filePath,String fileName) {
+	public static String excel2Html(String filePath,String fileName) throws Exception{
 		InputStream is = null;
 		String htmlExcel = null;
 		String htmlName =FileUtil.createFileName("EXCEL");
-		try {
-			File sourcefile = new File(filePath + fileName);
-			is = new FileInputStream(sourcefile);
-			Workbook wb = WorkbookFactory.create(is);//此WorkbookFactory在POI-3.10版本中使用需要添加dom4j
-			if (wb instanceof XSSFWorkbook) {
-				XSSFWorkbook xWb = (XSSFWorkbook) wb;
-				htmlExcel = ExcelToHtml.getExcelInfo(xWb, true);
-			} else if (wb instanceof HSSFWorkbook) {
-				HSSFWorkbook hWb = (HSSFWorkbook) wb;
-				htmlExcel = ExcelToHtml.getExcelInfo(hWb, true);
-			}
-			FileOutputStream fOutputStream = new FileOutputStream(Constants.CREATE_FILE_PATH +htmlName);
-			OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
-			writer.write(htmlExcel);
-			writer.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		File sourcefile = new File(filePath + fileName);
+		is = new FileInputStream(sourcefile);
+		Workbook wb = WorkbookFactory.create(is);//此WorkbookFactory在POI-3.10版本中使用需要添加dom4j
+		if (wb instanceof XSSFWorkbook) {
+			XSSFWorkbook xWb = (XSSFWorkbook) wb;
+			htmlExcel = ExcelToHtml.getExcelInfo(xWb, true);
+		} else if (wb instanceof HSSFWorkbook) {
+			HSSFWorkbook hWb = (HSSFWorkbook) wb;
+			htmlExcel = ExcelToHtml.getExcelInfo(hWb, true);
 		}
+		FileOutputStream fOutputStream = new FileOutputStream(Constants.CREATE_FILE_PATH +htmlName);
+		OutputStreamWriter writer = new OutputStreamWriter(fOutputStream, Constants.FILE_ENCODE);
+		writer.write(htmlExcel);
+		writer.close();
+		is.close();
 		return htmlName;
 	}
 
 	public static void main(String[] args) {
 
-		String fileName = "中国保监会山东监管局-山东保监局2015年行政处罚事项（七）-421.xlsx";
-		String htmlName = excel2Html( Constants.CREATE_FILE_PATH,fileName);
-		String fileName2 = "中国保监会山东监管局-2016527山东保监局2016年行政处罚事项（六）-410.xls";
-		String htmlName2 = excel2Html( Constants.CREATE_FILE_PATH,fileName2);
+		try {
+			String fileName = "中国保监会山东监管局-山东保监局2015年行政处罚事项（七）-421.xlsx";
+			String htmlName = excel2Html( Constants.CREATE_FILE_PATH,fileName);
+			String fileName2 = "中国保监会山东监管局-2016527山东保监局2016年行政处罚事项（六）-410.xls";
+			String htmlName2 = excel2Html( Constants.CREATE_FILE_PATH,fileName2);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

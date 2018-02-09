@@ -126,6 +126,14 @@ public class LogModel extends Model<LogModel> {
 		}
 		return tableName;
 	}
+	public  void fileTransException(String fileName,String errorMsg) {
+		//网站异常
+		LogModel log=new LogModel();
+		log.set("site_name",fileName);
+		log.set("exception_desc",errorMsg);
+		log.set("createDate",new Date()).set("del_flag",0);
+		log.set("exception_type",4).set("monitor_mode",1).save();
+	}
 	public static void main(String[] args) {
 		String url="http://www.zjzwfw.gov.cn/zjzw/punish/frontpunish/showadmins.do?webId=1&tabid=00001";
 		String result;

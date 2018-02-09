@@ -19,6 +19,7 @@ import com.enterise.web.htmlgen.xls.ExcelToHtml;
 import com.ulab.core.Constants;
 import com.ulab.model.AttachmentContrastModel;
 import com.ulab.model.HshPageModel;
+import com.ulab.model.LogModel;
 
 public class FileUtil {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -63,35 +64,42 @@ public class FileUtil {
 	 * @throws Exception 
 	 * @return_type   void
 	 */
-	public static String dealByFileType(String filePath, String fileName) throws Exception {
+	public static String dealByFileType(String filePath, String fileName){
 		String fileType = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()).toLowerCase();
 		String htmlName="";//转化后html页面名称
 		//System.out.println(fileType);
-		switch (fileType) {
-		case "xls":
-			htmlName=ExcelToHtml.excel2Html(filePath,fileName);
-			break;
-		case "xlsx":
-			htmlName=ExcelToHtml.excel2Html(filePath,fileName);
-			break;
-		case "doc":
-			htmlName=WordToHtml.Word2003ToHtml(filePath, fileName);
-			break;
-		case "docx":
-			htmlName=WordToHtml.Word2007ToHtml(filePath, fileName);
-			break;
-		case "pdf":
-			PdfToHtml pdf2Html = new PdfToHtml(filePath,fileName);
-			htmlName=pdf2Html.generate();
-			break;
-		case "zip":
-			dealCompressFile(filePath);
-			break;
-		case "rar":
-			dealCompressFile(filePath);
-			break;
-		default:
-			break;
+		try {
+			switch (fileType) {
+			case "xls":
+				htmlName=ExcelToHtml.excel2Html(filePath,fileName);
+				break;
+			case "xlsx":
+				htmlName=ExcelToHtml.excel2Html(filePath,fileName);
+				break;
+			case "doc":
+				htmlName=WordToHtml.Word2003ToHtml(filePath, fileName);
+				break;
+			case "docx":
+				htmlName=WordToHtml.Word2007ToHtml(filePath, fileName);
+				break;
+			case "pdf":
+				PdfToHtml pdf2Html = new PdfToHtml(filePath,fileName);
+				htmlName=pdf2Html.generate();
+				break;
+			case "zip":
+				dealCompressFile(filePath);
+				break;
+			case "rar":
+				dealCompressFile(filePath);
+				break;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			// 文件处理异常 保存日志
+			LogModel.dao.fileTransException(fileName, e.getMessage());
+			//最好把转化异常文件放到单独文件夹里面
+			moveTotherFolders(filePath, fileName, Constants.ERROR_PATH);
 		}
 		return htmlName;
 	}

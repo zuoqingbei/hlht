@@ -2,5 +2,5 @@ package com.enterise.web.htmlgen;
 
 public interface HtmlGenerator {
 
-	public String generate();
+	public String generate() throws Exception;
 }
