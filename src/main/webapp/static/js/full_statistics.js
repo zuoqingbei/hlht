@@ -345,7 +345,7 @@ function labPropertiesStatis(){
 	            {
 	                name: '专业能力',
 	                type:'bar',
-					barWidth:60*bodyScale+'%',
+					barWidth:'60%',
 	                // type: 'pictorialBar',
 	                // barGap: '10%',
 // 	                symbolRepeat: true,

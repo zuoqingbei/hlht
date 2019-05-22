@@ -67,11 +67,13 @@ function loadAllDataCenterAjax() {
         $(".abroad").html(createDataCenterHtml(data, 1));
         $(".inland>li:eq(0)").trigger("click");
 
-        //右四屏切换到数据中心
-        try {
-            toLabData();
-        } catch (e) {
-            console.log(e)
+        // 如果是从full页面平面地图提示中跳来的，需要进入到对应实验室
+        let urlSearch = window.top.location.search;
+        if (urlSearch.includes('toLabData')) {
+            let param = urlSearch.slice(urlSearch.indexOf('&'));
+            let centerId = param.split('=')[1];
+            toCenterLab(centerId,'fromFull')
+
         }
 
     });
@@ -90,6 +92,9 @@ function createDataCenterHtml(data, dataType) {
                 }
                 // console.log("item",item)
                 dataCenterMap.put(item.id, item);
+                if(item.center_name==='中海博睿'){
+                    item.center_name='检测中心'
+                }
                 // console.log(item.id)
                 if (!haschildren) {
                     htmls += '<li data-centerid="' + item.id + '" ';
@@ -98,7 +103,6 @@ function createDataCenterHtml(data, dataType) {
                     } else {
                         htmls += ' class=" noChildren " ';
                     }
-                    ;
                     cuNum++;
                     //创建li响应方法
                     htmls += createClickFuntionForDataCenter(item);
@@ -112,7 +116,6 @@ function createDataCenterHtml(data, dataType) {
                     }
                     cuNum++;
 
-                    // htmls+=' <header class="fold">'+item.center_name+'<span>︿</span></header> ';
                     htmls += ' <header class="fold">' + item.center_name + '<span>∧</span></header> ';
                     htmls += '<ul>';
                     dataCenterMap.put(item.id, item);
@@ -147,12 +150,12 @@ function createClickFuntionForDataCenter(item) {
     return htmls;
 }
 
-function setCenterLabHtmlDB(dataCenter,dataCenterId) {
+function setCenterLabHtmlDB(dataCenter, dataCenterId) {
     /*数据库恢复时出错，暂时没有后台，就这这里改一下应急*/
-    if(dataCenterId==='1'){
-        dataCenter.center_name='检测中心';
-        dataCenter.center_desc='海尔质量检测认证中心占地约18000㎡，拥有一流的专业实验室57个，覆盖安全、性能、EMC、噪音、运输、可靠性、成套智能家电等10大整机专业测试领域和电脑板、电机、压缩机、橡塑、钣金等10大类模块的6000多个项目的检测能力。中心拥有一支技术专业、经验丰富的团队，严格按照ISO/IEC17025标准体系要求，在电子电器产品及关键模块领域具有主导和参与标准制定的能力。合作的50多家国际认证机构如VDE、UL、JET、TUV等实现了检测数据互认，可为海尔销往全球各地的产品提供专业、快速、经济的检测认证。';
-        dataCenter.img_content='../static/img/labMain/centerLab0.png';
+    if (dataCenterId === '1') {
+        dataCenter.center_name = '检测中心';
+        dataCenter.center_desc = '海尔质量检测认证中心占地约18000㎡，拥有一流的专业实验室57个，覆盖安全、性能、EMC、噪音、运输、可靠性、成套智能家电等10大整机专业测试领域和电脑板、电机、压缩机、橡塑、钣金等10大类模块的6000多个项目的检测能力。中心拥有一支技术专业、经验丰富的团队，严格按照ISO/IEC17025标准体系要求，在电子电器产品及关键模块领域具有主导和参与标准制定的能力。合作的50多家国际认证机构如VDE、UL、JET、TUV等实现了检测数据互认，可为海尔销往全球各地的产品提供专业、快速、经济的检测认证。';
+        dataCenter.img_content = '../static/img/labMain/centerLab0.png';
     }
     $(".labMain_cblt_tone_world").html("<p style:'font-size:1.3em'>" + dataCenter.center_desc + "</p>");
     $(".labMain_cblt_ttwo_world img").attr("src", dataCenter.img_content);
@@ -164,13 +167,13 @@ function setCenterLabHtmlDB(dataCenter,dataCenterId) {
 //获取数据中心的视频列表
 function loadVideosByDataCenterAjax(dataCenterId) {
     $.post(contextPath + "/lab/loadVideosByDataCenterAjax/?dataCenterId=" + dataCenterId, function (data) {
-        console.log('获取视频的data',data);
+        console.log('获取视频的data', data);
         var centerDataVideoArray = [];
         var html = "";
         if (data.length > 0) {
             $(".sheshi_tab.centerVideo").removeClass("disabled");
             for (var i = 0; i < data.length; i++) {
-                    var localVideo = data[i].videl_url.replace("10.130.96.65:10800", "10.130.96.113:10801");
+                var localVideo = data[i].videl_url.replace("10.130.96.65:10800", "10.130.96.113:10801");
                 html += "<li data-videourl=" + localVideo + " >" + data[i].show_title + "</li>"
             }
             // console.log(html)
@@ -197,7 +200,7 @@ function loadAllDataCenterLabAjaxFunc(dataCenterId) {
     var parentDataCenter = dataCenterMap.get(dataCenter.parent_id);
     var data_type = dataCenter.data_type;
     var data_source = dataCenter.data_source;
-    setCenterLabHtmlDB(dataCenter,dataCenterId);
+    setCenterLabHtmlDB(dataCenter, dataCenterId);
     //加载数据中心第三级
     $.post(contextPath + "/lab/loadAllDataCenterLabAjax", {"dataCenterId": dataCenterId}, function (data) {
         // console.log("查询level为3",data)

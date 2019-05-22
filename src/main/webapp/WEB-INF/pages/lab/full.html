@@ -7,16 +7,12 @@
 <link rel="stylesheet" href="${contextPath!}/static/css/fullScreen_map.css">
 <div id="content" class="contai">
     <script>
-        /*屏幕描述
-         一共 7x3 个屏幕，每一块屏幕是1360x768，
-         总共的大小就是9520x2304，比预计像素少7x6=42个像素。*/
-
         var pageH = $(window).height();
         var pageW = pageH * 16 * 7 / (9 * 3);
         var bodyScale = pageH / 595;
         var bodyFontSize = bodyScale * 100 + "%";
-        if (pageH > 2300) { // 如果是大屏幕(2304)
-            pageW -= 52
+        if (pageH === 1384) { // 如果是大屏幕，消除滚动条
+            pageW = '100%'
         }
 
         function pageResize() {

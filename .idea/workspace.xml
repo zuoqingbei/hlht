@@ -6,17 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745ef7df-f67e-49a1-81e2-8809f6fc464d" name="Default" comment="因数据库恢复问题导致检测中心的图片和介绍不对，先在前端写死，调相关样式。">
+    <list default="true" id="745ef7df-f67e-49a1-81e2-8809f6fc464d" name="Default" comment="解决大屏上横向滚动条的问题，从横版点进来时样式变乱的问题，实验室运营状态录入数据完成，细节调完。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/.idea/lab.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/lab.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/lab.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/labMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/labMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/labOprateState.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/labOprateState.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/flat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/flat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/labAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/labAction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/labData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/labData.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,11 +57,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="875" lean-forward="true" selection-start-line="875" selection-end-line="875" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3852">
+              <caret line="214" column="26" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="26" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1277">
+              <caret line="347" column="32" selection-start-line="347" selection-start-column="32" selection-end-line="347" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#span#1;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#2;n#li#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="26" column="37" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="372">
+              <caret line="82" column="65" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="82" />
               <folding>
                 <element signature="n#div#0;n#nav#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -73,6 +132,7 @@
                 <element signature="n#div#2;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#script#5;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -81,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/labData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="289" lean-forward="true" selection-start-line="289" selection-end-line="289" />
+            <state relative-caret-position="383">
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -90,42 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/mapForm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="66" column="54" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-744" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/chromeFontSize.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="165" column="31" lean-forward="true" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="1116">
+              <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -133,17 +159,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/labLogin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-924">
-              <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+            <state relative-caret-position="36">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/labAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="182" column="29" lean-forward="true" selection-start-line="182" selection-start-column="29" selection-end-line="182" selection-end-column="29" />
+            <state relative-caret-position="224">
+              <caret line="270" lean-forward="true" selection-start-line="270" selection-end-line="270" />
+              <folding>
+                <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,16 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>margin</find>
-      <find>rem</find>
-      <find>46</find>
-      <find>lab_all_count</find>
-      <find>.labMain_cblt_ttwo img</find>
-      <find>l-top-header</find>
-      <find>center_desc</find>
-      <find>loadAllDataCenterLabAjaxFunc</find>
-      <find>labMain_cbl_one</find>
-      <find>Haier Global Labs</find>
       <find>Haier U-lab Data Center</find>
       <find>:</find>
       <find>split</find>
@@ -182,6 +201,16 @@
       <find>labName_world</find>
       <find>&lt;span&gt;&lt;/</find>
       <find>updateUser</find>
+      <find>.toLab</find>
+      <find>toLab</find>
+      <find>toLabData</find>
+      <find>loadAllDataCenterAjax</find>
+      <find>tocenterlab</find>
+      <find>toCenterLab</find>
+      <find>labAction.js</find>
+      <find>全方位测试</find>
+      <find>myChartFlatRT_full</find>
+      <find>window.top</find>
     </findStrings>
     <replaceStrings>
       <replace>',</replace>
@@ -215,10 +244,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/db/sql/PHM_DEVICE_INFO.sql" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/symbolEarth3D/sphereMap.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/right.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/common.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/flat.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/phm/index.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/测试span下的img.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/testVideoWait.html" />
@@ -227,7 +252,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/orderPopup2.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/data/orderList.json" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/orderPopup.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/statistics.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/hallMap.css" />
         <option value="$PROJECT_DIR$/java/com/ulab/controller/LayoutController.java" />
@@ -236,19 +260,24 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/190517/hello.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/hello.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/maiyatang.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/labAction.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/centerLab.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/orderPopup.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/centerLabWorld_3rd.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/flex.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/labMain.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/lab.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/labOprateState.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/labData.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/flat.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/labAction.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/labData.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/common.js" />
       </list>
     </option>
   </component>
@@ -285,18 +314,16 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="161" />
-    <option name="y" value="260" />
-    <option name="width" value="837" />
-    <option name="height" value="475" />
+    <option name="x" value="266" />
+    <option name="y" value="70" />
+    <option name="width" value="1565" />
+    <option name="height" value="975" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -337,15 +364,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hlht" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ulab" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -354,6 +372,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hlht" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ulab" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -364,16 +391,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hlht" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ulab" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hlht" type="b2602c69:ProjectViewProjectNode" />
@@ -393,7 +410,7 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hlht" type="b2602c69:ProjectViewProjectNode" />
@@ -410,14 +427,17 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558344806691" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558430291927" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
@@ -615,7 +635,10 @@
       <workItem from="1557902375056" duration="9274000" />
       <workItem from="1557969364987" duration="20965000" />
       <workItem from="1558056046616" duration="24320000" />
-      <workItem from="1558314912688" duration="13181000" />
+      <workItem from="1558314912688" duration="15065000" />
+      <workItem from="1558401702944" duration="14072000" />
+      <workItem from="1558431701221" duration="4149000" />
+      <workItem from="1558488188144" duration="5719000" />
     </task>
     <task id="LOCAL-00001" summary="配置idea的开发环境和热部署">
       <created>1552010667182</created>
@@ -659,11 +682,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558085974109</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="解决大屏上横向滚动条的问题，从横版点进来时样式变乱的问题，实验室运营状态录入数据完成，细节调完。">
+      <created>1558344993727</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558344993727</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193760000" />
+    <option name="totallyTimeSpent" value="219584000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,10 +705,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="753" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="753" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36157337" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2193646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -690,11 +720,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3473344" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.4394184" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.7867528" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32956383" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.35056543" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3489499" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50075644" side_tool="true" weight="0.3279483" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3489499" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
@@ -713,7 +743,7 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Maven Projects" order="9" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" visible="true" weight="0.32980332" />
-      <window_info anchor="right" id="Maven" order="11" weight="0.08245083" />
+      <window_info anchor="right" id="Maven" order="11" weight="0.21860817" />
       <window_info anchor="right" id="Preview" order="12" weight="0.32980332" />
     </layout>
     <layout-to-restore>
@@ -808,7 +838,8 @@
     <MESSAGE value="实验室运营状态的订单分页" />
     <MESSAGE value="因数据库恢复问题导致检测中心的图片和介绍不对，先在前端写死，调相关样式。" />
     <MESSAGE value="订单和实验室运营状态均确定json格式，并用vue从本地模拟数据绑数" />
-    <option name="LAST_COMMIT_MESSAGE" value="订单和实验室运营状态均确定json格式，并用vue从本地模拟数据绑数" />
+    <MESSAGE value="解决大屏上横向滚动条的问题，从横版点进来时样式变乱的问题，实验室运营状态录入数据完成，细节调完。" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决大屏上横向滚动条的问题，从横版点进来时样式变乱的问题，实验室运营状态录入数据完成，细节调完。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -835,31 +866,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/phm/strategy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/ulab/controller/PhmAjaxController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/assets/js/vue-2.6.10.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-834">
-          <caret line="1034" column="43" lean-forward="true" selection-start-line="1034" selection-start-column="43" selection-end-line="1034" selection-end-column="43" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/wordCloudText.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -983,13 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/orderList.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="908">
-          <caret line="129" column="30" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/img/labMain/lab_left_border.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -998,39 +997,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/img/labMain/Center.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
-          <folding>
-            <element signature="n#script#0;n#div#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="72" column="106" selection-start-line="72" selection-start-column="93" selection-end-line="72" selection-end-column="106" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1278">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
-          <folding>
-            <element signature="n#style#0;n#span#1;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/hallMap.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1496,24 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/labAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="267" selection-start-line="267" selection-end-line="267" />
-          <folding>
-            <element signature="e#8727#10675#0" />
-            <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="182" column="29" lean-forward="true" selection-start-line="182" selection-start-column="29" selection-end-line="182" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/orderPopup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
@@ -1540,10 +1488,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/login.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/chromeFontSize.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/flatMap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="37" column="4" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="165" column="31" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/labRunStatus.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/data/orderList.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="69" column="28" lean-forward="true" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/flat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/mapForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/labLogin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/fullScreen_map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3852">
+          <caret line="214" column="26" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/full_statistics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1277">
+          <caret line="347" column="32" selection-start-line="347" selection-start-column="32" selection-end-line="347" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#2;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/full.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/layout/lab.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="372">
+          <caret line="82" column="65" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="82" />
           <folding>
             <element signature="n#div#0;n#nav#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1554,54 +1600,36 @@
             <element signature="n#div#2;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#script#5;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/labAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="270" lean-forward="true" selection-start-line="270" selection-end-line="270" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/labData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="289" lean-forward="true" selection-start-line="289" selection-end-line="289" />
+        <state relative-caret-position="383">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/mapForm.html">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="66" column="54" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/labLogin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-924">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-744" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="165" column="31" lean-forward="true" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/chromeFontSize.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lab/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="476">
+          <caret line="875" lean-forward="true" selection-start-line="875" selection-end-line="875" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1616,7 +1644,6 @@
             <option name="proportions">
               <list>
                 <option value="0.20479302" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

@@ -44,10 +44,8 @@ $(function () {
             parent.parent.location.href = url;
         } else {
             $(".toLabData", top.document).click();
-            parent.parent.toCenterLab(centerId);
+            parent.parent.toCenterLab(centerId+'');
         }
-
-
     });
 });
 

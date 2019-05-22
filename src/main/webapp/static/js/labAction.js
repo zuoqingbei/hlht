@@ -10,8 +10,11 @@ var videoJsIsPlayed = false;
 
 
 $(function () {
-    smallVideoMove();
-    loadAllDataCenterAjax();
+    //弹出订单页面也用了此js
+    if(!location.href.includes('layout/orderPopup')){
+        smallVideoMove();
+        loadAllDataCenterAjax();
+    }
     //中心实验室顶上的“返回总状态”按钮
     $(".btn-totalStatus").click(function () {
         $("#r>iframe", parent.document).attr('src',contextPath+'/layout/totalState');
@@ -26,10 +29,10 @@ $(function () {
 
         if ($(this).index() === 0) { //国内
             inlandTabShow();
+            $(".lab_content_r>.switchBox>div.item").eq(1).show().siblings().hide();
         } else {                    //国外
             abroadTabShow();
         }
-        $(".lab_content_r>.switchBox>div.item").eq(1).show().siblings().hide();
     });
 
     //左侧菜单数据中心点击事件
@@ -269,6 +272,12 @@ function inlandTabShow(mark) { //国内
 function abroadTabShow() {//国外
     $lab_content_r.css("background-image", "url(../static/img/lab/labTabBoardForeign_2.png)");
     $(".labSubNav>ul>li.labHome,.labSubNav>ul>li.curves").show();
+    $('.labSubNav>ul>li.curves').addClass('active');
+    $('.lab_content_r>.switchBox>.item.monitoring').show().siblings().hide();
+    //如果不是从full页跳进来，而且国外列表没有选中的情况下：
+        if(!$('.item.abroad li').hasClass('active') && !window.top.location.search.includes('toLabData')){
+        $('.item.abroad li>ul>li:first').click()
+    }
 }
 
 function moduleMakersShow(dataCenter) {//模块商
