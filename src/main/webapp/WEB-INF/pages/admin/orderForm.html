@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ulab数据管理平台</title>
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/bootstrap.min-3.3.7-blue.css">
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/style.css">
+</head>
+<body id="flatMap_form">
+<!--导航-->
+<nav class="navbar navbar-default">
+    <!--小屏幕按钮和-->
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Ulab数据管理平台</a>
+        </div>
+        <!--小屏幕按钮和-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="${contextPath}/admin/mapList"><span class="glyphicon glyphicon-home"></span>平面地图数据</a></li>
+                <li><a href="${contextPath}/admin/labInfoList"><span class="glyphicon glyphicon-home"></span>实验室明细</a>
+                </li>
+                <li><a href="${contextPath}/admin/userList"><span class="glyphicon glyphicon-home"></span>账号管理</a></li>
+                <li class="active"><a href="${contextPath}/admin/userList"><span
+                    class="glyphicon glyphicon-home"></span>实验室订单</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">
+                        当前用户：${user.name!}
+                    </a>
+                </li>
+                <li onclick="logout()"><a href="javascript:void(0);"><span class="glyphicon glyphicon-off"></span>退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--导航-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/admin/updateOrderInfo" type="post">
+                <fieldset>
+                    <legend>实验室订单新增/编辑:</legend>
+                    <div class="col-md-6 col-md-offset-3">
+                        <input id="orderId" name="orderId" value="${model.orderId!}" type="hidden">
+                        <div class="form-group"><strong class="required">*</strong>
+                            <label for="testNumber">实验编号</label>
+                            <input class="form-control" id="testNumber" name="testNumber" value="${model.testNumber!}"
+                                   placeholder="实验编号">
+                        </div>
+                        <div class="form-group"><strong class="required">*</strong>
+                            <label for="creationTime">下单时间</label>
+                            <input class="form-control" id="creationTime" name="creationTime"
+                                   value="${model.creationTime!}" placeholder="下单时间">
+                        </div>
+                        <div class="form-group">
+                            <label>① 委托下单</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step1_name" name="step1_name"
+                                           value="${model.step1.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step1_tel" name="step1_tel"
+                                           value="${model.step1.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>② 样品接收</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step2_name" name="step2_name"
+                                           value="${model.step2.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step2_tel" name="step2_tel"
+                                           value="${model.step2.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>③ 任务分配</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step3_name" name="step3_name"
+                                           value="${model.step3.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step3_tel" name="step3_tel"
+                                           value="${model.step3.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>④ 测试执行</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step4_name" name="step4_name"
+                                           value="${model.step4.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step4_tel" name="step4_tel"
+                                           value="${model.step4.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>⑤ 报告审核</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step5_name" name="step5_name"
+                                           value="${model.step5.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step5_tel" name="step5_tel"
+                                           value="${model.step5.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>⑥ 批准报告</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step6_name" name="step6_name"
+                                           value="${model.step6.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step6_tel" name="step6_tel"
+                                           value="${model.step6.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>⑦ 结果评价</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step7_name" name="step7_name"
+                                           value="${model.step7.name!}" placeholder="姓名">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="step7_tel" name="step7_tel"
+                                           value="${model.step7.tel!}" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>第几步</label><br>
+                            <label><input type="radio" name="step" value="1">第1步</label>
+                            <label><input type="radio" name="step" value="1">第2步</label>
+                            <label><input type="radio" name="step" value="1">第3步</label>
+                            <label><input type="radio" name="step" value="1">第4步</label>
+                            <label><input type="radio" name="step" value="1">第5步</label>
+                            <label><input type="radio" name="step" value="1">第6步</label>
+                            <label><input type="radio" name="step" value="1">第7步</label>
+                        </div>
+                            <div class="form-group">
+                                <input class="btn btn-success center-block" id="submit" type="submit" value="提交">
+                            </div>
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var contextPath = '${contextPath!}';
+
+    function logout() {
+        var confirm = window.confirm("是否确认退出系统？");
+        if (confirm === true) {
+            $("form").attr("action", "${contextPath}/login/logout").submit();
+        }
+    };
+</script>
+<script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/admin/js/jquery.validate-1.15.1.js"></script>
+<script src="${contextPath}/static/admin/js/bootstrap.js"></script>
+<script src="${contextPath}/static/admin/js/labInfoForm.js"></script>
+
+</body>
+</html>

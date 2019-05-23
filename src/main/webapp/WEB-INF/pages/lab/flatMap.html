@@ -35,21 +35,7 @@
 <script src="${contextPath!}/static/assets/echarts/echarts-all.js"></script>
 <script src="${contextPath!}/static/assets/echarts/world.js"></script>
 <script src="${contextPath!}/static/js/flat.js"></script>
-<!--
-<script>
-    function myFlatMapResize() {
-        setTimeout(function () {
 
-        myFlatMap.resize()
-        console.log("&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;子元素方法被调用",myFlatMap.getOption())
-        },5000)
-    }
-    $(function () {
-//           myFlatMapResize()
-
-    })
-</script>
--->
 <script>
     //调用父页面的方法来保证子页面加载完了再执行平面地图加载
     if(parent.parentMethod){

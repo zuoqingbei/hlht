@@ -401,5 +401,28 @@ public class AdminController extends BaseController {
 		Record lab=LabModel.dao.findLabByCode(labCode);
 		renderJson(lab);
 	}
+    /**
+     * 前端开发，先渲染页面
+     * @time   2019年5月23日11:04:32
+     * @author ljl
+     * @todo   实验室订单列表页面
+     * @param
+     * @return_type   void
+     */
+    public void orderList() {
+        render("orderList.html");
+    };
+    /**
+     * 前端开发，先渲染页面
+     * @time   2019年5月23日11:04:32
+     * @author ljl
+     * @todo   实验室订单新增/修改页面
+     * @param
+     * @return_type   void
+     */
+    public void orderForm() {
+        render("orderForm.html");
+    };
+
 
 }
