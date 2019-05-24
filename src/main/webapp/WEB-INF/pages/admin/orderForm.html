@@ -6,8 +6,13 @@
     <title>Ulab数据管理平台</title>
     <link rel="stylesheet" href="${contextPath}/static/admin/css/bootstrap.min-3.3.7-blue.css">
     <link rel="stylesheet" href="${contextPath}/static/admin/css/style.css">
+    <style>
+        input[name=step]{
+            margin-left: .5rem;
+        }
+    </style>
 </head>
-<body id="flatMap_form">
+<body id="order_form">
 <!--导航-->
 <nav class="navbar navbar-default">
     <!--小屏幕按钮和-->
@@ -45,23 +50,23 @@
 </nav>
 <!--导航-->
 
-<div class="container">
+<div class="container" id="orderForm">
     <div class="row">
         <div class="col-md-12">
-            <form action="/admin/updateOrderInfo" type="post">
+            <form>
                 <fieldset>
                     <legend>实验室订单新增/编辑:</legend>
                     <div class="col-md-6 col-md-offset-3">
                         <input id="orderId" name="orderId" value="${model.orderId!}" type="hidden">
                         <div class="form-group"><strong class="required">*</strong>
                             <label for="testNumber">实验编号</label>
-                            <input class="form-control" id="testNumber" name="testNumber" value="${model.testNumber!}"
-                                   placeholder="实验编号">
+                            <input class="form-control" id="testNumber" name="testNumber" :value="HR20180703101A11001"
+                                   placeholder="实验编号" required oninvalid="setCustomValidity('请输入订单编号')">
                         </div>
                         <div class="form-group"><strong class="required">*</strong>
                             <label for="creationTime">下单时间</label>
-                            <input class="form-control" id="creationTime" name="creationTime"
-                                   value="${model.creationTime!}" placeholder="下单时间">
+                            <input class="form-control" id="creationTime" name="creationTime" type="date"
+                                   value="2019-11-14" placeholder="下单时间" required oninvalid="setCustomValidity('请输入订单创建时间')">
                         </div>
                         <div class="form-group">
                             <label>① 委托下单</label>
@@ -157,12 +162,12 @@
                         <div class="form-group">
                             <label>第几步</label><br>
                             <label><input type="radio" name="step" value="1">第1步</label>
-                            <label><input type="radio" name="step" value="1">第2步</label>
-                            <label><input type="radio" name="step" value="1">第3步</label>
-                            <label><input type="radio" name="step" value="1">第4步</label>
-                            <label><input type="radio" name="step" value="1">第5步</label>
-                            <label><input type="radio" name="step" value="1">第6步</label>
-                            <label><input type="radio" name="step" value="1">第7步</label>
+                            <label><input type="radio" name="step" value="2">第2步</label>
+                            <label><input type="radio" name="step" value="3">第3步</label>
+                            <label><input type="radio" name="step" value="4">第4步</label>
+                            <label><input type="radio" name="step" value="5">第5步</label>
+                            <label><input type="radio" name="step" value="6">第6步</label>
+                            <label><input type="radio" name="step" value="7" required>第7步</label>
                         </div>
                             <div class="form-group">
                                 <input class="btn btn-success center-block" id="submit" type="submit" value="提交">
@@ -186,7 +191,8 @@
 <script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/admin/js/jquery.validate-1.15.1.js"></script>
 <script src="${contextPath}/static/admin/js/bootstrap.js"></script>
-<script src="${contextPath}/static/admin/js/labInfoForm.js"></script>
+<!--<script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>-->
+<script src="${contextPath}/static/admin/js/orderForm.js"></script>
 
 </body>
 </html>
