@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ulab数据管理平台</title>
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/bootstrap.min-3.3.7-blue.css">
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/style.css">
+    <style>
+        .table td.opt {
+            text-align: left;
+        }
+
+        td.opt .btn {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="${contextPath}/admin/mapList" class="navbar-brand">Ulab数据管理平台</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="${contextPath}/admin/mapList"><span class="glyphicon glyphicon-home"></span>平面地图数据</a></li>
+                <li><a href="${contextPath}/admin/labInfoList"><span class="glyphicon glyphicon-home"></span>实验室明细</a>
+                </li>
+                <li><a href="${contextPath}/admin/userList"><span class="glyphicon glyphicon-home"></span>账号管理</a></li>
+                <li class="active"><a href="${contextPath}/admin/orderList"><span
+                    class="glyphicon glyphicon-home"></span>实验室订单</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">
+                        当前用户：${user.name!}
+                    </a>
+                </li>
+                <li onclick="logout()"><a href="javascript:void(0);"><span class="glyphicon glyphicon-off"></span>退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--导航-->
+
+<div class="container-fluid" id="orderList">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>实验室订单</h2>
+            </div>
+            <div class="search">
+                <div class="panel panel-primary">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title">查询条件：</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="keyword">请输入关键字：</label>
+                                <input class="form-control input-sm" id="keyword" autocomplete="false" placeholder="" v-model="keywords">
+                            </div>
+                            <button type="button" class="btn btn-success btn-sm pull-right" @click="addItem">新增
+                            </button>
+                            <button style="margin-right:2em;" type="button" class="btn btn-primary btn-sm pull-right"
+                                    @click="search">搜索
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class=" table-responsive">
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>实验编号</th>
+                        <th>下单时间</th>
+                        <th>第几步</th>
+                        <th>委托下单</th>
+                        <th>样品接收</th>
+                        <th>任务分配</th>
+                        <th>测试执行</th>
+                        <th>报告审核</th>
+                        <th>批准报告</th>
+                        <th>结果评价</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(item,index) in curItemList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.testNumber}}</td>
+                        <td>{{item.creationDate}}<br>{{item.creationTime}}</td>
+                        <td>{{item.step}}</td>
+                        <td v-for="(temp,index) in new Array(7)" style="text-align: left">
+                            <span>姓名：{{item['step'+(index+1)]&&item['step'+(index+1)]['name']}}</span><br>
+                            <span>电话：{{item['step'+(index+1)]&&item['step'+(index+1)]['tel']}}</span>
+                        </td>
+                        <td class="opt">
+                            <button class="btn btn-primary btn-sm btn-edit" @click="updateItem(item)">编辑</button>
+                            <br>
+                            <button class="btn btn-danger btn-sm btn-del" @click="delItem(item.id)">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination pull-right pagination-ul">
+                    <li><a href="javascript:void(0)" @click="changePage()" aria-label="Previous"><span
+                        aria-hidden="true">&laquo;</span> </a></li>
+                    <li><a href="javascript:void(0)" style="pointer-events: none">{{pageCur}}/{{pageTotal}}</a></li>
+                    <li><a href="javascript:void(0)" @click="changePage('next')" aria-label="Next"><span
+                        aria-hidden="true">&raquo;</span> </a></li>
+                </ul>
+                <div class="pagination pull-right result">
+                    查询结果：共
+                    <output>{{filterItemList.length}}</output>
+                    条
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="bottom"></div>
+
+<script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/admin/js/bootstrap.js"></script>
+<script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>
+<script>
+    let contextPath = '${contextPath!}';
+    let VueOrderList = new Vue({
+        el: '#orderList',
+        data: {
+            orderList: {
+                header: {}, itemList: [],
+            },
+            orderListHeader: ['totalNum', 'underTest', 'toBeDistributed', 'testing', 'completed', 'completion'],
+            curItemList: [],
+            filterItemList: [],
+            pageCur: 1,
+            itemPerPage: 5,
+            pageTotal: 0,
+            keywords:'',
+
+        },
+        beforeMount() {
+            this.getOrderList();
+        },
+        methods: {
+            getOrderList() {
+                // 查询接口
+                $.get(contextPath + "/static/data/orderList.json", data => {
+                    this.orderList = data;
+                    this.filterItemList = this.orderList.itemList;
+                    this.pagination();
+                })
+            },
+            pagination() {
+                let isInt = this.orderList.itemList.length % this.itemPerPage === 0;
+                this.pageTotal = (this.filterItemList.length / this.itemPerPage + (isInt ? 0 : 1)) | 0;
+                this.curItemList = this.filterItemList.slice((this.pageCur - 1) * this.itemPerPage, (this.pageCur) * this.itemPerPage)
+            },
+            changePage(next) {
+                if (next) {
+                    if (this.pageCur === this.pageTotal) return false;
+                    this.pageCur++
+                } else {
+                    if (this.pageCur === 1) return false;
+                    this.pageCur--
+                }
+                this.pagination()
+            },
+            search(){
+                this.filterItemList = this.orderList.itemList.filter(item=>{
+                    return Object.keys(item).some(k=>{
+                        return item.testNumber.includes(this.keywords)
+                    })
+                });
+                this.pagination();
+            },
+            delItem(id){
+                if(!confirm('确认删除？')){return}
+                // 模拟删除，生产中请屏蔽
+                this.orderList.itemList.splice(this.orderList.itemList.findIndex(item=>item.id===id),1);
+                this.pagination();
+                 // 删除接口
+                $.get(contextPath+'/admin/delOrderInfo?id='+id, data => {
+                    if(data.result){
+                        location.href='';
+                    }
+                })
+            },
+            addItem(){
+                localStorage.setItem('updateItem','');
+                location.href=contextPath+'/admin/orderForm';
+            },
+            updateItem(item){
+                localStorage.setItem('updateItem',JSON.stringify(item));
+                location.href=contextPath+'/admin/orderForm?id='+item.id;
+            }
+        }
+    });
+</script>
+</body>
+</html>
