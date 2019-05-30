@@ -14,7 +14,7 @@
       "testNumber": "HR20180703101A11001",
       "creationDate": "2018-07-03",
       "creationTime": "17:09",
-      "step": 2,
+      "step": "2",
       "step1": {
         "name": "吴贤栋",
         "tel": "13210250532"
@@ -45,9 +45,10 @@
       }
     },{
       "id": "2",
-      "testNumber": "HR20180702101A11001",
-      "creationTime": "2018-7-2 15:13",
-      "step": 3,
+      "testNumber": "HR20180702101A11003",
+      "creationDate": "2018-07-02",
+      "creationTime": "15:13",
+      "step": "3",
       "step1": {
         "name": "鲍业浩",
         "tel": "18562827528"
@@ -78,9 +79,10 @@
       }
     },{
       "id": "3",
-      "testNumber": "HR20180629101A11001",
-      "creationTime": "2018-6-29 15:00",
-      "step": 4,
+      "testNumber": "HR20180629101A11003",
+      "creationDate": "2018-6-29",
+      "creationTime": "13:55",
+      "step": "4",
       "step1": {
         "name": "曹东强",
         "tel": "13606345375"
@@ -111,9 +113,10 @@
       }
     },{
       "id": "4",
-      "testNumber": "HR20180702101A11001",
-      "creationTime": "2018-7-2 15:13",
-      "step": 3,
+      "testNumber": "HR20180702101A11004",
+      "creationDate": "2018-07-04",
+      "creationTime": "15:13",
+      "step": "3",
       "step1": {
         "name": "鲍业浩",
         "tel": "18562827528"
@@ -145,8 +148,9 @@
     },{
       "id": "5",
       "testNumber": "HR20180629101A11001",
-      "creationTime": "2018-6-29 15:00",
-      "step": 4,
+      "creationDate": "2018-07-05",
+      "creationTime": "15:06",
+      "step": "4",
       "step1": {
         "name": "曹东强",
         "tel": "13606345375"
@@ -178,8 +182,9 @@
     },{
       "id": "6",
       "testNumber": "HR20180702101A11001",
-      "creationTime": "2018-7-2 15:13",
-      "step": 3,
+      "creationDate": "2018-07-06",
+      "creationTime": "15:13",
+      "step": "3",
       "step1": {
         "name": "鲍业浩",
         "tel": "18562827528"
@@ -211,8 +216,9 @@
     },{
       "id": "7",
       "testNumber": "HR20180629101A11001",
-      "creationTime": "2018-6-29 15:00",
-      "step": 4,
+      "creationDate": "2018-07-07",
+      "creationTime": "15:00",
+      "step": "4",
       "step1": {
         "name": "曹东强",
         "tel": "13606345375"

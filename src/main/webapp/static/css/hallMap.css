@@ -463,7 +463,9 @@ footer .text p {
     text-indent: 2em;
 }
 
-
+.styleIn7x3 footer p{
+    display: none;
+}
 
 
 

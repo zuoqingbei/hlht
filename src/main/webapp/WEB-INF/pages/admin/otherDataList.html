@@ -52,60 +52,29 @@
 </nav>
 <!--导航-->
 
-<div class="container-fluid" id="orderList">
+<div class="container-fluid" id="otherDataList">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
                 <h2>实验室订单</h2>
-            </div>
-            <div class="search">
-                <div class="panel panel-primary">
-                    <div class="panel-heading ">
-                        <h3 class="panel-title">查询条件：</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form @submit.prevent="search" class="form-inline">
-                            <div class="form-group">
-                                <label for="keyword">请输入关键字：</label>
-                                <input class="form-control input-sm" id="keyword" autocomplete="false" placeholder="" v-model="keywords">
-                            </div>
-                            <button type="button" class="btn btn-success btn-sm pull-right" @click="addItem">新增
-                            </button>
-                            <button style="margin-right:2em;" type="submit" class="btn btn-primary btn-sm pull-right"
-                                   >搜索
-                            </button>
-                        </form>
-                    </div>
-                </div>
             </div>
             <div class=" table-responsive">
                 <table class="table table-condensed table-bordered table-striped table-hover">
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>实验编号</th>
-                        <th>下单时间</th>
-                        <th>第几步</th>
-                        <th>委托下单</th>
-                        <th>样品接收</th>
-                        <th>任务分配</th>
-                        <th>测试执行</th>
-                        <th>报告审核</th>
-                        <th>批准报告</th>
-                        <th>结果评价</th>
+                        <th>页面id</th>
+                        <th>名称</th>
+                        <th>内容</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="(item,index) in curItemList">
                         <td>{{item.id}}</td>
-                        <td>{{item.testNumber}}</td>
-                        <td>{{item.creationDate}}<br>{{item.creationTime}}</td>
-                        <td>{{item.step}}</td>
-                        <td v-for="(temp,index) in new Array(7)" style="text-align: left">
-                            <span>姓名：{{item['step'+(index+1)]&&item['step'+(index+1)]['name']}}</span><br>
-                            <span>电话：{{item['step'+(index+1)]&&item['step'+(index+1)]['tel']}}</span>
-                        </td>
+                        <td>{{item.pageId}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.content}}</td>
                         <td class="opt">
                             <button class="btn btn-primary btn-sm btn-edit" @click="updateItem(item)">编辑</button>
                             <br>
