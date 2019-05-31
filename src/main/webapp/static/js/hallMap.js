@@ -2,8 +2,6 @@ let labCode = "2,1,4",
     lineCode = "21,22,23,24,25,26,27";
 $(function () {
     // parentMethod(lineCode, labCode);
-    // 在7x3大屏上隱藏footer
-    styleIn7x3();
     //设置产线和实验室的颜色
     addStyleForA();
     // 点击导航中的A标签
@@ -65,18 +63,6 @@ function showLabLine() {
             $("#selectAll").prop("checked", true);
         }
     });
-}
-
-// 在7x3大屏上隱藏footer
-function styleIn7x3() {
-    let fromBigScreen7x3 = location.href.indexOf("bigScreen7x3") > -1;
-    // console.log(fromBigScreen7x3);
-    if (fromBigScreen7x3) {
-        $("body").addClass("styleIn7x3");
-        $("#myContainer>footer p").hide();
-        $("#myContainer>header>h1>a").text("全球实验室数据中心")
-            .parent().next().find('a').text("Haier U-lab Data Center")
-    }
 }
 
 //平面地图的数据加载

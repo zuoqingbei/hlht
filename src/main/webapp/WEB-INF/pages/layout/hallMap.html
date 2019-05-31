@@ -1,223 +1,290 @@
 <!doctype html>
 <html lang="zh-CN" style="opacity: 0;">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>海尔全球实验室</title>
-    <link rel="stylesheet" href="${contextPath!}/static/css/hallMap.css">
-    <script src="${contextPath!}/static/assets/js/jquery-2.2.4.js"></script>
-    <script>
-        let [pageH, pageW] = [$(window).height(), $(window).width()];
-        let bodyScale = pageH / 637;
-        let htmlFontSize = bodyScale * 100 + "%";
-        $(function () {
-            pageResize();
-        });
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>海尔全球实验室</title>
+        <link rel="stylesheet" href="${contextPath!}/static/css/hallMap.css">
+        <script src="${contextPath!}/static/assets/js/jquery-2.2.4.js"></script>
+        <script>
+            let [pageH, pageW] = [$(window).height(), $(window).width()];
+            let bodyScale = pageH / 637;
+            let htmlFontSize = bodyScale * 100 + "%";
+            $(function () {
+                pageResize();
+            });
 
-        function pageResize() {
-            $("html").css("font-size", htmlFontSize).css("opacity", 1);
-            $("#myContainer").css("width", pageH * 16 / 9);
-            console.log("~~~~~~~~~窗口高度：" + pageH + ",\n宽度:" + pageW + " \nbody字号：" + htmlFontSize)
-        }
-    </script>
-</head>
-<body id="hallMap styleIn7x3">
-<div id="myContainer">
-    <header>
-        <span class="mainLogo"></span>
-        <h1><a href="${contextPath!}/phm" target="_top">全球实验室</a></h1>
-        <h1><a href="${contextPath!}/lab/full" target="_top">Haier Global Labs</a></h1>
-    </header>
-    <div id="container">
-        <div class="left">
-            <div class="left-top">
-                <div class="box distribution">
-                    <h3>全球实验室分布</h3>
-                    <div class="totalNum"><span><strong>5</strong>大洲</span>
-                        <span><strong>18</strong>个国家</span>
+            function pageResize() {
+                $("html").css("font-size", htmlFontSize).css("opacity", 1);
+                $("#myContainer").css("width", pageH * 16 / 9);
+                console.log("~~~~~~~~~窗口高度：" + pageH + ",\n宽度:" + pageW + " \nbody字号：" + htmlFontSize)
+            }
+        </script>
+    </head>
+    <body id="hallMap styleIn7x3">
+        <div id="myContainer">
+            <header>
+                <span class="mainLogo"></span>
+                <h1>
+                    <a href="${contextPath!}/phm" target="_top">{{otherDataForm.title['zh'+(in7x3?'_in7x3':'')]}}</a>
+                </h1>
+                <h1>
+                    <a href="${contextPath!}/lab/full" target="_top">{{otherDataForm.title['en'+(in7x3?'_in7x3':'')]}}</a>
+                </h1>
+            </header>
+            <div id="container">
+                <div class="left">
+                    <div class="left-top">
+                        <div class="box distribution">
+                            <h3>全球实验室分布</h3>
+                            <div class="totalNum">
+                                <span><strong>5</strong>大洲
+                                </span>
+                                <span><strong>18</strong>个国家
+                                </span>
+                            </div>
+                            <ul>
+                                <li><strong>10</strong>大研发中心
+                                </li>
+                                <li><strong>23</strong>个工业园区
+                                </li>
+                                <li><strong>108</strong>个工厂
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                        <ul>
-                        <li><strong>10</strong>大研发中心</li>
-                        <li><strong>23</strong>个工业园区</li>
-                        <li><strong>108</strong>个工厂</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="left-bottom">
-                <div class="box test">
-                    <h3>全流程测试指标监控(月)</h3>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>测试类别</th>
-                            <th>订单量</th>
-                            <th>通过率</th>
-                        </tr>
-                        </thead>
-                        <tbody id="mine_tbody_order">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="mid">
-            <div class="mapBox">
-                <iframe id="iframeFlat" name="iframeFlat" src="${contextPath!}/lab/flatMap?hallMap"
-                        frameborder="0"></iframe>
-                <div class="flatMapCtr" style="">
-                    <div class="legend">
-                        <div class="legend-l btn">
-                            <div class="text">产线</div>
-                        </div>
-                        <div class="legend-m">
-                            <div class="selectAll">
-                                <input id="selectAll" type="checkbox" checked hidden>
-                                <label for="selectAll">全选</label>
-                            </div>
-                            <div class="text">
-                                <ul class="active">
-                                    <li><a href>研发中心</a></li>
-                                    <li><a href>检测中心</a></li>
-                                    <li><a href>制造工厂</a></li>
-                                    <!--<li><a href>模块商</a></li>-->
-                                </ul>
-                                <ul>
-                                    <li><a href>冰冷</a></li>
-                                    <li><a href>洗涤</a></li>
-                                   <!--  <li><a href>检测中心</a></li> -->
-                                    <li><a href>家空</a></li>
-                                    <li><a href>商空</a></li>
-                                    <li><a href>热水器</a></li>
-                                    <li><a href>厨电</a></li>
-                                    <li><a href>其它</a></li>
-                                       
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="legend-r btn active">
-                            <div class="text">实验室</div>
-                        </div>
-                        <div class="legend-b toLabData">
-                            <div class="text">进入实验室 &gt;&gt;</div>
+                    <div class="left-bottom">
+                        <div class="box test">
+                            <h3>全流程测试指标监控(月)</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>测试类别</th>
+                                        <th>订单量</th>
+                                        <th>通过率</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mine_tbody_order">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="right">
-            <div class="right-top">
-                <div class="box interconnection">
-                    <h3>全球实验室互联</h3>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>实验室数</th>
-                            <th>在线互联数</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>海尔全球：</td>
-                            <td>727</td>
-                            <td>535</td>
-                        </tr>
-                        <tr>
-                            <td>研发中心：</td>
-                            <td>407</td>
-                            <td>249</td>
-                        </tr>
-                        <tr>
-                            <td>检测中心：</td>
-                            <td>57</td>
-                            <td>51</td>
-                        </tr>
-                        <tr>
-                            <td>制造工厂：</td>
-                            <td>263</td>
-                            <td>235</td>
-                        </tr>
-<!--
-                        <tr>
-                            <td>模块商：</td>
-                            <td>158</td>
-                            <td>86</td>
-                        </tr>
--->
-                        </tbody>
-                    </table>
+                <div class="mid">
+                    <div class="mapBox">
+                        <iframe id="iframeFlat" name="iframeFlat" src="${contextPath!}/lab/flatMap?hallMap"
+                                frameborder="0"></iframe>
+                        <div class="flatMapCtr" style="">
+                            <div class="legend">
+                                <div class="legend-l btn">
+                                    <div class="text">产线</div>
+                                </div>
+                                <div class="legend-m">
+                                    <div class="selectAll">
+                                        <input id="selectAll" type="checkbox" checked hidden>
+                                        <label for="selectAll">全选</label>
+                                    </div>
+                                    <div class="text">
+                                        <ul class="active">
+                                            <li>
+                                                <a href>研发中心</a>
+                                            </li>
+                                            <li>
+                                                <a href>检测中心</a>
+                                            </li>
+                                            <li>
+                                                <a href>制造工厂</a>
+                                            </li>
+                                            <!--<li><a href>模块商</a></li>-->
+                                        </ul>
+                                        <ul>
+                                            <li>
+                                                <a href>冰冷</a>
+                                            </li>
+                                            <li>
+                                                <a href>洗涤</a>
+                                            </li>
+                                            <!--  <li><a href>检测中心</a></li> -->
+                                            <li>
+                                                <a href>家空</a>
+                                            </li>
+                                            <li>
+                                                <a href>商空</a>
+                                            </li>
+                                            <li>
+                                                <a href>热水器</a>
+                                            </li>
+                                            <li>
+                                                <a href>厨电</a>
+                                            </li>
+                                            <li>
+                                                <a href>其它</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="legend-r btn active">
+                                    <div class="text">实验室</div>
+                                </div>
+                                <div class="legend-b toLabData">
+                                    <div class="text">进入实验室 &gt;&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right-top">
+                        <div class="box interconnection">
+                            <h3>全球实验室互联</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>实验室数</th>
+                                        <th>在线互联数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>海尔全球：</td>
+                                        <td>727</td>
+                                        <td>535</td>
+                                    </tr>
+                                    <tr>
+                                        <td>研发中心：</td>
+                                        <td>407</td>
+                                        <td>249</td>
+                                    </tr>
+                                    <tr>
+                                        <td>检测中心：</td>
+                                        <td>57</td>
+                                        <td>51</td>
+                                    </tr>
+                                    <tr>
+                                        <td>制造工厂：</td>
+                                        <td>263</td>
+                                        <td>235</td>
+                                    </tr>
+                                    <!--
+                                                            <tr>
+                                                                <td>模块商：</td>
+                                                                <td>158</td>
+                                                                <td>86</td>
+                                                            </tr>
+                                    -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="right-bottom">
+                        <div class="box management">
+                            <h3>实验室管理指标监控(月)</h3>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <strong>97.8%</strong>
+                                        <br>
+                                        <div class="disc">实验室资源合格率</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>96.9%</strong>
+                                        <br>
+                                        <div class="disc">人员资源<br>合格率
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>96.0%</strong>
+                                        <br>
+                                        <div class="disc">设备完好率</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>97.2%</strong>
+                                        <br>
+                                        <div class="disc">订单及时率</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="right-bottom">
-                <div class="box management">
-                    <h3>实验室管理指标监控(月)</h3>
-                    <ul>
-                        <li>
-                            <div>
-                            <strong>97.8%</strong><br>
-                                <div class="disc">实验室资源合格率</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                            <strong>96.9%</strong><br>
-                                <div class="disc">人员资源<br>合格率</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                            <strong>96.0%</strong><br>
-                                <div class="disc">设备完好率</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                            <strong>97.2%</strong><br>
-                                <div class="disc">订单及时率</div>
-                            </div>
-                        </li>
-                    </ul>
+
+            <footer class="textBox">
+                <div class="text">
+                    <p>
+                        通过测试数据自动采集系统及LIMS平台，实现了全球实验室的互联互通，可远程、实时的观查测试全过程，并形成标准化的大数据库，共享应用；合作的50多个国际认证机构如UL、VDE、TUV等已实现实验室数据的认可，产品无需再运往国外机构测试；除各种认证测试外，还进行大量的模拟用户的体验测试，以用户的标准来评价产品质量
                 </div>
-            </div>
+            </footer>
+
         </div>
-    </div>
+        <script>
+            let contextPath = '${contextPath!}';
+        </script>
+        <script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>
+        <script src="${contextPath!}/static/js/hallMap.js"></script>
+        <script type="text/javascript">
+            function loadOrderNumsAjax() {
+                $.post("${contextPath!}/lab/orderNumsAjax", function (data) {
+                    let htmls = [];
+                    $.each(data, function (index, item) {
+                        htmls.push('<tr><td>' + item.name + '</td><td id="m_td_order_' + item.id + '"><strong>' + item.nums + '</strong></td><td><strong>' + Number(item.rate).toFixed(1) + '%</strong></td></tr>');
+                    });
+                    setTimeout(function () {
+                        $("#mine_tbody_order").html(htmls.join(''));
+                    }, 300);
 
-    <footer class="textBox">
-        <div class="text">
-            <p>通过测试数据自动采集系统及LIMS平台，实现了全球实验室的互联互通，可远程、实时的观查测试全过程，并形成标准化的大数据库，共享应用；合作的50多个国际认证机构如UL、VDE、TUV等已实现实验室数据的认可，产品无需再运往国外机构测试；除各种认证测试外，还进行大量的模拟用户的体验测试，以用户的标准来评价产品质量
-        </div>
-    </footer>
+                    $(".test td strong").each(function (index, item) {
+                        $(this).fadeOut(200).fadeIn(300);
+                    });
+                    $(".management strong").each(function (index, item) {
+                        $(this).fadeOut(300).fadeIn(200);
+                    });
+                });
 
-</div>
-    <script>
-        let contextPath='${contextPath!}';
-    </script>
-<script src="${contextPath!}/static/js/hallMap.js"></script>
-<script type="text/javascript">
-    function loadOrderNumsAjax() {
-        $.post("${contextPath!}/lab/orderNumsAjax", function (data) {
-            //console.log(data)
-            var htmls = [];
-            $.each(data, function (index, item) {
-                // console.log(item.rate)
-                htmls.push('<tr><td>'+item.name+'</td><td id="m_td_order_'+item.id+'"><strong>'+item.nums+'</strong></td><td><strong>'+Number(item.rate).toFixed(1)+'%</strong></td></tr>');
-            });
-            //setInterval(changeData, parseInt(data[0].times));
-            setTimeout(function () {
-                $("#mine_tbody_order").html(htmls.join(''));
-            },300)
+            }
 
-            $(".test td strong").each(function (index, item) {
-                $(this).fadeOut(200).fadeIn(300);
-            });
-            $(".management strong").each(function (index, item) {
-                $(this).fadeOut(300).fadeIn(200);
-            });
-        });
-
-    }
-
-</script>
-</body>
+            let hallMap = new Vue({
+                el: '#myContainer',
+                data: {
+                    in7x3: false,
+                    otherDataForm: {
+                        distribution: {},
+                        link: {},
+                        managementIndicators: {},
+                        title: {}
+                    }
+                },
+                beforeMount() {
+                    this.in7x3 = location.href.indexOf("bigScreen7x3") > -1;
+                    if (this.in7x3) {
+                        $("body").addClass("styleIn7x3");
+                    }
+                },
+                mounted() {
+                    /*响应菜单点击后隐藏*/
+                    $(".navbar-collapse a").click(function () {
+                        $(".navbar-collapse").collapse("hide");
+                    });
+                    this.getOrderList()
+                },
+                methods: {
+                    getOrderList() {
+                        // 查询接口
+                        $.get(contextPath + "/static/data/otherDataList.json", data => {
+                            this.otherDataForm = data;
+                        })
+                    }
+                }
+            })
+        </script>
+    </body>
 </html>

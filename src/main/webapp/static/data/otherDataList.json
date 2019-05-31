@@ -1,0 +1,34 @@
+{
+  "title": {
+    "zh_in7x3": "全球实验室数据中心",
+    "en_in7x3": "Haier U-lab Data Center",
+    "zh": "全球实验室",
+    "en": "Haier Global Labs"
+  },
+  "distribution": {
+    "name": "全球实验室分布",
+    "dazhou": "5",
+    "guojia": "18",
+    "zhongxin": "10",
+    "yuanqu": "23",
+    "gongchang": "108"
+  },
+  "link": {
+    "name": "全球实验室互联",
+    "quanqiu_lab": "727",
+    "quanqiu_link": "535",
+    "yanfa_lab": "407",
+    "yanfa_link": "249",
+    "jiance_lab": "57",
+    "jiance_link": "51",
+    "zhizao_lab": "263",
+    "zhizao_link": "235"
+  },
+  "managementIndicators": {
+    "name": "实验室管理指标监控(月)",
+    "lab": "98.7%",
+    "personnel": "96.9%",
+    "device": "96.0",
+    "order": "97.2"
+  }
+}

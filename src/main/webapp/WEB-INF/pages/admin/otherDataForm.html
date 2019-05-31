@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ulab数据管理平台</title>
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/bootstrap.min-3.3.7-blue.css">
+    <link rel="stylesheet" href="${contextPath}/static/admin/css/style.css">
+    <style>
+        fieldset {
+            margin-bottom: 1rem;
+        }
+        legend{
+            font-weight: bold;
+        }
+        .form-control {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body id="order_form">
+
+<nav class="navbar navbar-default">
+    <!--小屏幕按钮和-->
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Ulab数据管理平台</a>
+        </div>
+        <!--小屏幕按钮和-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="${contextPath}/admin/mapList"><span class="glyphicon glyphicon-home"></span>平面地图数据</a></li>
+                <li><a href="${contextPath}/admin/labInfoList"><span class="glyphicon glyphicon-home"></span>实验室明细</a>
+                </li>
+                <li><a href="${contextPath}/admin/userList"><span class="glyphicon glyphicon-home"></span>账号管理</a></li>
+                <li class="active"><a href="${contextPath}/admin/userList"><span
+                    class="glyphicon glyphicon-home"></span>实验室订单</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">
+                        当前用户：${user.name!}
+                    </a>
+                </li>
+                <li onclick="logout()"><a href="javascript:void(0);"><span class="glyphicon glyphicon-off"></span>退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="orderForm">
+    <form @submit.prevent="submit()"> <!--.prevent阻止默认跳转-->
+        <fieldset>
+            <legend>页面标题:</legend>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="center-block">中文标题(大屏)<input class="form-control"
+                                                           v-model="otherDataForm.title.zh_in7x3"></label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="center-block">英文标题(大屏)<input class="form-control"
+                                                           v-model="otherDataForm.title.en_in7x3"></label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="center-block">中文标题(大厅)<input class="form-control"
+                                                           v-model="otherDataForm.title.zh"></label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="center-block">英文标题(大厅)<input class="form-control"
+                                                           v-model="otherDataForm.title.en"></label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>全球实验室分布:</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>大洲数量<input class="form-control" v-model="otherDataForm.distribution.dazhou"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>国家数量<input class="form-control" v-model="otherDataForm.distribution.guojia"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>研发中心<input class="form-control" v-model="otherDataForm.distribution.zhongxin"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>工业园区<input class="form-control" v-model="otherDataForm.distribution.yuanqu"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>工厂<input class="form-control" v-model="otherDataForm.distribution.gongchang"></label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>全球实验室互联:</legend>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>实验室数</th>
+                            <th>在线互联数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>海尔全球：</td>
+                            <td><input class="form-control" v-model="otherDataForm.link.quanqiu_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.quanqiu_link"></td>
+                        </tr>
+                        <tr>
+                            <td>研发中心：
+                            <td><input class="form-control" v-model="otherDataForm.link.yanfa_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.yanfa_link"></td>
+                        </tr>
+                        <tr>
+                            <td>检测中心：
+                            <td><input class="form-control" v-model="otherDataForm.link.jiance_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.jiance_link"></td>
+                        </tr>
+                        <tr>
+                            <td>制造工厂：
+                            <td><input class="form-control" v-model="otherDataForm.link.zhizao_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.zhizao_link"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>实验室管理指标监控(月):</legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>实验室资源合格率<input class="form-control"
+                                              v-model="otherDataForm.managementIndicators.lab"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>人员资源合格率<input class="form-control"
+                                             v-model="otherDataForm.managementIndicators.personnel"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>设备完好率<input class="form-control"
+                                           v-model="otherDataForm.managementIndicators.device"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>订单及时率<input class="form-control"
+                                           v-model="otherDataForm.managementIndicators.order"></label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="btn btn-success center-block" id="submit" type="submit" value="提交">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var contextPath = '${contextPath!}';
+
+    function logout() {
+        var confirm = window.confirm("是否确认退出系统？");
+        if (confirm === true) {
+            $("form").attr("action", "${contextPath}/login/logout").submit();
+        }
+    }
+</script>
+<script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/admin/js/jquery.validate-1.15.1.js"></script>
+<script src="${contextPath}/static/admin/js/bootstrap.js"></script>
+<script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>
+<script>
+    let orderForm = new Vue({
+        el: '#orderForm',
+        data: {
+            otherDataForm: {
+                distribution: {},
+                link: {},
+                managementIndicators: {},
+                title: {}
+            }
+        },
+        mounted() {
+            /*响应菜单点击后隐藏*/
+            $(".navbar-collapse a").click(function () {
+                $(".navbar-collapse").collapse("hide");
+            });
+            this.getOrderList()
+        },
+        methods: {
+            getOrderList() {
+                // 查询接口
+                $.get(contextPath + "/static/data/otherDataList.json", data => {
+                    this.otherDataForm = data;
+                })
+            },
+            submit() {
+                console.log(this.otherDataForm);
+                // 更新接口
+                $.post(contextPath + '/admin/UpdateOtherDataForm',
+                    this.otherDataForm,
+                    data => {
+                        if (data.result) {
+                            location.href = contextPath + '/admin/otherDataForm'
+                        }
+                    })
+            },
+
+        }
+    })
+</script>
+</body>
+</html>
