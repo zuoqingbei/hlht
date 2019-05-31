@@ -8,39 +8,7 @@
     <link rel="stylesheet" href="${contextPath}/static/admin/css/style.css">
 </head>
 <body>
-<!--导航-->
-<nav class="navbar navbar-default">
-    <!--小屏幕按钮和-->
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="${contextPath}/admin/mapList" class="navbar-brand">Ulab数据管理平台</a>
-        </div>
-        <!--小屏幕按钮和-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-               <li class="active"><a href="${contextPath}/admin/mapList"><span class="glyphicon glyphicon-home"></span>平面地图数据</a></li>
-                <li ><a href="${contextPath}/admin/labInfoList"><span class="glyphicon glyphicon-home"></span>实验室明细</a></li>
-                <li><a href="${contextPath}/admin/userList"><span class="glyphicon glyphicon-home"></span>账号管理</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="true"> 当前用户：
-                      ${user.name!}
-                    </a>
-                </li>
-                <li onclick="logout()"><a href="javascript:void(0);"><span class="glyphicon glyphicon-off"></span>退出</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--导航-->
-
+<nav class="navbar navbar-default"> </nav>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -111,10 +79,12 @@
     </div>
 </div>
 
-
-
+<script>
+    var contextPath='${contextPath!}';
+</script>
 <script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/admin/js/bootstrap.js"></script>
+<script src="${contextPath}/static/admin/js/common.js"></script>
 <script>
 	var pageNumber=1;
 	var pageSize=10;

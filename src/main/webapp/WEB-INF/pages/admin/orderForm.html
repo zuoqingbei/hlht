@@ -13,42 +13,7 @@
     </style>
 </head>
 <body id="order_form">
-
-<nav class="navbar navbar-default">
-    <!--小屏幕按钮和-->
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand">Ulab数据管理平台</a>
-        </div>
-        <!--小屏幕按钮和-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="${contextPath}/admin/mapList"><span class="glyphicon glyphicon-home"></span>平面地图数据</a></li>
-                <li><a href="${contextPath}/admin/labInfoList"><span class="glyphicon glyphicon-home"></span>实验室明细</a>
-                </li>
-                <li><a href="${contextPath}/admin/userList"><span class="glyphicon glyphicon-home"></span>账号管理</a></li>
-                <li class="active"><a href="${contextPath}/admin/userList"><span
-                    class="glyphicon glyphicon-home"></span>实验室订单</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="true">
-                        当前用户：${user.name!}
-                    </a>
-                </li>
-                <li onclick="logout()"><a href="javascript:void(0);"><span class="glyphicon glyphicon-off"></span>退出</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<nav class="navbar navbar-default"></nav>
 <div class="container" id="orderForm">
     <div class="row">
         <div class="col-md-12">
@@ -112,19 +77,11 @@
 </div>
 <script>
     var contextPath = '${contextPath!}';
-
-    function logout() {
-        var confirm = window.confirm("是否确认退出系统？");
-        if (confirm === true) {
-            $("form").attr("action", "${contextPath}/login/logout").submit();
-        }
-    };
 </script>
 <script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/admin/js/jquery.validate-1.15.1.js"></script>
 <script src="${contextPath}/static/admin/js/bootstrap.js"></script>
 <script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>
-<script src="${contextPath}/static/admin/js/orderForm.js"></script>
 <script>
     let orderForm = new Vue({
         el: '#orderForm',
@@ -159,7 +116,6 @@
         },
         methods: {
             submit() {
-                console.log(this.orderItem)
                 if (location.search.includes('?id=')) {
                     // 更新接口
                     $.post(contextPath + '/admin/UpdateOrderForm',
@@ -181,9 +137,10 @@
                     );
                 }
             },
-
         }
     })
 </script>
+<script src="${contextPath}/static/admin/js/common.js"></script>
+
 </body>
 </html>
