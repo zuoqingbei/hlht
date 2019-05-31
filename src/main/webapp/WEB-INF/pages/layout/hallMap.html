@@ -39,17 +39,17 @@
                         <div class="box distribution">
                             <h3>全球实验室分布</h3>
                             <div class="totalNum">
-                                <span><strong>5</strong>大洲
+                                <span><strong>{{otherDataForm.distribution.dazhou}}</strong>大洲
                                 </span>
-                                <span><strong>18</strong>个国家
+                                <span><strong>{{otherDataForm.distribution.guojia}}</strong>个国家
                                 </span>
                             </div>
                             <ul>
-                                <li><strong>10</strong>大研发中心
+                                <li><strong>{{otherDataForm.distribution.zhongxin}}</strong>大研发中心
                                 </li>
-                                <li><strong>23</strong>个工业园区
+                                <li><strong>{{otherDataForm.distribution.yuanqu}}</strong>个工业园区
                                 </li>
-                                <li><strong>108</strong>个工厂
+                                <li><strong>{{otherDataForm.distribution.gongchang}}</strong>个工厂
                                 </li>
                             </ul>
                         </div>
@@ -150,23 +150,23 @@
                                 <tbody>
                                     <tr>
                                         <td>海尔全球：</td>
-                                        <td>727</td>
-                                        <td>535</td>
+                                        <td>{{otherDataForm.link.quanqiu_lab}}</td>
+                                        <td>{{otherDataForm.link.quanqiu_link}}</td>
                                     </tr>
                                     <tr>
                                         <td>研发中心：</td>
-                                        <td>407</td>
-                                        <td>249</td>
+                                        <td>{{otherDataForm.link.yanfa_lab}}</td>
+                                        <td>{{otherDataForm.link.yanfa_link}}</td>
                                     </tr>
                                     <tr>
                                         <td>检测中心：</td>
-                                        <td>57</td>
-                                        <td>51</td>
+                                        <td>{{otherDataForm.link.jiance_lab}}</td>
+                                        <td>{{otherDataForm.link.jiance_link}}</td>
                                     </tr>
                                     <tr>
                                         <td>制造工厂：</td>
-                                        <td>263</td>
-                                        <td>235</td>
+                                        <td>{{otherDataForm.link.zhizao_lab}}</td>
+                                        <td>{{otherDataForm.link.zhizao_link}}</td>
                                     </tr>
                                     <!--
                                                             <tr>
@@ -185,14 +185,14 @@
                             <ul>
                                 <li>
                                     <div>
-                                        <strong>97.8%</strong>
+                                        <strong>{{otherDataForm.managementIndicators.lab}}</strong>
                                         <br>
                                         <div class="disc">实验室资源合格率</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <strong>96.9%</strong>
+                                        <strong>{{otherDataForm.managementIndicators.personnel}}</strong>
                                         <br>
                                         <div class="disc">人员资源<br>合格率
                                         </div>
@@ -200,14 +200,14 @@
                                 </li>
                                 <li>
                                     <div>
-                                        <strong>96.0%</strong>
+                                        <strong>{{otherDataForm.managementIndicators.device}}</strong>
                                         <br>
                                         <div class="disc">设备完好率</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <strong>97.2%</strong>
+                                        <strong>{{otherDataForm.managementIndicators.order}}</strong>
                                         <br>
                                         <div class="disc">订单及时率</div>
                                     </div>

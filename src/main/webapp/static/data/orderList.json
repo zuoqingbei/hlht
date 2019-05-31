@@ -1,48 +1,27 @@
-{
-  "header": {
-    "totalNum": 255,
-    "underTest": 1,
-    "toBeDistributed": 1,
-    "testing": 15,
-    "completed": 208,
-    "completion": "92.4%"
-  },
-  "itemList": [
-    {
-      "ps": "setp是这条订单进行到第几步，从1开始",
-      "id": "1",
-      "testNumber": "HR20180703101A11001",
-      "creationDate": "2018-07-03",
-      "creationTime": "17:09",
-      "step": "2",
-      "step1": {
-        "name": "吴贤栋",
-        "tel": "13210250532"
-      },
-      "step2": {
-        "name": "李娜",
-        "tel": "0532-88934887"
-      },
-      "step3": {
-        "name": "",
-        "tel": ""
-      },
-      "step4": {
-        "name": "",
-        "tel": ""
-      },
-      "step5": {
-        "name": "",
-        "tel": ""
-      },
-      "step6": {
-        "name": "",
-        "tel": ""
-      },
-      "step7": {
-        "name": "吴贤栋",
-        "tel": "13210250532"
-      }
+ [
+    {"creation_time":"22:01",
+      "creation_date":"2019-05-04",
+      "step4_tel":"44",
+      "del_flag":"0 ",
+      "rownum_":1,
+      "step6_name":null,
+      "step2_tel":"22",
+      "step3_name":"33",
+      "step6_tel":null,
+      "step7_name":null,
+      "step7_tel":null,
+      "step5_name":null,
+      "update_date":null,
+      "step2_name":"22",
+      "step3_tel":"33",
+      "step5_tel":null,
+      "step1_tel":"11",
+      "step4_name":"44",
+      "step1_name":"11",
+      "step":"4",
+      "id":"6000000992240637",
+      "create_date":"2019-05-31 11:08:06",
+      "test_number":"11111111"
     },{
       "id": "2",
       "testNumber": "HR20180702101A11003",
@@ -249,4 +228,3 @@
       }
     }
   ]
-}

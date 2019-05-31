@@ -23,7 +23,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h2>实验室订单</h2>
+                <h2>订单总状态</h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>订单内容</h2>
             </div>
             <div class="search">
                 <div class="panel panel-primary">
@@ -66,12 +74,12 @@
                     <tbody>
                     <tr v-for="(item,index) in curItemList">
                         <td>{{item.id}}</td>
-                        <td>{{item.testNumber}}</td>
-                        <td>{{item.creationDate}}<br>{{item.creationTime}}</td>
+                        <td>{{item.test_number}}</td>
+                        <td>{{item.creation_date}}<br>{{item.creation_time}}</td>
                         <td>{{item.step}}</td>
                         <td v-for="(temp,index) in new Array(7)" style="text-align: left">
-                            <span>姓名：{{item['step'+(index+1)]&&item['step'+(index+1)]['name']}}</span><br>
-                            <span>电话：{{item['step'+(index+1)]&&item['step'+(index+1)]['tel']}}</span>
+                            <span>姓名：{{item['step'+(index+1)+'_name']}}</span><br>
+                            <span>电话：{{item['step'+(index+1)+'_tel']}}</span>
                         </td>
                         <td class="opt">
                             <button class="btn btn-primary btn-sm btn-edit" @click="updateItem(item)">编辑</button>
@@ -109,9 +117,7 @@
     let VueOrderList = new Vue({
         el: '#orderList',
         data: {
-            orderList: {
-                header: {}, itemList: [],
-            },
+            orderList: [],
             orderListHeader: ['totalNum', 'underTest', 'toBeDistributed', 'testing', 'completed', 'completion'],
             curItemList: [],
             filterItemList: [],
@@ -128,13 +134,12 @@
             getOrderList() {
                 // 查询接口
                 $.get(contextPath + "/static/data/orderList.json", data => {
-                    this.orderList = data;
-                    this.filterItemList = this.orderList.itemList;
+                    this.filterItemList = this.orderList = data;
                     this.pagination();
                 })
             },
             pagination() {
-                let isInt = this.orderList.itemList.length % this.itemPerPage === 0;
+                let isInt = this.orderList.length % this.itemPerPage === 0;
                 this.pageTotal = (this.filterItemList.length / this.itemPerPage + (isInt ? 0 : 1)) | 0;
                 this.curItemList = this.filterItemList.slice((this.pageCur - 1) * this.itemPerPage, (this.pageCur) * this.itemPerPage)
             },
@@ -149,7 +154,13 @@
                 this.pagination()
             },
             search(){
-                this.filterItemList = this.orderList.itemList.filter(item=>{
+                this.filterItemList = this.orderList.filter(item=>{
+                    return Object.keys(item).some(k=>{
+                        return item[k]&&item[k].includes(this.keywords)
+                    })
+                });
+/*
+                this.filterItemList = this.orderList.filter(item=>{
                     return Object.keys(item).some(k=>{
                         if(typeof item[k] === 'object'){
                             return Object.keys(item[k]).some(kk=>{
@@ -158,15 +169,15 @@
                         }else{
                             return item[k].includes(this.keywords)
                         }
-
                     })
                 });
+*/
                 this.pagination();
             },
             delItem(id){
                 if(!confirm('确认删除？')){return}
                 // 模拟删除，生产中请屏蔽
-                this.orderList.itemList.splice(this.orderList.itemList.findIndex(item=>item.id===id),1);
+                this.orderList.splice(this.orderList.findIndex(item=>item.id===id),1);
                 this.pagination();
                  // 删除接口
                 $.get(contextPath+'/admin/delOrderInfo?id='+id, data => {

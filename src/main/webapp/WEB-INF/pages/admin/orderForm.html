@@ -24,7 +24,7 @@
                         <input id="orderId" name="orderId" v-model="orderItem.id" type="hidden">
                         <div class="form-group"><strong class="required">*</strong>
                             <label for="testNumber">实验编号</label>
-                            <input class="form-control" id="testNumber" name="testNumber" v-model="orderItem.testNumber"
+                            <input class="form-control" id="testNumber" name="testNumber" v-model="orderItem.test_number"
                                    placeholder="实验编号" required oninvalid="setCustomValidity('请输入订单编号')"
                                    oninput="setCustomValidity('')">
                         </div>
@@ -34,12 +34,12 @@
                                 <div class="col-sm-6">
                                     <input class="form-control" required type="date" placeholder="下单日期"
                                            oninvalid="setCustomValidity('请输入订单创建日期')" oninput="setCustomValidity('')"
-                                           v-model="orderItem.creationDate">
+                                           v-model="orderItem.creation_date">
                                 </div>
                                 <div class="col-sm-6">
                                     <input class="form-control" required type="time" placeholder="下单时间"
                                            oninvalid="setCustomValidity('请输入订单创建时间')" oninput="setCustomValidity('')"
-                                           v-model="orderItem.creationTime">
+                                           v-model="orderItem.creation_time">
                                 </div>
                             </div>
                         </div>
@@ -49,12 +49,12 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input class="form-control"
-                                           v-model="orderItem['step'+(index+1)]['name']"
+                                           v-model="orderItem['step'+(index+1)+'_name']"
                                            placeholder="姓名">
                                 </div>
                                 <div class="col-sm-6">
                                     <input class="form-control"
-                                           v-model="orderItem['step'+(index+1)]['tel']"
+                                           v-model="orderItem['step'+(index+1)+'_tel']"
                                            placeholder="电话">
                                 </div>
                             </div>
