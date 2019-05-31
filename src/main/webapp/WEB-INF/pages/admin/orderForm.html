@@ -118,16 +118,17 @@
             submit() {
                 if (location.search.includes('?id=')) {
                     // 更新接口
-                    $.post(contextPath + '/admin/UpdateOrderForm',
+                    $.post(contextPath + '/admin/updateOrderList',
                         this.orderItem,
                         data => {
                             if (data.result) {
+
                                 location.href = contextPath + '/admin/orderList'
                             }
                         })
                 } else {
                     // 新增接口
-                    $.post(contextPath + '/admin/AddOrderForm',
+                    $.post(contextPath + '/admin/updateOrderList',
                         this.orderItem,
                         data => {
                             if (data.result) {
