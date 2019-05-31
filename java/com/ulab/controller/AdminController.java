@@ -1,22 +1,15 @@
 package com.ulab.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import com.ulab.model.*;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.ulab.core.BaseController;
-import com.ulab.model.DataCenterModel;
-import com.ulab.model.DicModel;
-import com.ulab.model.LabCarryModel;
-import com.ulab.model.LabMapModel;
-import com.ulab.model.LabModel;
-import com.ulab.model.UserModel;
 import com.ulab.util.MD5Util;
 import com.ulab.util.UUIDTool;
 
@@ -392,7 +385,6 @@ public class AdminController extends BaseController {
                 } else {
                     model.set("update_date", sdf.format(new Date()));
                 }
-                ;
                 model.save();
             }
         }
@@ -414,35 +406,160 @@ public class AdminController extends BaseController {
         renderJson(lab);
     }
 
+
+    // ============================================实验室订单 START ===================================//
+
     /**
-     * 前端开发，先渲染页面
-     *
-     * @param
-     * @time 2019年5月23日11:04:32
-     * @author ljl
-     * @todo 实验室订单列表页面
-     * @return_type void
-     */
+     * @Description: 到实验室订单列表页面
+     * @Date: 2019/5/31 15:03
+     * @return: void
+     * @Author: suncy
+     **/
     public void orderList() {
         render("orderList.html");
     }
 
-    ;
-
     /**
-     * 前端开发，先渲染页面
-     *
-     * @param
-     * @time 2019年5月23日11:04:32
-     * @author ljl
-     * @todo 实验室订单新增/修改页面
-     * @return_type void
-     */
+     * @Description: 查询实验室订单数据
+     * @Date: 2019/5/31 15:03
+     * @return: void
+     **/
+    public void orderListData() {
+        int pageNumber = getParaToInt("pageNumber", 1);//当前页码
+        int pageSize = getParaToInt("pageSize", 999999999);//每页条数
+        Page<OrderListModel> pager = OrderListModel.dao.pager(pageSize, pageNumber, this);
+        renderJson(pager.getList());
+    }
+
+    /***
+     * @Description: 实验室订单新增/修改页面
+     * @Date: 2019/5/31 15:03
+     * @return: void
+     **/
     public void orderForm() {
         render("orderForm.html");
     }
 
-    ;
+    /***
+     * @Description: 添加修改实验室订单数据
+     * @Date: 2019/5/30 17:35
+     * @return: void
+     **/
+    public void updateOrderList() {
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        OrderListModel orderListModel = new OrderListModel();
+        try {
+            String id = getPara("id");
+            String testNumber = getPara("test_number");
+            String creationDate = getPara("creation_date");
+            String creationTime = getPara("creation_time");
+            String step = getPara("step");
+            String step1Name = getPara("step1_name", "");
+            String step1Tel = getPara("step1_tel", "");
+            String step2Name = getPara("step2_name", "");
+            String step2Tel = getPara("step2_tel", "");
+            String step3Name = getPara("step3_name", "");
+            String step3Tel = getPara("step3_tel", "");
+            String step4Name = getPara("step4_name", "");
+            String step4Tel = getPara("step4_tel", "");
+            String step5Name = getPara("step5_name", "");
+            String step5Tel = getPara("step5_tel", "");
+            String step6Name = getPara("step6_name", "");
+            String step6Tel = getPara("step6_tel", "");
+            String step7Name = getPara("step7_name", "");
+            String step7Tel = getPara("step7_tel", "");
+            String del_flag = getPara("del_flag", "0");
+
+            if (StringUtils.isNotBlank(id)) {
+                orderListModel = OrderListModel.dao.findById(id);
+                orderListModel.set("UPDATE_DATE", sdf.format(new Date()));
+            } else {
+                orderListModel.set("ID", UUIDTool.getOrderIdByUUId());
+                orderListModel.set("CREATE_DATE", sdf.format(new Date()));
+            }
+            if (StringUtils.isNotBlank(testNumber)) {
+                orderListModel.set("TEST_NUMBER", testNumber);
+            }
+            if (StringUtils.isNotBlank(step)) {
+                orderListModel.set("STEP", step);
+            }
+            if (StringUtils.isNotBlank(creationDate)) {
+                orderListModel.set("CREATION_DATE", creationDate);
+            }
+            if (StringUtils.isNotBlank(creationTime)) {
+                orderListModel.set("CREATION_TIME", creationTime);
+            }
+            if (StringUtils.isNotBlank(step1Name)) {
+                orderListModel.set("STEP1_NAME", step1Name);
+            }
+            if (StringUtils.isNotBlank(step1Tel)) {
+                orderListModel.set("STEP1_TEL", step1Tel);
+            }
+            if (StringUtils.isNotBlank(step2Name)) {
+                orderListModel.set("STEP2_NAME", step2Name);
+            }
+            if (StringUtils.isNotBlank(step2Tel)) {
+                orderListModel.set("STEP2_TEL", step2Tel);
+            }
+            if (StringUtils.isNotBlank(step3Name)) {
+                orderListModel.set("STEP3_NAME", step3Name);
+            }
+            if (StringUtils.isNotBlank(step3Tel)) {
+                orderListModel.set("STEP3_TEL", step3Tel);
+            }
+            if (StringUtils.isNotBlank(step4Name)) {
+                orderListModel.set("STEP4_NAME", step4Name);
+            }
+            if (StringUtils.isNotBlank(step4Tel)) {
+                orderListModel.set("STEP4_TEL", step4Tel);
+            }
+            if (StringUtils.isNotBlank(step5Name)) {
+                orderListModel.set("STEP5_NAME", step5Name);
+            }
+            if (StringUtils.isNotBlank(step5Tel)) {
+                orderListModel.set("STEP5_TEL", step5Tel);
+            }
+            if (StringUtils.isNotBlank(step6Name)) {
+                orderListModel.set("STEP6_NAME", step6Name);
+            }
+            if (StringUtils.isNotBlank(step6Tel)) {
+                orderListModel.set("STEP6_TEL", step6Tel);
+            }
+            if (StringUtils.isNotBlank(step7Name)) {
+                orderListModel.set("STEP7_NAME", step7Name);
+            }
+            if (StringUtils.isNotBlank(step7Tel)) {
+                orderListModel.set("STEP7_TEL", step7Tel);
+            }
+
+            orderListModel.set("del_flag", del_flag);
+            if (StringUtils.isNotBlank(id)) {
+                orderListModel.update();
+            } else {
+                orderListModel.save();
+            }
+            resultMap.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultMap.put("result", false);
+        }
+
+        renderJson(resultMap);
+    }
+
+    /***
+     * @Description: 订单统计信息
+     * @Date: 2019/5/31 15:02
+     * @return: void
+     **/
+    public void orderTotal() {
+        List<OrderTotalModel> list = OrderTotalModel.dao.findList();
+        renderJson(list);
+    }
+
+    // ============================================实验室订单 END ===================================//
 
     /**
      * 前端开发，先渲染页面
@@ -457,7 +574,6 @@ public class AdminController extends BaseController {
         render("otherDataForm.html");
     }
 
-    ;
     /**
      * 前端开发，先渲染页面
      *

@@ -133,7 +133,7 @@
         methods: {
             getOrderList() {
                 // 查询接口
-                $.get(contextPath + "/static/data/orderList.json", data => {
+                $.get(contextPath + "/admin/orderListData", data => {
                     this.filterItemList = this.orderList = data;
                     this.pagination();
                 })
