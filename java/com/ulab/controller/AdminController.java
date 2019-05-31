@@ -458,6 +458,18 @@ public class AdminController extends BaseController {
     }
 
     ;
+    /**
+     * 前端开发，先渲染页面
+     *
+     * @param
+     * @time 2019-5-30 15:34:07
+     * @author ljl
+     * @todo 页面其他数据修改
+     * @return_type void
+     */
+    public void comNav() {
+        render("com_nav.html");
+    }
 
 
 }
