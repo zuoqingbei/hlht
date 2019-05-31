@@ -156,22 +156,9 @@
             search(){
                 this.filterItemList = this.orderList.filter(item=>{
                     return Object.keys(item).some(k=>{
-                        return item[k]&&item[k].includes(this.keywords)
+                        return item[k]&&(item[k]+'').includes(this.keywords)
                     })
                 });
-/*
-                this.filterItemList = this.orderList.filter(item=>{
-                    return Object.keys(item).some(k=>{
-                        if(typeof item[k] === 'object'){
-                            return Object.keys(item[k]).some(kk=>{
-                                return item[k][kk].includes(this.keywords)
-                            })
-                        }else{
-                            return item[k].includes(this.keywords)
-                        }
-                    })
-                });
-*/
                 this.pagination();
             },
             delItem(id){
