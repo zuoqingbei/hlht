@@ -1,0 +1,240 @@
+{
+  "header": {
+    "totalNum": 255,
+    "underTest": 1,
+    "toBeDistributed": 1,
+    "testing": 15,
+    "completed": 208,
+    "completion": "92.4%"
+  },
+  "itemList": [
+    {"creation_time":"22:01",
+      "creation_date":"2019-05-04",
+      "step4_tel":"44",
+      "del_flag":"0 ",
+      "rownum_":1,
+      "step6_name":null,
+      "step2_tel":"22",
+      "step3_name":"33",
+      "step6_tel":null,
+      "step7_name":null,
+      "step7_tel":null,
+      "step5_name":null,
+      "update_date":null,
+      "step2_name":"22",
+      "step3_tel":"33",
+      "step5_tel":null,
+      "step1_tel":"11",
+      "step4_name":"44",
+      "step1_name":"11",
+      "step":"4",
+      "id":"6000000992240637",
+      "create_date":"2019-05-31 11:08:06",
+      "test_number":"11111111"
+    },{
+      "id": "2",
+      "testNumber": "HR20180702101A11003",
+      "creationDate": "2018-07-02",
+      "creationTime": "15:13",
+      "step": "3",
+      "step1": {
+        "name": "鲍业浩",
+        "tel": "18562827528"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "",
+        "tel": ""
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    },{
+      "id": "3",
+      "testNumber": "HR20180629101A11003",
+      "creationDate": "2018-6-29",
+      "creationTime": "13:55",
+      "step": "4",
+      "step1": {
+        "name": "曹东强",
+        "tel": "13606345375"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "董现娟",
+        "tel": "0532-88934871"
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    },{
+      "id": "4",
+      "testNumber": "HR20180702101A11004",
+      "creationDate": "2018-07-04",
+      "creationTime": "15:13",
+      "step": "3",
+      "step1": {
+        "name": "鲍业浩",
+        "tel": "18562827528"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "",
+        "tel": ""
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    },{
+      "id": "5",
+      "testNumber": "HR20180629101A11001",
+      "creationDate": "2018-07-05",
+      "creationTime": "15:06",
+      "step": "4",
+      "step1": {
+        "name": "曹东强",
+        "tel": "13606345375"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "董现娟",
+        "tel": "0532-88934871"
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    },{
+      "id": "6",
+      "testNumber": "HR20180702101A11001",
+      "creationDate": "2018-07-06",
+      "creationTime": "15:13",
+      "step": "3",
+      "step1": {
+        "name": "鲍业浩",
+        "tel": "18562827528"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "",
+        "tel": ""
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    },{
+      "id": "7",
+      "testNumber": "HR20180629101A11001",
+      "creationDate": "2018-07-07",
+      "creationTime": "15:00",
+      "step": "4",
+      "step1": {
+        "name": "曹东强",
+        "tel": "13606345375"
+      },
+      "step2": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step3": {
+        "name": "李娜",
+        "tel": "0532-88934887"
+      },
+      "step4": {
+        "name": "董现娟",
+        "tel": "0532-88934871"
+      },
+      "step5": {
+        "name": "",
+        "tel": ""
+      },
+      "step6": {
+        "name": "",
+        "tel": ""
+      },
+      "step7": {
+        "name": "吴贤栋",
+        "tel": "13210250532"
+      }
+    }
+  ]
+}

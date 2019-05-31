@@ -54,10 +54,10 @@
                             <button class="evaluation">评价</button>
                             <header>
                                 <h4>试验编号：</h4>
-                                <div class="serialNumber">{{item.testNumber}}</div>
+                                <div class="serialNumber">{{item.test_number}}</div>
                                 <h4>下单时间：</h4>
                                 <div class="time">
-                                    <time>{{item.creationDate+' '+item.creationTime}}</time>
+                                    <time>{{item.creation_date+' '+item.creation_time}}</time>
                                 </div>
                             </header>
                             <ul>
@@ -65,8 +65,8 @@
                                     :class='[item.step-1===i?"active":(item.step-1>i?"pass":""),index===2&&i===3?"toCurve":""]'
                                     @click='index===2&&i===3?toCurve():""'>
                                     <h4>{{name}}</h4>
-                                    <div class="name">{{item['step'+(i+1)]?item['step'+(i+1)].name:''}}</div>
-                                    <div class="tel">{{item['step'+(i+1)]?item['step'+(i+1)].tel:''}}</div>
+                                    <div class="name">{{item['step'+(i+1)+'_name']}}</div>
+                                    <div class="tel">{{item['step'+(i+1)+'_tel']}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -145,7 +145,7 @@
                 },
                 methods: {
                     getOrderList() {
-                        $.get(contextPath + "/static/data/orderList.json", data => {
+                        $.get(contextPath + "/static/data/orderListForPage.json", data => {
                             this.orderList = data;
                             let isInt = this.orderList.itemList.length % this.itemPerPage === 0;
                             this.pageTotal = (this.orderList.itemList.length / this.itemPerPage + (isInt ? 0 : 1)) | 0;
