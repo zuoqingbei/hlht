@@ -428,12 +428,23 @@ public class AdminController extends BaseController {
         int pageSize = getParaToInt("pageSize", 999999999);//每页条数
         Page<OrderListModel> pager = OrderListModel.dao.pager(pageSize, pageNumber, this);
         resultMap.put("itemList", pager.getList());
+        renderJson(resultMap);
+    }
+
+    /***
+     * @Description: 订单统计数据
+     * @Date: 2019/6/12 17:20
+
+     * @return: void
+     * @Author: suncy
+     **/
+    public void orderTotalData() {
+        Map<String, Object> resultMap = new HashMap<>();
 
         List<OrderTotalModel> headerList = OrderTotalModel.dao.findList();
         if (headerList != null && headerList.size() > 0) {
-            resultMap.put("header", headerList.get(0));
+            resultMap.put("orderTotal", headerList.get(0));
         }
-
         renderJson(resultMap);
     }
 
@@ -612,5 +623,62 @@ public class AdminController extends BaseController {
         render("com_nav.html");
     }
 
+
+    /***
+     * @Description: 修改订单上部分的统计
+     * @Date: 2019/6/12 17:02
+     * @return: void
+     * @Author: suncy
+     **/
+    public void updateOrderTotal() {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        OrderTotalModel orderTotalModel = new OrderTotalModel();
+        try {
+            String id = getPara("id");
+            String TOTAL_NUM = getPara("total_num", "");
+            String UNDER_TEST = getPara("under_test", "");
+            String TO_BE_DISTRIBUTED = getPara("to_be_distributed", "");
+            String TESTING = getPara("testing", "");
+            String COMPLETED = getPara("completed", "");
+            String COMPLETION = getPara("completion", "");
+
+            if (StringUtils.isNotBlank(id)) {
+                orderTotalModel = OrderTotalModel.dao.findById(id);
+            } else {
+                orderTotalModel.set("ID", UUIDTool.getOrderIdByUUId());
+            }
+            if (StringUtils.isNotBlank(TOTAL_NUM)) {
+                orderTotalModel.set("TOTAL_NUM", TOTAL_NUM);
+            }
+            if (StringUtils.isNotBlank(UNDER_TEST)) {
+                orderTotalModel.set("UNDER_TEST", UNDER_TEST);
+            }
+            if (StringUtils.isNotBlank(TO_BE_DISTRIBUTED)) {
+                orderTotalModel.set("TO_BE_DISTRIBUTED", TO_BE_DISTRIBUTED);
+            }
+            if (StringUtils.isNotBlank(TESTING)) {
+                orderTotalModel.set("TESTING", TESTING);
+            }
+            if (StringUtils.isNotBlank(COMPLETED)) {
+                orderTotalModel.set("COMPLETED", COMPLETED);
+            }
+            if (StringUtils.isNotBlank(COMPLETION)) {
+                orderTotalModel.set("COMPLETION", COMPLETION);
+            }
+            orderTotalModel.set("del_flag", "0");
+            if (StringUtils.isNotBlank(id)) {
+                orderTotalModel.update();
+            } else {
+                orderTotalModel.save();
+            }
+            resultMap.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultMap.put("result", false);
+        }
+
+        renderJson(resultMap);
+    }
 
 }
