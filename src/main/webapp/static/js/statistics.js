@@ -126,7 +126,7 @@ function standardSeriesDataForLeft(data, name) {
 //平面地图左上角的环形图，实验室数量按照四大类展示
 function worldTyleEchart(data) {
     var num2 = standardSeriesDataForLeft(data, "研发实验室");
-    var num3 = standardSeriesDataForLeft(data, "中海博睿");
+    var num3 = standardSeriesDataForLeft(data, "检测中心");
     var num4 = standardSeriesDataForLeft(data, "工厂实验室");
     var num5 = standardSeriesDataForLeft(data, "模块商实验室");
     var allNum = parseInt(num2) + parseInt(num3) + parseInt(num4) + parseInt(num5);
@@ -249,7 +249,7 @@ function worldTyleEchart(data) {
                 itemStyle: labelFromatter,
                 data: [
                     {name: 'other', value: allNum - num3, itemStyle: labelTop},
-                    {name: '中海博睿\n新品确认', value: num3, itemStyle: labelBottom}
+                    {name: '检测中心\n新品确认', value: num3, itemStyle: labelBottom}
                 ]
             },
             {

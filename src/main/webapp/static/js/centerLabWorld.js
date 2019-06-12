@@ -106,7 +106,7 @@ function loadLabUnitInfoCenterTabAjaxWorldHadoop(type) {
 	var labCode=labs.lab_code;
 	var $l3x3 = $("#l");
 	configName=labs.souce_value;
-	//清除中海博睿定时器
+	//清除检测中心定时器
 	window.clearInterval(intevalChart1);
 	window.clearInterval(intevalChartHadoop);
 

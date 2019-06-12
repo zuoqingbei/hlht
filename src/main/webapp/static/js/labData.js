@@ -92,7 +92,7 @@ function createDataCenterHtml(data, dataType) {
                 }
                 // console.log("item",item)
                 dataCenterMap.put(item.id, item);
-                if(item.center_name==='中海博睿'){
+                if(item.center_name==='检测中心'){
                     item.center_name='检测中心'
                 }
                 // console.log(item.id)
@@ -239,7 +239,7 @@ function loadAllDataCenterLabAjaxFunc(dataCenterId) {
                             }
                             labsMap.put(it.id, it);
                             labsHtmlsMap.put(it.id, '<header labcode="' + it.lab_code + '"  ' + createClickFuntion(it) + '>' + it.lab_name + '<span>∧</span></header>');
-                            //如果是中海博睿 不拼接header
+                            //如果是检测中心 不拼接header
                             labsHtmls = labsHtmls + currentHtmls + header + "</li>";
                         } else if (it.data_source == "webservice") {
                             //直接获取webservice实验室信息
@@ -282,7 +282,7 @@ function createClickFuntion(item) {
     if (dataSource == "db") { //国外曲线
         htmls += " onclick= loadLabUnitInfoCenterTabAjaxWorldHadoop('" + item.id + "')"
     } else if (dataSource == "webservice") {
-        //中海博睿
+        //检测中心
         // htmls += " onclick=loadLabUnitInfoAjaxZhbr('" + item.id + "') ";
     } else if (dataSource == "json") {
         //新西兰 日本读取json文件 国外曲线

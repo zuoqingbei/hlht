@@ -14,7 +14,7 @@ $(function () {
     $(".legend .toLabData").click(function () {
         $("#r>iframe", parent.document).attr('src',contextPath+'/layout/lab');
         $(".orderPopup", parent.document).removeClass("show");
-        //实验室切回国内的中海博睿
+        //实验室切回国内的检测中心
         $(".lab .switchBox>ul.inland>li:eq(0)", parent.document).click();
         $(".lab .labMainNav header>ul>li:eq(0)", parent.document).click();
     });

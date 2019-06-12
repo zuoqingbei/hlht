@@ -305,7 +305,7 @@ function toLabData() {
     }
     $(".toLabData").click(function(){
         $(".lab").show().siblings("div").not("#l").hide();
-        //实验室切回国内的中海博睿
+        //实验室切回国内的检测中心
         $(".lab .switchBox>ul.inland>li:eq(0)").click();
         $(".lab .labMainNav header>ul>li:eq(0)").click();
     })

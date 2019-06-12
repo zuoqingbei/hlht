@@ -147,7 +147,7 @@ public class AdminController extends BaseController {
         List<Record> dataCenters = DataCenterModel.dao.findAllDataCenter();
         for (Record center : dataCenters) {
             if ("0".equals(center.getStr("haschildren"))) {
-                //如果是中海博睿  模拟子类
+                //如果是检测中心  模拟子类
                 List<Record> c = new ArrayList<Record>();
                 c.add(center);
                 center.set("children", c);
@@ -238,8 +238,6 @@ public class AdminController extends BaseController {
         render("labInfoList.html");
     }
 
-    ;
-
     /**
      * @param
      * @time 2018年1月30日 下午4:11:06
@@ -253,8 +251,6 @@ public class AdminController extends BaseController {
         Page<Record> pager = LabModel.dao.pager(pageSize, pageNumber, this);
         renderJson(pager);
     }
-
-    ;
 
     /**
      * @param
@@ -285,7 +281,7 @@ public class AdminController extends BaseController {
 		/*List<Record> dataCenters=DataCenterModel.dao.findAllDataCenter();
 		for(Record center:dataCenters){
 			if("0".equals(center.getStr("haschildren"))){
-				//如果是中海博睿  模拟子类
+				//如果是检测中心  模拟子类
 				List<Record> c=new ArrayList<Record>();
 				c.add(center);
 				center.set("children",c);
@@ -425,13 +421,23 @@ public class AdminController extends BaseController {
      * @return: void
      **/
     public void orderListData() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 查询列表数据
         int pageNumber = getParaToInt("pageNumber", 1);//当前页码
         int pageSize = getParaToInt("pageSize", 999999999);//每页条数
         Page<OrderListModel> pager = OrderListModel.dao.pager(pageSize, pageNumber, this);
-        renderJson(pager.getList());
+        resultMap.put("itemList", pager.getList());
+
+        List<OrderTotalModel> headerList = OrderTotalModel.dao.findList();
+        if (headerList != null && headerList.size() > 0) {
+            resultMap.put("header", headerList.get(0));
+        }
+
+        renderJson(resultMap);
     }
 
-    /***
+    /**
      * @Description: 实验室订单新增/修改页面
      * @Date: 2019/5/31 15:03
      * @return: void
@@ -546,6 +552,25 @@ public class AdminController extends BaseController {
             resultMap.put("result", false);
         }
 
+        renderJson(resultMap);
+    }
+
+    /***
+     * @Description: 删除实验室订单数据
+     * @Date: 2019/5/31 16:34
+
+     * @return: void
+     * @Author: suncy
+     **/
+    public void delOrderInfo() {
+        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            String id = getPara("id");
+            resultMap.put("result", OrderListModel.dao.deleteById(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultMap.put("result", false);
+        }
         renderJson(resultMap);
     }
 

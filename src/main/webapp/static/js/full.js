@@ -197,10 +197,10 @@ function navSelectA() {//这里会触发地图中要加载的数据
             selectActLi($(this));
         }
     });
-    //点击中海博睿切换右边页面上
+    //点击检测中心切换右边页面上
     var $flatBottomSwitchLi = $("#l.left3x3").find(".flat-footer ul.legend-bottom li");
     $flatBottomSwitchLi.find("a").click(function () {
-        if($(this).text() ==="中海博睿"){
+        if($(this).text() ==="检测中心"){
             $("#r").hide();
             $(".labMain_content").show()
             $(".labMain_content_country").hide()

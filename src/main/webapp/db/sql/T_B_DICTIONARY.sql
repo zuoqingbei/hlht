@@ -46,7 +46,7 @@ COMMENT ON COLUMN "LHJX01"."T_B_DICTIONARY"."DEL_FLAG" IS '是否删除，0：�
 -- ----------------------------
 -- Records of T_B_DICTIONARY
 -- ----------------------------
-INSERT INTO "LHJX01"."T_B_DICTIONARY" VALUES ('1', '中海博睿', '中海博睿', '0', 'lab_type', '2', '0 ');
+INSERT INTO "LHJX01"."T_B_DICTIONARY" VALUES ('1', '检测中心', '检测中心', '0', 'lab_type', '2', '0 ');
 INSERT INTO "LHJX01"."T_B_DICTIONARY" VALUES ('2', '研发类', '研发实验室', '0', 'lab_type', '1', '0 ');
 INSERT INTO "LHJX01"."T_B_DICTIONARY" VALUES ('3', '模块商', '模块商实验室', '0', 'lab_type', '4', '0 ');
 INSERT INTO "LHJX01"."T_B_DICTIONARY" VALUES ('4', '工厂类', '工厂实验室', '0', 'lab_type', '3', '0 ');

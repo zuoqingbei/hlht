@@ -1,7 +1,7 @@
-INSERT INTO "T_B_PERSON_DATA" VALUES ('1', '中海博睿1', '21', '冰冷', '中心实验室', '19', '19', '0');
-INSERT INTO "T_B_PERSON_DATA" VALUES ('2', '中海博睿2', '22', '洗涤', '中心实验室', '15', '15', '0');
-INSERT INTO "T_B_PERSON_DATA" VALUES ('3', '中海博睿3', '23', '家空', '中心实验室', '9', '9', '0');
-INSERT INTO "T_B_PERSON_DATA" VALUES ('4', '中海博睿4', '25', '热水器', '中心实验室', '3', '3', '0');
+INSERT INTO "T_B_PERSON_DATA" VALUES ('1', '检测中心1', '21', '冰冷', '中心实验室', '19', '19', '0');
+INSERT INTO "T_B_PERSON_DATA" VALUES ('2', '检测中心2', '22', '洗涤', '中心实验室', '15', '15', '0');
+INSERT INTO "T_B_PERSON_DATA" VALUES ('3', '检测中心3', '23', '家空', '中心实验室', '9', '9', '0');
+INSERT INTO "T_B_PERSON_DATA" VALUES ('4', '检测中心4', '25', '热水器', '中心实验室', '3', '3', '0');
 INSERT INTO "T_B_PERSON_DATA" VALUES ('5', '检测模块1', '21', '冰冷', '中心实验室', '10', '9', '0');
 INSERT INTO "T_B_PERSON_DATA" VALUES ('6', '检测模块2', '22', '洗涤', '中心实验室', '8', '7', '0');
 INSERT INTO "T_B_PERSON_DATA" VALUES ('7', '检测模块3', '23', '家空', '中心实验室', '6', '5', '0');

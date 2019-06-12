@@ -47,7 +47,7 @@ public class HadoopTestMetadata {
 		String sql="select labcode,labname,testidentification,testunitid,testbegintime,testendtime,reportbegintime,reportendtime,istesting,reportno,productmodel,productcode,testitemname,testitemid from "+tableName+"  where testunitid='"+testUnitId+"' and  labcode='"+labCode+"' "+DbConfigModel.dao.getPartitionSql(c, configName, labCode,false)+" order by testbegintime desc  ";
 		Record lab=LabCodeModel.dao.findLabByCode(labCode);
 		if(lab!=null){
-			//如果是中海博睿 整机模块 则需要上一次测试 否则没有数据
+			//如果是检测中心 整机模块 则需要上一次测试 否则没有数据
 			if("46".equals(lab.getStr("data_center_id"))||"51".equals(lab.getStr("data_center_id"))){
 				List<Record> list=Db.use(configName).find(sql);
 				if(list!=null&&list.size()>0){

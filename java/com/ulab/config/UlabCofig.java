@@ -160,7 +160,7 @@ public class UlabCofig extends JFinalConfig {
 			/**胶南热水器数据库END**/
 		}
 		if(existConfig("zhbrzj")){
-			/**中海博睿整机数据库START**/
+			/**检测中心整机数据库START**/
 			DruidPlugin zhbrzj = new DruidPlugin(this.getProperty("zhbrzj.url"), this.getProperty("zhbrzj.user"),
 					this.getProperty("zhbrzj.password"), getProperty("zhbrzj.driver"));
 			try {
@@ -172,10 +172,10 @@ public class UlabCofig extends JFinalConfig {
 				zhbrzjARP.setShowSql(true);
 				me.add(zhbrzjARP);
 			} catch (Exception e) {
-				System.err.println("中海博睿整机数据库启动异常");
+				System.err.println("检测中心整机数据库启动异常");
 				e.printStackTrace();
 			}
-			/**中海博睿整机数据库END**/
+			/**检测中心整机数据库END**/
 		}
 		if(existConfig("jnxd")){
 			/**胶南洗涤数据库START**/

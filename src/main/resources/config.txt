@@ -40,7 +40,7 @@ jnrsq.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnecti
 jnrsq.user = Haier_DBReader
 jnrsq.password= Haier2017
 
-#中海博睿整机数据库 SQL Server 2008R2
+#检测中心整机数据库 SQL Server 2008R2
 zhbrzj.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver  
 zhbrzj.url = jdbc:sqlserver://10.130.96.107:1433;databaseName=Haier_Interconnection_ZHBR_2017
 zhbrzj.user = Haier_DBReader

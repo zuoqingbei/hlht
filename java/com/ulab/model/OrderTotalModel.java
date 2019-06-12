@@ -22,7 +22,7 @@ public class OrderTotalModel extends Model<OrderTotalModel> {
      **/
     public List<OrderTotalModel> findList() {
         String fromSql = "from t_b_order_total where del_flag='" + Constants.DEL_FALG + "' ";
-        List<OrderTotalModel> list = OrderTotalModel.dao.find("select *", fromSql);
+        List<OrderTotalModel> list = OrderTotalModel.dao.find("select * " + fromSql);
         return list;
     }
 }

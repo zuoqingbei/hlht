@@ -4690,7 +4690,7 @@ $(function () {
                 var thisLabel = $(this).parents("ul").next().find("li:eq(" + index + ")").text();
                 console.log("```````````````````thisLabel",thisLabel);
     /!*          //这个赋值没有起作用
-                if(thisLabel=="中海博睿"){
+                if(thisLabel=="检测中心"){
                     thisLabel="中心实验室";
                 }
     *!/
@@ -4733,9 +4733,9 @@ $(function () {
             var thisLabel = $(this).find("span.text").text();
             console.log("```````````````````thisLabel：", thisLabel);
             /*          //这个赋值没有起作用
-                        if(thisLabel=="中海博睿"){
+                        if(thisLabel=="检测中心"){
                             thisLabel="中心实验室";
-                            alert('thisLabel=="中海博睿"')
+                            alert('thisLabel=="检测中心"')
                         }
                     */
             if (thisLabel != labTypeCode) {

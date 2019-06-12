@@ -101,7 +101,7 @@ function initone(mValue) {
 //近12个月用户满意度趋势图
 function inittwo() {
     $.post(contextPath + '/lab/satisfactionStatisForMonthForTab3Ajax', {
-        "labTypeCode": "中海博睿",
+        "labTypeCode": "检测中心",
         "startDate": "201701", "endDate": "2017" + getCurrentMonth()
     }, function (data) {
         var resu = dealSatisfactionCenterLab(data);
@@ -484,7 +484,7 @@ var dataBase;
 
 //加载实验室与台位对照关系 生刷选框
 function loadLabUnitInfoAjaxZhbr(labCode, url) {
-    //清除中海博睿定时器
+    //清除检测中心定时器
     window.clearInterval(intevalChart1);
     window.clearInterval(intevalChartHadoop);
     //生成台位下拉

@@ -63,7 +63,7 @@ public class HadoopController extends BaseController {
 		String interval = getPara("interval", "180");//单位 分钟
 		Record lab=LabCodeModel.dao.findLabByCode(labCode);
 		if(lab!=null){
-			//如果是中海博睿 整机模块 则需要把时间差距加大 否则没有数据
+			//如果是检测中心 整机模块 则需要把时间差距加大 否则没有数据
 			if("46".equals(lab.getStr("data_center_id"))||"51".equals(lab.getStr("data_center_id"))){
 				interval=300*60+"";
 			}

@@ -727,7 +727,7 @@ public class LabController extends BaseController {
 	 * 
 	 * @time 2017年5月19日 下午3:43:37
 	 * @author zuoqb
-	 * @todo 中海博睿 到整机的订单合格率（具体到月份）
+	 * @todo 检测中心 到整机的订单合格率（具体到月份）
 	 * @param
 	 * @return_type void
 	 */
@@ -916,7 +916,7 @@ public class LabController extends BaseController {
 	 * 
 	 * @time   2017年11月16日 下午1:41:53
 	 * @author zuoqb
-	 * @todo   获取中海博睿实验室
+	 * @todo   获取检测中心实验室
 	 * @param  
 	 * @return_type   void
 	 */
@@ -929,7 +929,7 @@ public class LabController extends BaseController {
 	 * 
 	 * @time   2017年11月16日 下午1:42:07
 	 * @author zuoqb
-	 * @todo  根据实验室编码和url获取中海博睿台位信息
+	 * @todo  根据实验室编码和url获取检测中心台位信息
 	 * @param  
 	 * @return_type   void
 	 */
@@ -1039,7 +1039,7 @@ public class LabController extends BaseController {
 	 * 
 	 * @time 2017年5月31日 下午12:00:34
 	 * @author zuoqb
-	 * @todo 中海博睿所有实验室-webservice接口
+	 * @todo 检测中心所有实验室-webservice接口
 	 * @param
 	 */
 	public void labAllForCenterLabAjax() {

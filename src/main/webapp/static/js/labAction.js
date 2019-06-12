@@ -65,7 +65,7 @@ $(function () {
                     $(".smallVideoBox").hide();*/
                     $(".labSubNav>ul>li").eq(3).click();
                     labCurveResize();
-                    //非中海博睿的隐藏运营状态内容
+                    //非检测中心的隐藏运营状态内容
                     // $(".item.status .leftContent [class$=-body]").children().hide();
                 }
             } else {
