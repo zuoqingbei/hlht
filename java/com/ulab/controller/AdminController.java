@@ -520,62 +520,26 @@ public class AdminController extends BaseController {
                 orderListModel.set("ID", UUIDTool.getOrderIdByUUId());
                 orderListModel.set("CREATE_DATE", sdf.format(new Date()));
             }
-            if (StringUtils.isNotBlank(testNumber)) {
-                orderListModel.set("TEST_NUMBER", testNumber);
-            }
-            if (StringUtils.isNotBlank(step)) {
-                orderListModel.set("STEP", step);
-            }
-            if (StringUtils.isNotBlank(creationDate)) {
-                orderListModel.set("CREATION_DATE", creationDate);
-            }
-            if (StringUtils.isNotBlank(creationTime)) {
-                orderListModel.set("CREATION_TIME", creationTime);
-            }
-            if (StringUtils.isNotBlank(step1Name)) {
-                orderListModel.set("STEP1_NAME", step1Name);
-            }
-            if (StringUtils.isNotBlank(step1Tel)) {
-                orderListModel.set("STEP1_TEL", step1Tel);
-            }
-            if (StringUtils.isNotBlank(step2Name)) {
-                orderListModel.set("STEP2_NAME", step2Name);
-            }
-            if (StringUtils.isNotBlank(step2Tel)) {
-                orderListModel.set("STEP2_TEL", step2Tel);
-            }
-            if (StringUtils.isNotBlank(step3Name)) {
-                orderListModel.set("STEP3_NAME", step3Name);
-            }
-            if (StringUtils.isNotBlank(step3Tel)) {
-                orderListModel.set("STEP3_TEL", step3Tel);
-            }
-            if (StringUtils.isNotBlank(step4Name)) {
-                orderListModel.set("STEP4_NAME", step4Name);
-            }
-            if (StringUtils.isNotBlank(step4Tel)) {
-                orderListModel.set("STEP4_TEL", step4Tel);
-            }
-            if (StringUtils.isNotBlank(step5Name)) {
-                orderListModel.set("STEP5_NAME", step5Name);
-            }
-            if (StringUtils.isNotBlank(step5Tel)) {
-                orderListModel.set("STEP5_TEL", step5Tel);
-            }
-            if (StringUtils.isNotBlank(step6Name)) {
-                orderListModel.set("STEP6_NAME", step6Name);
-            }
-            if (StringUtils.isNotBlank(step6Tel)) {
-                orderListModel.set("STEP6_TEL", step6Tel);
-            }
-            if (StringUtils.isNotBlank(step7Name)) {
-                orderListModel.set("STEP7_NAME", step7Name);
-            }
-            if (StringUtils.isNotBlank(step7Tel)) {
-                orderListModel.set("STEP7_TEL", step7Tel);
-            }
-
+            orderListModel.set("TEST_NUMBER", testNumber);
+            orderListModel.set("STEP", step);
+            orderListModel.set("CREATION_DATE", creationDate);
+            orderListModel.set("CREATION_TIME", creationTime);
+            orderListModel.set("STEP1_NAME", step1Name);
+            orderListModel.set("STEP1_TEL", step1Tel);
+            orderListModel.set("STEP2_NAME", step2Name);
+            orderListModel.set("STEP2_TEL", step2Tel);
+            orderListModel.set("STEP3_NAME", step3Name);
+            orderListModel.set("STEP3_TEL", step3Tel);
+            orderListModel.set("STEP4_NAME", step4Name);
+            orderListModel.set("STEP4_TEL", step4Tel);
+            orderListModel.set("STEP5_NAME", step5Name);
+            orderListModel.set("STEP5_TEL", step5Tel);
+            orderListModel.set("STEP6_NAME", step6Name);
+            orderListModel.set("STEP6_TEL", step6Tel);
+            orderListModel.set("STEP7_NAME", step7Name);
+            orderListModel.set("STEP7_TEL", step7Tel);
             orderListModel.set("del_flag", del_flag);
+
             if (StringUtils.isNotBlank(id)) {
                 orderListModel.update();
             } else {
@@ -643,24 +607,12 @@ public class AdminController extends BaseController {
             } else {
                 orderTotalModel.set("ID", UUIDTool.getOrderIdByUUId());
             }
-            if (StringUtils.isNotBlank(TOTAL_NUM)) {
-                orderTotalModel.set("TOTAL_NUM", TOTAL_NUM);
-            }
-            if (StringUtils.isNotBlank(UNDER_TEST)) {
-                orderTotalModel.set("UNDER_TEST", UNDER_TEST);
-            }
-            if (StringUtils.isNotBlank(TO_BE_DISTRIBUTED)) {
-                orderTotalModel.set("TO_BE_DISTRIBUTED", TO_BE_DISTRIBUTED);
-            }
-            if (StringUtils.isNotBlank(TESTING)) {
-                orderTotalModel.set("TESTING", TESTING);
-            }
-            if (StringUtils.isNotBlank(COMPLETED)) {
-                orderTotalModel.set("COMPLETED", COMPLETED);
-            }
-            if (StringUtils.isNotBlank(COMPLETION)) {
-                orderTotalModel.set("COMPLETION", COMPLETION);
-            }
+            orderTotalModel.set("TOTAL_NUM", TOTAL_NUM);
+            orderTotalModel.set("UNDER_TEST", UNDER_TEST);
+            orderTotalModel.set("TO_BE_DISTRIBUTED", TO_BE_DISTRIBUTED);
+            orderTotalModel.set("TESTING", TESTING);
+            orderTotalModel.set("COMPLETED", COMPLETED);
+            orderTotalModel.set("COMPLETION", COMPLETION);
             orderTotalModel.set("del_flag", "0");
             if (StringUtils.isNotBlank(id)) {
                 orderTotalModel.update();
@@ -807,78 +759,30 @@ public class AdminController extends BaseController {
             } else {
                 otherDataModel.set("ID", UUIDTool.getOrderIdByUUId());
             }
-            if (StringUtils.isNotBlank(T_NAME)) {
-                otherDataModel.set("T_NAME", T_NAME);
-            }
-            if (StringUtils.isNotBlank(T_EN_NAME)) {
-                otherDataModel.set("T_EN_NAME", T_EN_NAME);
-            }
-            if (StringUtils.isNotBlank(T_ZH)) {
-                otherDataModel.set("T_ZH", T_ZH);
-            }
-            if (StringUtils.isNotBlank(T_EN)) {
-                otherDataModel.set("T_EN", T_EN);
-            }
-            if (StringUtils.isNotBlank(D_NAME)) {
-                otherDataModel.set("D_NAME", D_NAME);
-            }
-            if (StringUtils.isNotBlank(D_DAZHOU)) {
-                otherDataModel.set("D_DAZHOU", D_DAZHOU);
-            }
-            if (StringUtils.isNotBlank(D_GUOJIA)) {
-                otherDataModel.set("D_GUOJIA", D_GUOJIA);
-            }
-            if (StringUtils.isNotBlank(D_ZHONGXIN)) {
-                otherDataModel.set("D_ZHONGXIN", D_ZHONGXIN);
-            }
-            if (StringUtils.isNotBlank(D_YUANQU)) {
-                otherDataModel.set("D_YUANQU", D_YUANQU);
-            }
-            if (StringUtils.isNotBlank(D_GONGCHANG)) {
-                otherDataModel.set("D_GONGCHANG", D_GONGCHANG);
-            }
-            if (StringUtils.isNotBlank(L_NAME)) {
-                otherDataModel.set("L_NAME", L_NAME);
-            }
-            if (StringUtils.isNotBlank(L_QUANQIU_LAB)) {
-                otherDataModel.set("L_QUANQIU_LAB", L_QUANQIU_LAB);
-            }
-            if (StringUtils.isNotBlank(L_QUANQIU_LINK)) {
-                otherDataModel.set("L_QUANQIU_LINK", L_QUANQIU_LINK);
-            }
-            if (StringUtils.isNotBlank(L_YANFA_LAB)) {
-                otherDataModel.set("L_YANFA_LAB", L_YANFA_LAB);
-            }
-            if (StringUtils.isNotBlank(L_YANFA_LINK)) {
-                otherDataModel.set("L_YANFA_LINK", L_YANFA_LINK);
-            }
-            if (StringUtils.isNotBlank(L_JIANCE_LAB)) {
-                otherDataModel.set("L_JIANCE_LAB", L_JIANCE_LAB);
-            }
-            if (StringUtils.isNotBlank(L_JIANCE_LINK)) {
-                otherDataModel.set("L_JIANCE_LINK", L_JIANCE_LINK);
-            }
-            if (StringUtils.isNotBlank(L_ZHIZAO_LAB)) {
-                otherDataModel.set("L_ZHIZAO_LAB", L_ZHIZAO_LAB);
-            }
-            if (StringUtils.isNotBlank(L_ZHIZAO_LINK)) {
-                otherDataModel.set("L_ZHIZAO_LINK", L_ZHIZAO_LINK);
-            }
-            if (StringUtils.isNotBlank(M_NAME)) {
-                otherDataModel.set("M_NAME", M_NAME);
-            }
-            if (StringUtils.isNotBlank(M_LAB)) {
-                otherDataModel.set("M_LAB", M_LAB);
-            }
-            if (StringUtils.isNotBlank(M_PERSONNEL)) {
-                otherDataModel.set("M_PERSONNEL", M_PERSONNEL);
-            }
-            if (StringUtils.isNotBlank(M_DEVICE)) {
-                otherDataModel.set("M_DEVICE", M_DEVICE);
-            }
-            if (StringUtils.isNotBlank(M_ORDER)) {
-                otherDataModel.set("M_ORDER", M_ORDER);
-            }
+            otherDataModel.set("T_NAME", T_NAME);
+            otherDataModel.set("T_EN_NAME", T_EN_NAME);
+            otherDataModel.set("T_ZH", T_ZH);
+            otherDataModel.set("T_EN", T_EN);
+            otherDataModel.set("D_NAME", D_NAME);
+            otherDataModel.set("D_DAZHOU", D_DAZHOU);
+            otherDataModel.set("D_GUOJIA", D_GUOJIA);
+            otherDataModel.set("D_ZHONGXIN", D_ZHONGXIN);
+            otherDataModel.set("D_YUANQU", D_YUANQU);
+            otherDataModel.set("D_GONGCHANG", D_GONGCHANG);
+            otherDataModel.set("L_NAME", L_NAME);
+            otherDataModel.set("L_QUANQIU_LAB", L_QUANQIU_LAB);
+            otherDataModel.set("L_QUANQIU_LINK", L_QUANQIU_LINK);
+            otherDataModel.set("L_YANFA_LAB", L_YANFA_LAB);
+            otherDataModel.set("L_YANFA_LINK", L_YANFA_LINK);
+            otherDataModel.set("L_JIANCE_LAB", L_JIANCE_LAB);
+            otherDataModel.set("L_JIANCE_LINK", L_JIANCE_LINK);
+            otherDataModel.set("L_ZHIZAO_LAB", L_ZHIZAO_LAB);
+            otherDataModel.set("L_ZHIZAO_LINK", L_ZHIZAO_LINK);
+            otherDataModel.set("M_NAME", M_NAME);
+            otherDataModel.set("M_LAB", M_LAB);
+            otherDataModel.set("M_PERSONNEL", M_PERSONNEL);
+            otherDataModel.set("M_DEVICE", M_DEVICE);
+            otherDataModel.set("M_ORDER", M_ORDER);
             if (StringUtils.isNotBlank(id)) {
                 otherDataModel.update();
             } else {
