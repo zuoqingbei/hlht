@@ -18,36 +18,36 @@
         }
     </style>
 </head>
-<body id="order_form">
+<body>
 
 <nav class="navbar navbar-default"></nav>
 
-<div class="container" id="orderForm">
+<div class="container" id="otherDataForm">
     <form @submit.prevent="submit()"> <!--.prevent阻止默认跳转-->
         <fieldset>
             <legend>页面标题:</legend>
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="center-block">中文标题(大屏)<input class="form-control"
-                                                           v-model="otherDataForm.title.zh_in7x3"></label>
+                                                           v-model="otherDataForm.title.t_name"></label>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="center-block">英文标题(大屏)<input class="form-control"
-                                                           v-model="otherDataForm.title.en_in7x3"></label>
+                                                           v-model="otherDataForm.title.t_en_name"></label>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="center-block">中文标题(大厅)<input class="form-control"
-                                                           v-model="otherDataForm.title.zh"></label>
+                                                           v-model="otherDataForm.title.t_zh"></label>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="center-block">英文标题(大厅)<input class="form-control"
-                                                           v-model="otherDataForm.title.en"></label>
+                                                           v-model="otherDataForm.title.t_en"></label>
                 </div>
             </div>
         </fieldset>
@@ -56,29 +56,29 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>大洲数量<input class="form-control" v-model="otherDataForm.distribution.dazhou"></label>
+                        <label>大洲数量<input class="form-control" v-model="otherDataForm.distribution.d_dazhou"></label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>国家数量<input class="form-control" v-model="otherDataForm.distribution.guojia"></label>
+                        <label>国家数量<input class="form-control" v-model="otherDataForm.distribution.d_guojia"></label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>研发中心<input class="form-control" v-model="otherDataForm.distribution.zhongxin"></label>
+                        <label>研发中心<input class="form-control" v-model="otherDataForm.distribution.d_zhongxin"></label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>工业园区<input class="form-control" v-model="otherDataForm.distribution.yuanqu"></label>
+                        <label>工业园区<input class="form-control" v-model="otherDataForm.distribution.d_yuanqu"></label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>工厂<input class="form-control" v-model="otherDataForm.distribution.gongchang"></label>
+                        <label>工厂<input class="form-control" v-model="otherDataForm.distribution.d_gongchang"></label>
                     </div>
                 </div>
             </div>
@@ -98,23 +98,23 @@
                         <tbody>
                         <tr>
                             <td>海尔全球：</td>
-                            <td><input class="form-control" v-model="otherDataForm.link.quanqiu_lab"></td>
-                            <td><input class="form-control" v-model="otherDataForm.link.quanqiu_link"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_quanqiu_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_quanqiu_link"></td>
                         </tr>
                         <tr>
                             <td>研发中心：
-                            <td><input class="form-control" v-model="otherDataForm.link.yanfa_lab"></td>
-                            <td><input class="form-control" v-model="otherDataForm.link.yanfa_link"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_yanfa_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_yanfa_link"></td>
                         </tr>
                         <tr>
                             <td>检测中心：
-                            <td><input class="form-control" v-model="otherDataForm.link.jiance_lab"></td>
-                            <td><input class="form-control" v-model="otherDataForm.link.jiance_link"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_jiance_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_jiance_link"></td>
                         </tr>
                         <tr>
                             <td>制造工厂：
-                            <td><input class="form-control" v-model="otherDataForm.link.zhizao_lab"></td>
-                            <td><input class="form-control" v-model="otherDataForm.link.zhizao_link"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_zhizao_lab"></td>
+                            <td><input class="form-control" v-model="otherDataForm.link.l_zhizao_link"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -127,13 +127,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>实验室资源合格率<input class="form-control"
-                                              v-model="otherDataForm.managementIndicators.lab"></label>
+                                              v-model="otherDataForm.managementIndicators.m_lab"></label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>人员资源合格率<input class="form-control"
-                                             v-model="otherDataForm.managementIndicators.personnel"></label>
+                                             v-model="otherDataForm.managementIndicators.m_personnel"></label>
                     </div>
                 </div>
             </div>
@@ -141,13 +141,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>设备完好率<input class="form-control"
-                                           v-model="otherDataForm.managementIndicators.device"></label>
+                                           v-model="otherDataForm.managementIndicators.m_device"></label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>订单及时率<input class="form-control"
-                                           v-model="otherDataForm.managementIndicators.order"></label>
+                                           v-model="otherDataForm.managementIndicators.m_order"></label>
                     </div>
                 </div>
             </div>
@@ -167,8 +167,8 @@
 <script src="${contextPath}/static/assets/js/vue-2.6.10.js"></script>
 <script src="${contextPath}/static/admin/js/common.js"></script>
 <script>
-    let orderForm = new Vue({
-        el: '#orderForm',
+    let otherDataForm = new Vue({
+        el: '#otherDataForm',
         data: {
             otherDataForm: {
                 distribution: {},
@@ -187,18 +187,19 @@
         methods: {
             getOrderList() {
                 // 查询接口
-                $.get(contextPath + "/static/data/otherDataList.json", data => {
+                $.get(contextPath + "/admin/otherData ", data => {
                     this.otherDataForm = data;
                 })
             },
             submit() {
                 console.log(this.otherDataForm);
                 // 更新接口
-                $.post(contextPath + '/admin/UpdateOtherDataForm',
+                $.post(contextPath + '/admin/updateOtherData',
                     this.otherDataForm,
                     data => {
                         if (data.result) {
-                            location.href = contextPath + '/admin/otherDataForm'
+                            alert('修改成功！')
+                            location.href = ''
                         }
                     })
             },

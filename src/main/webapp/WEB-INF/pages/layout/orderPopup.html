@@ -51,7 +51,7 @@
                     <div class="list-body">
                         <div v-if="curItemList" v-for="(item,index) in curItemList" class="item ">
 
-                            <button class="evaluation">评价</button>
+                            <!--<button class="evaluation">评价</button>-->
                             <header>
                                 <h4>试验编号：</h4>
                                 <div class="serialNumber">{{item.test_number}}</div>
@@ -131,7 +131,7 @@
                         header: {},
                         itemList: [],
                     },
-                    orderListHeader:['totalNum','underTest','toBeDistributed','testing','completed','completion'],
+                    orderListHeader:['total_num','under_test','to_be_distributed','testing','completed','completion'],
                     curItemList: [],
                     pageCur: 1,
                     itemPerPage: 3,
@@ -145,7 +145,8 @@
                 },
                 methods: {
                     getOrderList() {
-                        $.get(contextPath + "/static/data/orderListForPage.json", data => {
+                        // $.get(contextPath + "/static/data/orderListForPage.json", data => {
+                        $.get(contextPath + "/admin/orderListDataIndex", data => {
                             this.orderList = data;
                             let isInt = this.orderList.itemList.length % this.itemPerPage === 0;
                             this.pageTotal = (this.orderList.itemList.length / this.itemPerPage + (isInt ? 0 : 1)) | 0;

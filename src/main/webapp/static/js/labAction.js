@@ -143,7 +143,7 @@ $(function () {
         $(this).addClass("active").siblings().removeClass("active");
         var videoUrl = $(this).data("videourl").replace("/1/live.m3u8", "/0/live.m3u8");
         // videoShow("bigVideo",videoUrl,0);
-        loadingAnimate($(".shishi_right").find(".bigVideoBox>.loadingAnimation"), "视频接入中", 4000);
+        loadingAnimate($(".shishi_right").find(".bigVideoBox>.loadingAnimation"), "视频接入中", 3000);
         // loadingAnimate($(".shishi_right").find(".bigVideoBox>.loadingAnimation"), "视频接入中");
         $("#bigVideo").children("iframe").attr("src", videoUrl);
         $(".shishi_right>.item.video").show().siblings().hide();
@@ -239,7 +239,7 @@ $(function () {
                     }, 15000);
                 }
                 $smallVideo.children("iframe:eq(0)").attr("src", videoUrl);
-                loadingAnimate($(".shishi_right").find(".smallVideoBox>.loadingAnimation"), "视频接入中", 4500);
+                loadingAnimate($(".shishi_right").find(".smallVideoBox>.loadingAnimation"), "视频接入中", 3500);
             } else {
                 $(".smallVideoBox").hide();
             }

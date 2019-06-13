@@ -458,6 +458,9 @@ footer .text {
     letter-spacing: .0625rem;
 
 }
+.styleIn7x3 footer .text {
+    height: 4rem;
+}
 
 footer .text p {
     text-indent: 2em;

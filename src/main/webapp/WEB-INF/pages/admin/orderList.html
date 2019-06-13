@@ -23,7 +23,54 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h2>订单列表</h2>
+                <h2>订单总状态</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>订单总量<input class="form-control input-sm" v-model="header.total_num"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>待测试<input class="form-control input-sm" v-model="header.under_test"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>待分配<input class="form-control input-sm" v-model="header.to_be_distributed"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>测试中<input class="form-control input-sm" v-model="header.testing"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>已完成<input class="form-control input-sm" v-model="header.completed"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>完成率<input class="form-control input-sm" v-model="header.completion"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>&emsp;<br><button class="btn btn-primary btn-sm" id="orderHeaderSubmit" @click="orderHeaderSubmit">提交</button></label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>订单内容</h2>
             </div>
             <div class="search">
                 <div class="panel panel-primary">
@@ -34,12 +81,13 @@
                         <form @submit.prevent="search" class="form-inline">
                             <div class="form-group">
                                 <label for="keyword">请输入关键字：</label>
-                                <input class="form-control input-sm" id="keyword" autocomplete="false" placeholder="" v-model="keywords">
+                                <input class="form-control input-sm" id="keyword" autocomplete="false" placeholder=""
+                                       v-model="keywords">
                             </div>
                             <button type="button" class="btn btn-success btn-sm pull-right" @click="addItem">新增
                             </button>
                             <button style="margin-right:2em;" type="submit" class="btn btn-primary btn-sm pull-right"
-                                   >搜索
+                            >搜索
                             </button>
                         </form>
                     </div>
@@ -109,6 +157,7 @@
     let VueOrderList = new Vue({
         el: '#orderList',
         data: {
+            header: {},
             orderList: [],
             orderListHeader: ['totalNum', 'underTest', 'toBeDistributed', 'testing', 'completed', 'completion'],
             curItemList: [],
@@ -116,7 +165,7 @@
             pageCur: 1,
             itemPerPage: 5,
             pageTotal: 0,
-            keywords:'',
+            keywords: '',
 
         },
         beforeMount() {
@@ -124,10 +173,25 @@
         },
         methods: {
             getOrderList() {
-                // 查询接口
+                // 查询订单条目
                 $.get(contextPath + "/admin/orderListData", data => {
-                    this.filterItemList = this.orderList = data;
+                    this.filterItemList = this.orderList = data.itemList;
                     this.pagination();
+                });
+                // 查询订单头部数据
+                $.get(contextPath + "/admin/orderTotalData", data => {
+                    this.header = data.orderTotal;
+                    this.pagination();
+                })
+            },
+            orderHeaderSubmit(){
+                const that = this;
+                console.log(that.header);
+                $.get(contextPath + "/admin/updateOrderTotal",that.header, data => {
+                    if(data.result){
+                        alert('修改成功！');
+                        location = '';
+                    }
                 })
             },
             pagination() {
@@ -145,33 +209,35 @@
                 }
                 this.pagination()
             },
-            search(){
-                this.filterItemList = this.orderList.filter(item=>{
-                    return Object.keys(item).some(k=>{
-                        return item[k]&&(item[k]+'').includes(this.keywords)
+            search() {
+                this.filterItemList = this.orderList.filter(item => {
+                    return Object.keys(item).some(k => {
+                        return item[k] && (item[k] + '').includes(this.keywords)
                     })
                 });
                 this.pagination();
             },
-            delItem(id){
-                if(!confirm('确认删除？')){return}
+            delItem(id) {
+                if (!confirm('确认删除？')) {
+                    return
+                }
                 // 模拟删除，生产中请屏蔽
-                this.orderList.splice(this.orderList.findIndex(item=>item.id===id),1);
+                this.orderList.splice(this.orderList.findIndex(item => item.id === id), 1);
                 this.pagination();
-                 // 删除接口
-                $.get(contextPath+'/admin/delOrderInfo?id='+id, data => {
-                    if(data.result){
-                        location.href='';
+                // 删除接口
+                $.get(contextPath + '/admin/delOrderInfo?id=' + id, data => {
+                    if (data.result) {
+                        location.href = '';
                     }
                 })
             },
-            addItem(){
-                localStorage.setItem('updateItem','');
-                location.href=contextPath+'/admin/orderForm';
+            addItem() {
+                localStorage.setItem('updateItem', '');
+                location.href = contextPath + '/admin/orderForm';
             },
-            updateItem(item){
-                localStorage.setItem('updateItem',JSON.stringify(item));
-                location.href=contextPath+'/admin/orderForm?id='+item.id;
+            updateItem(item) {
+                localStorage.setItem('updateItem', JSON.stringify(item));
+                location.href = contextPath + '/admin/orderForm?id=' + item.id;
             }
         }
     });
