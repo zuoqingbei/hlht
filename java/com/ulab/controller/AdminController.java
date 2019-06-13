@@ -719,6 +719,7 @@ public class AdminController extends BaseController {
 
         if (list != null && list.size() > 0) {
             OtherDataModel otherDataModel = list.get(0);
+            resultMap.put("id", otherDataModel.get("id"));
 
             Map<String, Object> titleMap = new HashMap<>();
             titleMap.put("t_name", otherDataModel.get("t_name"));
@@ -772,30 +773,34 @@ public class AdminController extends BaseController {
         OtherDataModel otherDataModel = new OtherDataModel();
         try {
             String id = getPara("id");
-            String T_NAME = getPara("t_name", "");
-            String T_EN_NAME = getPara("t_en_name", "");
-            String T_ZH = getPara("t_zh", "");
-            String T_EN = getPara("t_en", "");
-            String D_NAME = getPara("d_name", "");
-            String D_DAZHOU = getPara("d_dazhou", "");
-            String D_GUOJIA = getPara("d_guojia", "");
-            String D_ZHONGXIN = getPara("d_zhongxin", "");
-            String D_YUANQU = getPara("d_yuanqu", "");
-            String D_GONGCHANG = getPara("d_gongchang", "");
-            String L_NAME = getPara("l_name", "");
-            String L_QUANQIU_LAB = getPara("l_quanqiu_lab", "");
-            String L_QUANQIU_LINK = getPara("l_quanqiu_link", "");
-            String L_YANFA_LAB = getPara("l_yanfa_lab", "");
-            String L_YANFA_LINK = getPara("l_yanfa_link", "");
-            String L_JIANCE_LAB = getPara("l_jiance_lab", "");
-            String L_JIANCE_LINK = getPara("l_jiance_link", "");
-            String L_ZHIZAO_LAB = getPara("l_zhizao_lab", "");
-            String L_ZHIZAO_LINK = getPara("l_zhizao_link", "");
-            String M_NAME = getPara("m_name", "");
-            String M_LAB = getPara("m_lab", "");
-            String M_PERSONNEL = getPara("m_personnel", "");
-            String M_DEVICE = getPara("m_device", "");
-            String M_ORDER = getPara("m_order", "");
+
+            String T_NAME = getPara("title[t_name]", "");
+            String T_EN_NAME = getPara("title[t_en_name]", "");
+            String T_ZH = getPara("title[t_zh]", "");
+            String T_EN = getPara("title[t_en]", "");
+
+            String D_NAME = getPara("distribution[d_name]", "");
+            String D_DAZHOU = getPara("distribution[d_dazhou]", "");
+            String D_GUOJIA = getPara("distribution[d_guojia]", "");
+            String D_ZHONGXIN = getPara("distribution[d_zhongxin]", "");
+            String D_YUANQU = getPara("distribution[d_yuanqu]", "");
+            String D_GONGCHANG = getPara("distribution[d_gongchang]", "");
+
+            String L_NAME = getPara("link[l_name]", "");
+            String L_QUANQIU_LAB = getPara("link[l_quanqiu_lab]", "");
+            String L_QUANQIU_LINK = getPara("link[l_quanqiu_link]", "");
+            String L_YANFA_LAB = getPara("link[l_yanfa_lab]", "");
+            String L_YANFA_LINK = getPara("link[l_yanfa_link]", "");
+            String L_JIANCE_LAB = getPara("link[l_jiance_lab]", "");
+            String L_JIANCE_LINK = getPara("link[l_jiance_link]", "");
+            String L_ZHIZAO_LAB = getPara("link[l_zhizao_lab]", "");
+            String L_ZHIZAO_LINK = getPara("link[l_zhizao_link]", "");
+
+            String M_NAME = getPara("managementIndicators[m_name]", "");
+            String M_LAB = getPara("managementIndicators[m_lab]", "");
+            String M_PERSONNEL = getPara("managementIndicators[m_personnel]", "");
+            String M_DEVICE = getPara("managementIndicators[m_device]", "");
+            String M_ORDER = getPara("managementIndicators[m_order]", "");
 
             if (StringUtils.isNotBlank(id)) {
                 otherDataModel = OtherDataModel.dao.findById(id);
