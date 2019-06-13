@@ -423,6 +423,12 @@ public class AdminController extends BaseController {
     public void orderListData() {
         Map<String, Object> resultMap = new HashMap<>();
 
+        // 查询订单统计信息
+        List<OrderTotalModel> headerList = OrderTotalModel.dao.findList();
+        if (headerList != null && headerList.size() > 0) {
+            resultMap.put("header", headerList.get(0));
+        }
+
         // 查询列表数据
         int pageNumber = getParaToInt("pageNumber", 1);//当前页码
         int pageSize = getParaToInt("pageSize", 999999999);//每页条数
@@ -595,35 +601,6 @@ public class AdminController extends BaseController {
         renderJson(list);
     }
 
-    // ============================================实验室订单 END ===================================//
-
-    /**
-     * 前端开发，先渲染页面
-     *
-     * @param
-     * @time 2019-5-30 15:34:07
-     * @author ljl
-     * @todo 页面其他数据修改
-     * @return_type void
-     */
-    public void otherDataForm() {
-        render("otherDataForm.html");
-    }
-
-    /**
-     * 前端开发，先渲染页面
-     *
-     * @param
-     * @time 2019-5-30 15:34:07
-     * @author ljl
-     * @todo 页面其他数据修改
-     * @return_type void
-     */
-    public void comNav() {
-        render("com_nav.html");
-    }
-
-
     /***
      * @Description: 修改订单上部分的统计
      * @Date: 2019/6/12 17:02
@@ -680,5 +657,218 @@ public class AdminController extends BaseController {
 
         renderJson(resultMap);
     }
+
+
+    // ============================================实验室订单 END ===================================//
+
+    /**
+     * 前端开发，先渲染页面
+     *
+     * @param
+     * @time 2019-5-30 15:34:07
+     * @author ljl
+     * @todo 页面其他数据修改
+     * @return_type void
+     */
+    public void otherDataForm() {
+        render("otherDataForm.html");
+    }
+
+    /**
+     * 前端开发，先渲染页面
+     *
+     * @param
+     * @time 2019-5-30 15:34:07
+     * @author ljl
+     * @todo 页面其他数据修改
+     * @return_type void
+     */
+    public void comNav() {
+        render("com_nav.html");
+    }
+
+    /**
+     * @Description: 其他信息展示
+     * @Date: 2019/6/13 10:13
+     * @return: void
+     * @Author: suncy
+     **/
+    public void otherData() {
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<OtherDataModel> list = OtherDataModel.dao.findList();
+
+        if (list != null && list.size() > 0) {
+            OtherDataModel otherDataModel = list.get(0);
+
+            Map<String, Object> titleMap = new HashMap<>();
+            titleMap.put("t_name", otherDataModel.get("t_name"));
+            titleMap.put("t_en_name", otherDataModel.get("t_en_name"));
+            titleMap.put("t_zh", otherDataModel.get("t_zh"));
+            titleMap.put("t_en", otherDataModel.get("t_en"));
+            resultMap.put("title", titleMap);
+
+            Map<String, Object> distributionMap = new HashMap<>();
+            distributionMap.put("d_name", otherDataModel.get("d_name"));
+            distributionMap.put("d_dazhou", otherDataModel.get("d_dazhou"));
+            distributionMap.put("d_guojia", otherDataModel.get("d_guojia"));
+            distributionMap.put("d_zhongxin", otherDataModel.get("d_zhongxin"));
+            distributionMap.put("d_yuanqu", otherDataModel.get("d_yuanqu"));
+            distributionMap.put("d_gongchang", otherDataModel.get("d_gongchang"));
+            resultMap.put("distribution", distributionMap);
+
+            Map<String, Object> linkMap = new HashMap<>();
+            linkMap.put("l_name", otherDataModel.get("l_name"));
+            linkMap.put("l_quanqiu_lab", otherDataModel.get("l_quanqiu_lab"));
+            linkMap.put("l_quanqiu_link", otherDataModel.get("l_quanqiu_link"));
+            linkMap.put("l_yanfa_lab", otherDataModel.get("l_yanfa_lab"));
+            linkMap.put("l_yanfa_link", otherDataModel.get("l_yanfa_link"));
+            linkMap.put("l_jiance_lab", otherDataModel.get("l_jiance_lab"));
+            linkMap.put("l_jiance_link", otherDataModel.get("l_jiance_link"));
+            linkMap.put("l_zhizao_lab", otherDataModel.get("l_zhizao_lab"));
+            linkMap.put("l_zhizao_link", otherDataModel.get("l_zhizao_link"));
+            resultMap.put("link", linkMap);
+
+            Map<String, Object> managementIndicatorsMap = new HashMap<>();
+            managementIndicatorsMap.put("m_name", otherDataModel.get("m_name"));
+            managementIndicatorsMap.put("m_lab", otherDataModel.get("m_lab"));
+            managementIndicatorsMap.put("m_personnel", otherDataModel.get("m_personnel"));
+            managementIndicatorsMap.put("m_device", otherDataModel.get("m_device"));
+            managementIndicatorsMap.put("m_order", otherDataModel.get("m_order"));
+            resultMap.put("managementIndicators", managementIndicatorsMap);
+
+        }
+        renderJson(resultMap);
+    }
+
+    /**
+     * @Description: 维护其他数据信息
+     * @Date: 2019/6/13 10:13
+     * @return: void
+     * @Author: suncy
+     **/
+    public void updateOtherData() {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        OtherDataModel otherDataModel = new OtherDataModel();
+        try {
+            String id = getPara("id");
+            String T_NAME = getPara("t_name", "");
+            String T_EN_NAME = getPara("t_en_name", "");
+            String T_ZH = getPara("t_zh", "");
+            String T_EN = getPara("t_en", "");
+            String D_NAME = getPara("d_name", "");
+            String D_DAZHOU = getPara("d_dazhou", "");
+            String D_GUOJIA = getPara("d_guojia", "");
+            String D_ZHONGXIN = getPara("d_zhongxin", "");
+            String D_YUANQU = getPara("d_yuanqu", "");
+            String D_GONGCHANG = getPara("d_gongchang", "");
+            String L_NAME = getPara("l_name", "");
+            String L_QUANQIU_LAB = getPara("l_quanqiu_lab", "");
+            String L_QUANQIU_LINK = getPara("l_quanqiu_link", "");
+            String L_YANFA_LAB = getPara("l_yanfa_lab", "");
+            String L_YANFA_LINK = getPara("l_yanfa_link", "");
+            String L_JIANCE_LAB = getPara("l_jiance_lab", "");
+            String L_JIANCE_LINK = getPara("l_jiance_link", "");
+            String L_ZHIZAO_LAB = getPara("l_zhizao_lab", "");
+            String L_ZHIZAO_LINK = getPara("l_zhizao_link", "");
+            String M_NAME = getPara("m_name", "");
+            String M_LAB = getPara("m_lab", "");
+            String M_PERSONNEL = getPara("m_personnel", "");
+            String M_DEVICE = getPara("m_device", "");
+            String M_ORDER = getPara("m_order", "");
+
+            if (StringUtils.isNotBlank(id)) {
+                otherDataModel = OtherDataModel.dao.findById(id);
+            } else {
+                otherDataModel.set("ID", UUIDTool.getOrderIdByUUId());
+            }
+            if (StringUtils.isNotBlank(T_NAME)) {
+                otherDataModel.set("T_NAME", T_NAME);
+            }
+            if (StringUtils.isNotBlank(T_EN_NAME)) {
+                otherDataModel.set("T_EN_NAME", T_EN_NAME);
+            }
+            if (StringUtils.isNotBlank(T_ZH)) {
+                otherDataModel.set("T_ZH", T_ZH);
+            }
+            if (StringUtils.isNotBlank(T_EN)) {
+                otherDataModel.set("T_EN", T_EN);
+            }
+            if (StringUtils.isNotBlank(D_NAME)) {
+                otherDataModel.set("D_NAME", D_NAME);
+            }
+            if (StringUtils.isNotBlank(D_DAZHOU)) {
+                otherDataModel.set("D_DAZHOU", D_DAZHOU);
+            }
+            if (StringUtils.isNotBlank(D_GUOJIA)) {
+                otherDataModel.set("D_GUOJIA", D_GUOJIA);
+            }
+            if (StringUtils.isNotBlank(D_ZHONGXIN)) {
+                otherDataModel.set("D_ZHONGXIN", D_ZHONGXIN);
+            }
+            if (StringUtils.isNotBlank(D_YUANQU)) {
+                otherDataModel.set("D_YUANQU", D_YUANQU);
+            }
+            if (StringUtils.isNotBlank(D_GONGCHANG)) {
+                otherDataModel.set("D_GONGCHANG", D_GONGCHANG);
+            }
+            if (StringUtils.isNotBlank(L_NAME)) {
+                otherDataModel.set("L_NAME", L_NAME);
+            }
+            if (StringUtils.isNotBlank(L_QUANQIU_LAB)) {
+                otherDataModel.set("L_QUANQIU_LAB", L_QUANQIU_LAB);
+            }
+            if (StringUtils.isNotBlank(L_QUANQIU_LINK)) {
+                otherDataModel.set("L_QUANQIU_LINK", L_QUANQIU_LINK);
+            }
+            if (StringUtils.isNotBlank(L_YANFA_LAB)) {
+                otherDataModel.set("L_YANFA_LAB", L_YANFA_LAB);
+            }
+            if (StringUtils.isNotBlank(L_YANFA_LINK)) {
+                otherDataModel.set("L_YANFA_LINK", L_YANFA_LINK);
+            }
+            if (StringUtils.isNotBlank(L_JIANCE_LAB)) {
+                otherDataModel.set("L_JIANCE_LAB", L_JIANCE_LAB);
+            }
+            if (StringUtils.isNotBlank(L_JIANCE_LINK)) {
+                otherDataModel.set("L_JIANCE_LINK", L_JIANCE_LINK);
+            }
+            if (StringUtils.isNotBlank(L_ZHIZAO_LAB)) {
+                otherDataModel.set("L_ZHIZAO_LAB", L_ZHIZAO_LAB);
+            }
+            if (StringUtils.isNotBlank(L_ZHIZAO_LINK)) {
+                otherDataModel.set("L_ZHIZAO_LINK", L_ZHIZAO_LINK);
+            }
+            if (StringUtils.isNotBlank(M_NAME)) {
+                otherDataModel.set("M_NAME", M_NAME);
+            }
+            if (StringUtils.isNotBlank(M_LAB)) {
+                otherDataModel.set("M_LAB", M_LAB);
+            }
+            if (StringUtils.isNotBlank(M_PERSONNEL)) {
+                otherDataModel.set("M_PERSONNEL", M_PERSONNEL);
+            }
+            if (StringUtils.isNotBlank(M_DEVICE)) {
+                otherDataModel.set("M_DEVICE", M_DEVICE);
+            }
+            if (StringUtils.isNotBlank(M_ORDER)) {
+                otherDataModel.set("M_ORDER", M_ORDER);
+            }
+            if (StringUtils.isNotBlank(id)) {
+                otherDataModel.update();
+            } else {
+                otherDataModel.save();
+            }
+            resultMap.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultMap.put("result", false);
+        }
+
+        renderJson(resultMap);
+    }
+
 
 }
