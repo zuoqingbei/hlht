@@ -22,7 +22,7 @@ public class LoginController extends BaseController {
      * @param
      * @time 2018年1月30日 下午4:09:50
      * @author zuoqb
-     * @todo 进入登录页面
+     * @todo 进入前台登录页面
      * @return_type void
      */
     public void home() {
@@ -60,7 +60,7 @@ public class LoginController extends BaseController {
      * @param
      * @time 2018年1月30日 下午4:09:50
      * @author zuoqb
-     * @todo 进入登录页面
+     * @todo 进入首页
      * @return_type void
      */
     public void index() {
@@ -86,7 +86,7 @@ public class LoginController extends BaseController {
             redirect("/admin/mapList");
         } else {
             try {
-                redirect("/login/home?error=" + URLEncoder.encode(map.get("msg").toString(), "UTF-8")
+                redirect("/login/login?error=" + URLEncoder.encode(map.get("msg").toString(), "UTF-8")
                         + "&name=" + URLEncoder.encode(loginName, "UTF-8"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -94,16 +94,26 @@ public class LoginController extends BaseController {
         }
     }
 
-    /**
-     * @param
-     * @time 2018年1月31日 下午1:12:39
-     * @author zuoqb
-     * @todo 退出
-     * @return_type void
-     */
+    /***
+     * @Description: 前台退出
+     * @Date: 2019/6/17 15:33
+     * @return: void
+     * @Author: suncy
+     **/
     public void logout() {
         setSessionAttr("user", null);
         redirect("/login/home");
+    }
+
+    /***
+     * @Description: 后台退出
+     * @Date: 2019/6/17 15:33
+     * @return: void
+     * @Author: suncy
+     **/
+    public void logoutForAdmin() {
+        setSessionAttr("user", null);
+        redirect("/login/index");
     }
 
 }

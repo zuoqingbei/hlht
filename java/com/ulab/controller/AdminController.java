@@ -326,7 +326,7 @@ public class AdminController extends BaseController {
         String professional_code = getPara("professional_code");
         String professional_name = getPara("professional_name");
         String link_status = getPara("link_status");
-        String location = getPara("location");
+        String location = getPara("contents_type");
         String country = getPara("country");
         String city = getPara("city");
         String lng = getPara("lng");

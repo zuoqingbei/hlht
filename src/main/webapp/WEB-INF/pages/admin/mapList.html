@@ -197,13 +197,15 @@
             var id = $(this).parents("tr").children(".index").attr("data");
             addMap(id);
         });
-    };
+    }
+
     function showConfirm(name,id) {
         var confirm = window.confirm("是否确认删除\""+name+"\"？数据删除后无法恢复!");
         if(confirm===true){
         	delData(name,id);
         }
-    };
+    }
+
     //删除数据
     function delData(name,id){
     	$.post("${contextPath}/admin/updateMap",{"id":id,"del_flag":"1"},function(data){
@@ -211,13 +213,8 @@
     		//重新加载数据
     		getMapListData();
     	});
-    };
-    function logout(){
-    	 var confirm = window.confirm("是否确认退出系统？");
-         if(confirm===true){
-        	 $("form").attr("action","${contextPath}/login/logout").submit();
-         }
-    };
+    }
+
     function addMap(id){
     	var url="${contextPath}/admin/mapForm";
     	if(id!=null&&id!=undefined){
