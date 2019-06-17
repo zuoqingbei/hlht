@@ -3,6 +3,8 @@ package com.ulab.controller;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.jfinal.aop.Before;
+import com.ulab.aop.LoginInterceptor;
 import com.ulab.model.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,15 +21,13 @@ import com.ulab.util.UUIDTool;
  * @todo 后台管理相关
  */
 @ControllerBind(controllerKey = "/admin", viewPath = "/admin")
-//@Before({ LoginInterceptor.class })
+@Before({ LoginInterceptor.class })
 public class AdminController extends BaseController {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void userList() {
         render("userList.html");
     }
-
-    ;
 
     /**
      * @param
@@ -111,8 +111,6 @@ public class AdminController extends BaseController {
         render("mapList.html");
     }
 
-    ;
-
     /**
      * @param
      * @time 2018年1月30日 下午4:11:06
@@ -126,8 +124,6 @@ public class AdminController extends BaseController {
         Page<LabMapModel> pager = LabMapModel.dao.pager(pageSize, pageNumber, this);
         renderJson(pager);
     }
-
-    ;
 
     /**
      * @param
