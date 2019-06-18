@@ -149,6 +149,7 @@ function showData(nums){
 };
 //生成单行数据
 function createTrHTML(index,item){
+    console.log('实验室明细单行数据：',item)
 	var tr='';
 	tr+='<tr>';
 	tr+='<td data="'+item.code+'" name="'+item.name+'" class="index">'+((pageNumber-1)*pageSize+index+1)+'</td>';

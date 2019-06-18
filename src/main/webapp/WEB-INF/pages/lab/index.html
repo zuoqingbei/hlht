@@ -55,19 +55,21 @@
     ##layout("right.html", {}){
     ##}
 
+    <div id="logout">退出</div>
 </div>
 <audio id="clickSounds" hidden src="${contextPath!}/static/sounds/cha.wav"></audio>
 <script>
 
 
-    //点击鼠标的声音
     $(function () {
         // 开启flash
         let runFlash = !!navigator.plugins['Shockwave Flash'];
         if(!runFlash){
             $("#runFlashBtn").show();
         }
-
+        $("#logout").click(function () {
+            location.href = '${contextPath!}/login/logout'
+        })
 
     })
 

@@ -97,6 +97,7 @@ h3 {
 
 /*整个页面布局*/
 #content {
+    position: relative;
     display: flex;
     height: 100%;
     /*background-color: #04032d;*/
@@ -128,7 +129,15 @@ h3 {
     background-size: 100% 100%;
     overflow: hidden;
 }
-
+#content >#logout{
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    cursor: pointer;
+}
+#content >#logout:hover{
+    text-decoration: underline;
+}
 video {
     position: relative;
     /*为了让视频溢出水印*/

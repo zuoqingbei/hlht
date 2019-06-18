@@ -19,12 +19,12 @@
                       <input id="labCode" name="labCode" value="${model.code!}" type="hidden">
                       	##if(model.code!=null){
                         <div class="form-group"><strong class="required">*</strong>
-                            <label for="num">编码</label>
+                            <label>编码</label>
                             <input class="form-control"  value="${model.code!}" placeholder="实验室编码"  disabled>
                         </div>
                       	##}else{
                       		 <div class="form-group"><strong class="required">*</strong>
-                            <label for="num">编码</label>
+                            <label>编码</label>
                             <input class="form-control"  value="系统生成" placeholder="实验室编码"  disabled>
                         </div>
                       	##}
@@ -33,11 +33,11 @@
                             <input class="form-control" id="name" name="name"  value="${model.name!}"  placeholder="实验室名称">
                         </div>
                         <div class="form-group"><strong class="required">*</strong>
-                            <label for="jc_name">检测37名称</label>
+                            <label for="jiance37_name">检测37名称</label>
                             <input class="form-control" id="jiance37_name" name="jiance37_name"  value="${model.jiance37_name!}"  placeholder="实验室检测37名称">
                         </div>
                          <div class="form-group">
-                            <label for="contents_type">所属大洲</label>
+                            <label for="continents">所属大洲 ${model.location}</label>
                             <select class="form-control" id="continents" name="contents_type">
                                 <option value="亚洲">亚洲</option>
                                 <option value="非洲">非洲</option>
@@ -122,13 +122,12 @@
                         <div class="form-group">
                             <label for="link_status">是否联通</label>
                             <select class="form-control" id="link_status" name="link_status">
-                            	##if(1==model.link_status){
+                            	##if("1"==model.link_status){
                             		<option value="1" selected>已联通</option>
                                 	<option value="0" >未联通</option>
                             	##}else{
                             		<option value="1">已联通</option>
                                 	<option value="0" selected>未联通</option>
-                            		
                             	##}
                                 
                             </select>
@@ -136,7 +135,8 @@
                         <div class="form-group">
                             <label for="show_in_map">是否显示在地图</label>
                             <select class="form-control" id="show_in_map" name="show_in_map">
-                            	##if(0==model.show_in_map){
+                                <!--这里的返回值后面有空格-->
+                            	##if("0"==model.show_in_map){
                             		<option value="1">是</option>
                                 	<option value="0" selected>否</option>
                             	##}else{
