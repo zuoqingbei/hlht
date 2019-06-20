@@ -100,4 +100,25 @@
     font-size: 1.2em;
     display: inline-block;
     width: 30%;
+    cursor: pointer;
 }
+.input-box .submit:hover{
+    background-color: #67bff3;
+}
+.input-box .submit:active{
+    background-color: #549cc7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
