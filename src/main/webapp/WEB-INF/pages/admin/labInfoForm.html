@@ -39,13 +39,13 @@
                          <div class="form-group">
                             <label for="continents">所属大洲 ${model.location}</label>
                             <select class="form-control" id="continents" name="contents_type">
-                                <option value="亚洲">亚洲</option>
-                                <option value="非洲">非洲</option>
-                                <option value="北美洲">北美洲</option>
-                                <option value="欧洲">欧洲</option>
-                                <option value="大洋洲">大洋洲</option>
-                                <option value="南极洲">南极洲</option>
-                                <option value="南美洲">南美洲</option>
+                                ##for(type in locationList){
+                                    ##if(model.location==type){
+                                        <option value="${type!}" selected>${type!}</option>
+                                    ##}else{
+                                        <option value="${type!}">${type!}</option>
+                                    ##}
+                                ##}
                             </select>
                         </div>
                         <div class="form-group">
@@ -64,7 +64,6 @@
                             <label for="lat">纬度</label>
                             <input class="form-control" id="lat" name="lat" value="${model.lat!}" placeholder="地理纬度">
                         </div>
-
                     </div>
                     <input type="hidden" name="lab_type_name" id="lab_type_name" value="${model.lab_type_name!}">
                     <div class="col-md-6">

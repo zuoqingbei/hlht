@@ -49,6 +49,7 @@
 	                    <th>序号</th>
 	                	<th>用户名</th>
 	                    <th>登录名</th>
+                        <th>角色</th>
 	                    <th>状态</th>
 	                    <th>时间</th>
 	                    <th>操作</th>
@@ -117,6 +118,7 @@
     	tr+='<td data="'+item.id+'" name="'+item.name+'" class="index">'+((pageNumber-1)*pageSize+index+1)+'</td>';
     	tr+='<td>'+item.name+'</td>';
     	tr+='<td>'+item.login_name+'</td>';
+        tr+='<td>'+(item.role==1?"管理员":"普通用户")+'</td>';
     	tr+='<td>'+(item.forbid==1?"禁止登陆":"允许登陆")+'</td>';
     	tr+='<td>'+(item.update_date==null?(item.create_date==null?"":item.create_date):item.update_date)+'</td>';
     	tr+='<td><div role="presentation" class="dropdown">';

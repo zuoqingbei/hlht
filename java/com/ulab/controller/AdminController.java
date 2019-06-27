@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.jfinal.aop.Before;
+import com.jfinal.core.ActionInvocation;
 import com.ulab.aop.LoginInterceptor;
 import com.ulab.model.*;
 import org.apache.commons.lang3.StringUtils;
@@ -21,12 +22,15 @@ import com.ulab.util.UUIDTool;
  * @todo 后台管理相关
  */
 @ControllerBind(controllerKey = "/admin", viewPath = "/admin")
-@Before({ LoginInterceptor.class })
+@Before({LoginInterceptor.class})
 public class AdminController extends BaseController {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void userList() {
-        render("userList.html");
+        if(getSessionAttr("user")){
+            render("userList.html");
+        }
+        redirect("/login/index");
     }
 
     /**
@@ -67,6 +71,7 @@ public class AdminController extends BaseController {
         String login_name = getPara("login_name");
         String pwd = getPara("pwd");
         String forbid = getPara("forbid", "0");
+        String role = getPara("role", "2");//默认普通员工
         String del_flag = getPara("del_flag", "0");
         if (StringUtils.isNotBlank(uid)) {
             user = UserModel.dao.findById(uid);
@@ -86,6 +91,9 @@ public class AdminController extends BaseController {
         }
         if (StringUtils.isNotBlank(forbid)) {
             user.set("forbid", forbid);
+        }
+        if (StringUtils.isNotBlank(role)) {
+            user.set("role", role);
         }
         user.set("del_flag", del_flag);
         if (StringUtils.isNotBlank(uid)) {
@@ -284,12 +292,24 @@ public class AdminController extends BaseController {
 			}
 		}
 		setAttr("dataCenters",dataCenters);*/
+
+
+        //专业领域
+        List<String> locationList = new ArrayList<>();
+        locationList.add("亚洲");
+        locationList.add("非洲");
+        locationList.add("北美洲");
+        locationList.add("欧洲");
+        locationList.add("大洋洲");
+        locationList.add("南极洲");
+        locationList.add("南美洲");
+
+        setAttr("locationList", locationList);
+
         //归类
         setAttr("glTypes", LabMapModel.dao.find("select * from t_b_lab_map where del_flag=0 "));
         render("labInfoForm.html");
     }
-
-    ;
 
     /**
      * @param
@@ -318,7 +338,7 @@ public class AdminController extends BaseController {
         String lab_type_code = getPara("lab_type_code");
         String lab_type_name = getPara("lab_type_name");
         String belong_gl_code = getPara("belong_gl_code");
-        String belong_gl_name = getPara("belong_gl_name");
+        String belong_gl_name = LabMapModel.dao.find("select * from t_b_lab_map where del_flag=0 and id = " + belong_gl_code).get(0).get("name");
         String product_code = getPara("product_codes");//逗号拼接
         String product_name = getPara("product_name");//逗号拼接
         String properties_code = getPara("properties_code");

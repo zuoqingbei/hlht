@@ -3,6 +3,7 @@ package com.ulab.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ulab.aop.LoginInterceptor;
 import org.apache.commons.lang3.StringUtils;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
@@ -245,6 +246,7 @@ public class UlabCofig extends JFinalConfig {
 	public void configInterceptor(Interceptors me) {
 		//设置全局拦截器
 		me.add(new SessionInViewInterceptor());
+        me.add(new LoginInterceptor());
 	}
 
 	@Override

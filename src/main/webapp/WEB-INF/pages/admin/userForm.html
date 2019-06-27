@@ -28,12 +28,12 @@
                         </div>
 						<div class="form-group"><strong class="required">*</strong>
                             <label for="login_name">密    码</label>
-                            <input class="form-control" type="password" id="pwd" name="pwd"   placeholder="登录密码">
+                            <input class="form-control" type="password" id="pwd" name="pwd" value="${model.pwd!}" placeholder="登录密码">
                         </div>
                         
                         <div class="form-group">
-                            <label for="show_in_map">禁止登陆</label>
-                            <select class="form-control" id="show_in_map" name="forbid">
+                            <label for="forbid">禁止登陆</label>
+                            <select class="form-control" id="forbid" name="forbid">
                             	##if(1==model.forbid){
                             		<option value="1" selected>禁止登陆</option>
                                 	<option value="0" >允许登陆</option>
@@ -41,9 +41,21 @@
                                 	<option value="1">禁止登陆</option>
                                 	<option value="0" selected>允许登陆</option>
                             	##}
-                                
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="role">角色</label>
+                            <select class="form-control" id="role" name="role">
+                                ##if('1'==model.role){
+                                <option value="1" selected>管理员</option>
+                                <option value="2" >普通用户</option>
+                                ##}else{
+                                <option value="1">管理员</option>
+                                <option value="2" selected>普通用户</option>
+                                ##}
+                            </select>
+                        </div>
+
                         <br>
                     </div>
                     <div class="col-md-12 ">

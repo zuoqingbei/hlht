@@ -48,7 +48,10 @@ public class UserModel extends Model<UserModel> {
             map.put("success", false);
             map.put("msg", "用户不存在！");
         } else {
-            if ("1".equals(user.getStr("forbid"))) {
+            if (!"1".equals(user.getStr("role"))) {
+                map.put("success", false);
+                map.put("msg", "请使用管理员账号登陆系统！");
+            } else if ("1".equals(user.getStr("forbid"))) {
                 map.put("success", false);
                 map.put("msg", "用户禁止登陆，请联系管理员！");
             } else {
