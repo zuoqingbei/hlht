@@ -80,10 +80,25 @@ public class LoginController extends BaseController {
         String loginName = getPara("name");
         String pwd = getPara("pwd");
         Map<String, Object> map = UserModel.dao.login(loginName, pwd);
+
+        // 校验成功
         if (Boolean.parseBoolean(map.get("success").toString())) {
-            //登陆成功
-            setSessionAttr("user", map.get("user"));
-            redirect("/admin/mapList");
+
+            if ("1".equals(((UserModel) map.get("user")).get("role"))) {
+
+                //登陆成功
+                setSessionAttr("user", map.get("user"));
+                redirect("/admin/mapList");
+            } else {
+                map.put("success", false);
+                map.put("msg", "请使用管理员账号登陆系统！");
+                try {
+                    redirect("/login/login?error=" + URLEncoder.encode(map.get("msg").toString(), "UTF-8")
+                            + "&name=" + URLEncoder.encode(loginName, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             try {
                 redirect("/login/login?error=" + URLEncoder.encode(map.get("msg").toString(), "UTF-8")
