@@ -91,7 +91,7 @@ public class LoginController extends BaseController {
                 redirect("/admin/mapList");
             } else {
                 map.put("success", false);
-                map.put("msg", "请使用管理员账号登陆系统！");
+                map.put("msg", "5");// 请使用管理员账号登陆系统！
                 try {
                     redirect("/login/login?error=" + URLEncoder.encode(map.get("msg").toString(), "UTF-8")
                             + "&name=" + URLEncoder.encode(loginName, "UTF-8"));

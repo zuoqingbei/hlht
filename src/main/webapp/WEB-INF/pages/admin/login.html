@@ -5,6 +5,7 @@
     <title>ULab后台管理系统</title>
     <link rel="stylesheet" href="${contextPath}/static/admin/css/common.css"/>
     <link rel="stylesheet" href="${contextPath}/static/admin/css/login.css">
+    <script src="${contextPath}/static/admin/js/jquery-2.2.4.js"></script>
 
 </head>
 <body>
@@ -14,22 +15,18 @@
         <div class="box">
             <div class="box-head">用户登录</div>
             <form action="${contextPath}/login/loginValidate">
-	            <div class="input-box">
-	                <div class="username">
-	                    <div></div>
-	                    <input type="text" name="name" value="${name!}" class="fs-login-username" id="name" placeholder="请输入用户名"/>
-	                </div>
-	                <div class="pwd">
-	                    <div></div>
-	                    <input type="password"  name="pwd" value="" class="fs-login-password" id="pwd" placeholder="请输入密码"/>
-	                </div>
-	                ##if(error!=""){
-	                	<div class="error_ms" style="display:block">${error!}</div>
-	                ##}else{
-	                	<div class="error_ms" style="display:none"></div>
-	                ##}
-	                <button id="fs-login-btn" onclick="submitMethod()" class="submit" expired="true">登录</button>
-	            </div>
+                <div class="input-box">
+                    <div class="username">
+                        <div></div>
+                        <input type="text" name="name" value="${name!}" class="fs-login-username" id="name" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="pwd">
+                        <div></div>
+                        <input type="password" name="pwd" value="" class="fs-login-password" id="pwd" placeholder="请输入密码"/>
+                    </div>
+                    <div class="error_ms" id="error_ms" style="display: block;margin-left: 5em;margin-top: 10px;    "></div>
+                    <button id="fs-login-btn" onclick="submitMethod()" class="submit" expired="true">登录</button>
+                </div>
             </form>
         </div>
     </div>
@@ -38,30 +35,47 @@
 </div>
 
 </body>
- <script src="${contextPath}/static/admin/assets/js/jquery.js"></script>
+<script src="${contextPath}/static/admin/assets/js/jquery.js"></script>
 <script src="${contextPath}/static/admin/assets/js/bootstrap.min.js"></script>
- <script>
-     function submitMethod(){
-    	 var name=$("#name").val();
-    	 var pwd=$("#pwd").val();
-    	 if(name==""){
-    		 showError("请输入用户名!");
-    		 return ;
-    	 }
-    	 if(pwd==""){
-    		 showError("请输入密码!");
-    		 return ;
-    	 }
-    	 $("form").submit();
-     };
-     function showError(msg){
-    	 $(".error_ms").html(msg);
-    	 $(".error_ms").css("display","block");
-     };
-     
-     function hideError(){
-    	 $(".error_ms").html("");
-    	 $(".error_ms").css("display","none");
-     };
-</script> 
+<script>
+    $(function () {
+        var msg = '${error!}';
+        if ('1' == msg) {
+            msg = "用户不存在！";
+        } else if ('2' == msg) {
+            msg = "禁止登陆，请联系管理员！";
+        } else if ('3' == msg) {
+            msg = "登陆成功！";
+        } else if ('4' == msg) {
+            msg = "密码错误！";
+        } else if ('5' == msg) {
+            msg = "请使用管理员账号登陆系统！";
+        }
+        showError(msg);
+    });
+
+    function submitMethod() {
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+        if (name == "") {
+            showError("请输入用户名!");
+            return;
+        }
+        if (pwd == "") {
+            showError("请输入密码!");
+            return;
+        }
+        $("form").submit();
+    };
+
+    function showError(msg) {
+        $(".error_ms").html(msg);
+        $(".error_ms").css("display", "block");
+    };
+
+    function hideError() {
+        $(".error_ms").html("");
+        $(".error_ms").css("display", "none");
+    };
+</script>
 </html>

@@ -31,11 +31,7 @@
                     <div></div>
                     <input type="password" name="pwd" value="" class="fs-login-password" id="pwd" placeholder="请输入密码"/>
                 </div>
-                 ##if(error!=""){
-                	<div class="error_ms" style="display:block">${error!}</div>
-                ##}else{
-                	<div class="error_ms" style="display:none"></div>
-                ##}
+                <div class="error_ms" id="error_ms" style="display: block"></div>
                 <a id="fs-login-btn" onclick="submitMethod()" class="submit" expired="true">登录</a>
             </div>
             </form>
@@ -49,6 +45,23 @@
     /*屏幕描述
      一共 7x3 个屏幕，每一块屏幕是1360x768，
      总共的大小就是9520x2304，比预计像素少7x6=42个像素。*/
+
+
+    $(function () {
+        var msg = '${error!}';
+        if('1' == msg){
+            msg = "用户不存在！";
+        }else if('2' == msg){
+            msg = "禁止登陆，请联系管理员！";
+        }else if('3' == msg){
+            msg = "登陆成功！";
+        }else if('4' == msg){
+            msg = "密码错误！";
+        }
+        $("#error_ms").html(msg);
+    });
+
+
 
     var pageH = $(window).height();
     var pageW = pageH * 16 * 7 / (9 * 3);
