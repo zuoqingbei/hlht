@@ -47,13 +47,14 @@
                          <div class="form-group">
                             <label for="data_center_id">数据中心</label>
                             <select class="form-control" id="data_center_id" name="data_center_id">
+                                <option value=""></option>
 	                            ##for(p in dataCenters!){
 	                            	<optgroup label="${p.center_name!}">
 	                            	##for(c in p.children!){
-	                            	    ##if(c.id==model.data_center_id){
-	                            	   		 <option value="${c.id!}">${c.center_name!}</option>
+	                            	    ##if(c.id == model.data_center_id){
+	                            	   		 <option value="${c.id!}" selected>${c.center_name!}</option>
 	                            	    ##}else{
-	                            	    	 <option value="${c.id!}" selected>${c.center_name!}</option>
+	                            	    	 <option value="${c.id!}">${c.center_name!}</option>
 	                            	    ##}
 	                            	##}
 		                            </optgroup>
