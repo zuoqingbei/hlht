@@ -463,7 +463,7 @@ function getTopicHtml(currentPoint) {
     var imgUrl = currentPoint.imgUrl;
     // console.log("currentPoint.centerId",centerId);
 
-    return $((centerId ? ' <div class="echart_tip">' : ' <div class="echart_tip noCenterData">') +
+    return $((centerId&&centerId!=='0' ? ' <div class="echart_tip">' : ' <div class="echart_tip noCenterData">') +
         '<div class="dialog_title echart_content">' +
         //下面设置了没有图片时的默认显示
         '   <img src="' + (imgUrl || '../static/img/ico/logo_pinyin.png') + '" alt="默认图片">' +
