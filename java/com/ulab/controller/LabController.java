@@ -1036,12 +1036,6 @@ public class LabController extends BaseController {
     }
 
     public void index() {
-
-        UserModel user = (UserModel) getRequest().getSession().getAttribute("user");
-        if(user == null){
-            redirect("/login/home");
-            return;
-        }
         List<Record> labType = DicModel.dao.findDicByType("lab_type");
         List<Record> productLine = DicModel.dao.findDicByType("line_type");
         setAttr("toLabData", getPara("toLabData", ""));

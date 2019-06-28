@@ -246,7 +246,6 @@ public class UlabCofig extends JFinalConfig {
 	public void configInterceptor(Interceptors me) {
 		//设置全局拦截器
 		me.add(new SessionInViewInterceptor());
-        me.add(new LoginInterceptor());
 	}
 
 	@Override

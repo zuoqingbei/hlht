@@ -24,12 +24,14 @@ public class LoginInterceptor implements Interceptor {
         }
         UserModel user = c.getSessionAttr("user");
         if (user == null) {
-            //未登陆
-            c.redirect("/login/index");
+            if(!c.getRequestUrl().contains("/admin")){
+                c.redirect("/login/home");
+            }else{
+                c.redirect("/login/login");
+            }
         } else {
             ai.invoke();
         }
-        ai.invoke();
     }
 
 }
