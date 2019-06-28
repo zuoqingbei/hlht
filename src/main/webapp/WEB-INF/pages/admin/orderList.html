@@ -238,7 +238,6 @@
             },
             updateItem(item) {
                 localStorage.setItem('updateItem', JSON.stringify(item));
-                alert("修改成功！");
                 location.href = contextPath + '/admin/orderForm?id=' + item.id;
             }
         }
