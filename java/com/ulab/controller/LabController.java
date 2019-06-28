@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jfinal.plugin.activerecord.Page;
 import com.ulab.model.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -1255,6 +1256,30 @@ public class LabController extends BaseController {
             resultMap.put("managementIndicators", managementIndicatorsMap);
 
         }
+        renderJson(resultMap);
+    }
+
+    /***
+     * @Description: 前台显示订单列表和订单统计信息
+     * @Date: 2019/6/13 13:46
+
+     * @return: void
+     * @Author: suncy
+     **/
+    public void orderListDataIndex() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 查询订单统计信息
+        List<OrderTotalModel> headerList = OrderTotalModel.dao.findList();
+        if (headerList != null && headerList.size() > 0) {
+            resultMap.put("header", headerList.get(0));
+        }
+
+        // 查询列表数据
+        int pageNumber = getParaToInt("pageNumber", 1);//当前页码
+        int pageSize = getParaToInt("pageSize", 999999999);//每页条数
+        Page<OrderListModel> pager = OrderListModel.dao.pager(pageSize, pageNumber, this);
+        resultMap.put("itemList", pager.getList());
         renderJson(resultMap);
     }
 }

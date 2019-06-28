@@ -445,30 +445,6 @@ public class AdminController extends BaseController {
     }
 
     /***
-     * @Description: 前台显示订单列表和订单统计信息
-     * @Date: 2019/6/13 13:46
-
-     * @return: void
-     * @Author: suncy
-     **/
-    public void orderListDataIndex() {
-        Map<String, Object> resultMap = new HashMap<>();
-
-        // 查询订单统计信息
-        List<OrderTotalModel> headerList = OrderTotalModel.dao.findList();
-        if (headerList != null && headerList.size() > 0) {
-            resultMap.put("header", headerList.get(0));
-        }
-
-        // 查询列表数据
-        int pageNumber = getParaToInt("pageNumber", 1);//当前页码
-        int pageSize = getParaToInt("pageSize", 999999999);//每页条数
-        Page<OrderListModel> pager = OrderListModel.dao.pager(pageSize, pageNumber, this);
-        resultMap.put("itemList", pager.getList());
-        renderJson(resultMap);
-    }
-
-    /***
      * @Description: 订单统计数据
      * @Date: 2019/6/12 17:20
 
