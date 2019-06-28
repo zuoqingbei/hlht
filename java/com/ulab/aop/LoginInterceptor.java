@@ -22,15 +22,32 @@ public class LoginInterceptor implements Interceptor {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         UserModel user = c.getSessionAttr("user");
+
+        // 未登录
         if (user == null) {
-            if(!c.getRequestUrl().contains("/admin")){
+            // 前台
+            if (!c.getRequestUrl().contains("/admin")) {
                 c.redirect("/login/home");
-            }else{
+            }
+            // 后台
+            if (c.getRequestUrl().contains("/admin")) {
                 c.redirect("/login/login");
             }
-        } else {
-            ai.invoke();
+        }
+        // 已登录
+        else {
+            // 前台
+            if (!c.getRequestUrl().contains("/admin")) {
+                ai.invoke();
+            }
+            // 后台
+            else if (c.getRequestUrl().contains("/admin") && "1".equals(user.get("role"))) {
+                ai.invoke();
+            } else {
+                c.redirect("/login/login");
+            }
         }
     }
 
