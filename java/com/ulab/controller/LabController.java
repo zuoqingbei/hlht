@@ -1201,4 +1201,60 @@ public class LabController extends BaseController {
         order.set("now_num", Integer.parseInt(order.get("now_num") + "") + Integer.parseInt(change)).update();
         renderJson(order);
     }
+
+
+    /**
+     * @Description: 其他信息展示
+     * @Date: 2019/6/13 10:13
+     * @return: void
+     * @Author: suncy
+     **/
+    public void otherData() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<OtherDataModel> list = OtherDataModel.dao.findList();
+
+        if (list != null && list.size() > 0) {
+            OtherDataModel otherDataModel = list.get(0);
+            resultMap.put("id", otherDataModel.get("id"));
+
+            Map<String, Object> titleMap = new HashMap<>();
+            titleMap.put("t_name", otherDataModel.get("t_name"));
+            titleMap.put("t_en_name", otherDataModel.get("t_en_name"));
+            titleMap.put("t_zh", otherDataModel.get("t_zh"));
+            titleMap.put("t_en", otherDataModel.get("t_en"));
+            resultMap.put("title", titleMap);
+
+            Map<String, Object> distributionMap = new HashMap<>();
+            distributionMap.put("d_name", otherDataModel.get("d_name"));
+            distributionMap.put("d_dazhou", otherDataModel.get("d_dazhou"));
+            distributionMap.put("d_guojia", otherDataModel.get("d_guojia"));
+            distributionMap.put("d_zhongxin", otherDataModel.get("d_zhongxin"));
+            distributionMap.put("d_yuanqu", otherDataModel.get("d_yuanqu"));
+            distributionMap.put("d_gongchang", otherDataModel.get("d_gongchang"));
+            resultMap.put("distribution", distributionMap);
+
+            Map<String, Object> linkMap = new HashMap<>();
+            linkMap.put("l_name", otherDataModel.get("l_name"));
+            linkMap.put("l_quanqiu_lab", otherDataModel.get("l_quanqiu_lab"));
+            linkMap.put("l_quanqiu_link", otherDataModel.get("l_quanqiu_link"));
+            linkMap.put("l_yanfa_lab", otherDataModel.get("l_yanfa_lab"));
+            linkMap.put("l_yanfa_link", otherDataModel.get("l_yanfa_link"));
+            linkMap.put("l_jiance_lab", otherDataModel.get("l_jiance_lab"));
+            linkMap.put("l_jiance_link", otherDataModel.get("l_jiance_link"));
+            linkMap.put("l_zhizao_lab", otherDataModel.get("l_zhizao_lab"));
+            linkMap.put("l_zhizao_link", otherDataModel.get("l_zhizao_link"));
+            resultMap.put("link", linkMap);
+
+            Map<String, Object> managementIndicatorsMap = new HashMap<>();
+            managementIndicatorsMap.put("m_name", otherDataModel.get("m_name"));
+            managementIndicatorsMap.put("m_lab", otherDataModel.get("m_lab"));
+            managementIndicatorsMap.put("m_personnel", otherDataModel.get("m_personnel"));
+            managementIndicatorsMap.put("m_device", otherDataModel.get("m_device"));
+            managementIndicatorsMap.put("m_order", otherDataModel.get("m_order"));
+            resultMap.put("managementIndicators", managementIndicatorsMap);
+
+        }
+        renderJson(resultMap);
+    }
 }
