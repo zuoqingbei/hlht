@@ -46,20 +46,20 @@ public class UserModel extends Model<UserModel> {
         UserModel user = getUserByLoginName(loginName);
         if (user == null) {
             map.put("success", false);
-            map.put("msg", "用户不存在！");
+            map.put("msg", "1");//用户不存在！
         } else {
             if ("1".equals(user.getStr("forbid"))) {
                 map.put("success", false);
-                map.put("msg", "用户禁止登陆，请联系管理员！");
+                map.put("msg", "2");//用户禁止登陆，请联系管理员！
             } else {
                 //判断密码是否正确
                 if (MD5Util.getStringMD5(pwd).equals(user.getStr("pwd"))) {
                     map.put("success", true);
-                    map.put("msg", "登陆成功！");
+                    map.put("msg", "3");//登陆成功！
                     map.put("user", user);
                 } else {
                     map.put("success", false);
-                    map.put("msg", "密码错误！");
+                    map.put("msg", "4");//密码错误！
                 }
             }
         }
