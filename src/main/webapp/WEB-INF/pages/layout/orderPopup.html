@@ -10,7 +10,7 @@
     </head>
     <body>
         <script>
-            bodyScale= parent.parent.bodyScale * .7;
+            bodyScale = parent.parent.bodyScale * .7;
             $("html").css("font-size", bodyScale * 16 + "px");
         </script>
         <div id="container">
@@ -131,7 +131,7 @@
                         header: {},
                         itemList: [],
                     },
-                    orderListHeader:['total_num','under_test','to_be_distributed','testing','completed','completion'],
+                    orderListHeader: ['total_num', 'under_test', 'to_be_distributed', 'testing', 'completed', 'completion'],
                     curItemList: [],
                     pageCur: 1,
                     itemPerPage: 3,
@@ -140,23 +140,23 @@
                 beforeMount() {
                     this.getOrderList();
                 },
-                mounted(){
+                mounted() {
                     this.leftNavAction();
                 },
                 methods: {
                     getOrderList() {
                         // $.get(contextPath + "/static/data/orderListForPage.json", data => {
-                        $.get(contextPath + "/admin/orderListDataIndex", data => {
+                        $.get(contextPath + "/lab/orderListDataIndex", data => {
                             this.orderList = data;
                             let isInt = this.orderList.itemList.length % this.itemPerPage === 0;
                             this.pageTotal = (this.orderList.itemList.length / this.itemPerPage + (isInt ? 0 : 1)) | 0;
                             this.pagination();
-
                         })
                     },
                     toCurve() {
                         $(".list").hide().siblings().show();
-                        $(".curve .btnGroup>li>button:eq(0)").click()
+                        // 不知为何点2遍才能出来！
+                        $(".curve .btnGroup>li:eq(0)>button").click().click()
                     },
                     closeCurve() {
                         $(".curve").hide().siblings().show();
@@ -182,7 +182,7 @@
                         }
                         this.pagination()
                     },
-                    leftNavAction(){
+                    leftNavAction() {
                         $(".left-nav>ul>li").click(function () {
                             $(this).toggleClass("show");
                             return false;
