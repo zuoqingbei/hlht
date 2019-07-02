@@ -87,7 +87,7 @@
                         <ul class="btnGroup">
                             <li :class="index===0?'active':''"
                                 v-for="(item,index) in ['S20180629003-01','S20180629003-02','S20180629003-03']">
-                                <button @click="loadCurve">{{item}}</button>
+                                <button>{{item}}</button>
                             </li>
                         </ul>
                     </header>
@@ -142,6 +142,7 @@
                 },
                 mounted() {
                     this.leftNavAction();
+                    this.loadCurve();
                 },
                 methods: {
                     getOrderList() {

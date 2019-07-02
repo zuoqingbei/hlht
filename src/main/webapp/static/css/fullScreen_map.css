@@ -57,8 +57,8 @@
 #l.fullScreen_map .sphere,
 #l.fullScreen_map .flat{
     position: relative;
-    flex: 0 0 100%;
-    height: auto;
+    flex: 1;
+    /*height: auto;*/
 }
 #l.fullScreen_map .sphere .mapArea{
     flex:.81;
@@ -193,7 +193,7 @@
 }
 /*平面地图左边第二个*/
 #l.fullScreen_map .flat-left-bottom .chartBorder .myChart{
-    height: 47%;
+    height: 60%;
 }
 #l.fullScreen_map .flat-left>div .chartBorder,
 #l.fullScreen_map .flat-right>div .chartBorder{
@@ -242,7 +242,7 @@
 
 #l.fullScreen_map .flat .flat-footer {
     flex: auto;
-    font-size: 1.1em;
+    /*font-size: 1.1em;*/
     position: relative;
     top: -8em;
     height: 54em;
@@ -250,7 +250,8 @@
 
 #l.fullScreen_map .toLabData{
     padding: .5em 5em .4em;
-    bottom:2%;
+    bottom: 1em;
+    font-size: .95em;
 }
 #l.fullScreen_map .toLabData>a{
     color: #6cf;
@@ -260,20 +261,23 @@
     z-index: 9999;
     font-size: .9em;
     width: 22%;
-    height: 41%;
-    top: 30%;
+    height: 5em;
+    top: 2em;
     background-image: url(../img/nav-border_noBottom.png);
 }
 #l.fullScreen_map .flat-footer .legend .labLine {
-    margin-top: 0;
+    margin-top: .5em;
+    height: 1.5em;
+    font-size: .95em;
 }
 #l.fullScreen_map .flat-footer .legend-l,
 #l.fullScreen_map .flat-footer .legend-r {
-    height: 83%;
+    height: 4.3em;
     width: 13%;
-    line-height: 3.4em;
-    top: 17.6%;
+    line-height: 4.3em;
+    top: .9em;
     z-index: 10;
+    font-size: .95em;
 }
 #l.fullScreen_map .flat-footer .legend .selectAll{
     padding-top: .25em;

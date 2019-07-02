@@ -546,7 +546,7 @@
 #l .flat-left>div .chartBorder .myChart,
 #l .flat-right>div .chartBorder .myChart{
     width: 100%;
-    /*height: 90%;*/
+    height: 90%;
 }
 #l .sphere .chartBorder h4,
 #l .flat .chartBorder h4{

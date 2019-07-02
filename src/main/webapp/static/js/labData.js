@@ -92,9 +92,9 @@ function createDataCenterHtml(data, dataType) {
                 }
                 // console.log("item",item)
                 dataCenterMap.put(item.id, item);
-                if(item.center_name==='检测中心'){
+               /* if(item.center_name==='检测中心'){
                     item.center_name='检测中心'
-                }
+                }*/
                 // console.log(item.id)
                 if (!haschildren) {
                     htmls += '<li data-centerid="' + item.id + '" ';
@@ -152,11 +152,11 @@ function createClickFuntionForDataCenter(item) {
 
 function setCenterLabHtmlDB(dataCenter, dataCenterId) {
     /*数据库恢复时出错，暂时没有后台，就这这里改一下应急*/
-    if (dataCenterId === '1') {
+    /*if (dataCenterId === '1') {
         dataCenter.center_name = '检测中心';
         dataCenter.center_desc = '海尔质量检测认证中心占地约18000㎡，拥有一流的专业实验室57个，覆盖安全、性能、EMC、噪音、运输、可靠性、成套智能家电等10大整机专业测试领域和电脑板、电机、压缩机、橡塑、钣金等10大类模块的6000多个项目的检测能力。中心拥有一支技术专业、经验丰富的团队，严格按照ISO/IEC17025标准体系要求，在电子电器产品及关键模块领域具有主导和参与标准制定的能力。合作的50多家国际认证机构如VDE、UL、JET、TUV等实现了检测数据互认，可为海尔销往全球各地的产品提供专业、快速、经济的检测认证。';
         dataCenter.img_content = '../static/img/labMain/centerLab0.png';
-    }
+    }*/
     $(".labMain_cblt_tone_world").html("<p style:'font-size:1.3em'>" + dataCenter.center_desc + "</p>");
     $(".labMain_cblt_ttwo_world img").attr("src", dataCenter.img_content);
     $("#labName_world").html(dataCenter.center_name);

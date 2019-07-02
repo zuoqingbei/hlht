@@ -127,9 +127,10 @@ function navSelectAll() {
     $(".l").find(".legend .selectAll label").click(function () {
         var $actLi = $(this).parents(".l").find(".legend .labLine ul.current").find("li");
             $(this).css("color", "#6cf");
-            bgImgOn($(this));
-            // $actLi.addClass("active").each(function () {
-            $actLi.each(function () {
+            bgImgOn($(this)); //全选前面的对勾
+        // $actLi.addClass("active");
+            $actLi.addClass("active").each(function () {
+            // $actLi.each(function () {
                 bgImgOn($(this))
             });
         selectActLi($(this));
@@ -184,7 +185,7 @@ function navSelectA() {//这里会触发地图中要加载的数据
     $(".l").find(".legend ul li a").click(function () {
         var bgImg = $(this).find("span").css("background-image");
         var $selectLi = $(this).parent();
-        // $selectLi.addClass("active");
+        $selectLi.addClass("active");
         bgImgOn($selectLi);
         $selectLi.siblings().removeClass("active").each(function () {
             bgImgOff($(this))
