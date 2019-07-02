@@ -589,6 +589,12 @@ public class AdminController extends BaseController {
             String COMPLETED = getPara("completed", "");
             String COMPLETION = getPara("completion", "");
 
+            String XINGHAO = getPara("xinghao", "");
+            String SHIYANXIANGMU  = getPara("shiyanxiangmu", "");
+            String VAR1 = getPara("var1", "");
+            String VAR2 = getPara("var2", "");
+            String VAR3 = getPara("var3", "");
+
             if (StringUtils.isNotBlank(id)) {
                 orderTotalModel = OrderTotalModel.dao.findById(id);
             } else {
@@ -600,6 +606,13 @@ public class AdminController extends BaseController {
             orderTotalModel.set("TESTING", TESTING);
             orderTotalModel.set("COMPLETED", COMPLETED);
             orderTotalModel.set("COMPLETION", COMPLETION);
+
+            orderTotalModel.set("XINGHAO", XINGHAO);
+            orderTotalModel.set("SHIYANXIANGMU", SHIYANXIANGMU);
+            orderTotalModel.set("VAR1", VAR1);
+            orderTotalModel.set("VAR2", VAR2);
+            orderTotalModel.set("VAR3", VAR3);
+
             orderTotalModel.set("del_flag", "0");
             if (StringUtils.isNotBlank(id)) {
                 orderTotalModel.update();
