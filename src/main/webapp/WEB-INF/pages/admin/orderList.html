@@ -41,8 +41,6 @@
                         <label>待分配<input class="form-control input-sm" v-model="header.to_be_distributed"></label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>测试中<input class="form-control input-sm" v-model="header.testing"></label>
@@ -58,11 +56,43 @@
                         <label>完成率<input class="form-control input-sm" v-model="header.completion"></label>
                     </div>
                 </div>
+            </div>
+            <div class="page-header">
+                <h2>曲线信息配置</h2>
+            </div>
+            <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>&emsp;<br><button class="btn btn-primary btn-sm" id="orderHeaderSubmit" @click="orderHeaderSubmit">提交</button></label>
-
+                        <label>型号<input class="form-control input-sm" v-model="header.xinghao"></label>
                     </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>实验项目<input class="form-control input-sm" v-model="header.shiyanxiangmu"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>测试编号1:<input class="form-control input-sm" v-model="header.var1"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>测试编号2:<input class="form-control input-sm" v-model="header.var2"></label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>测试编号3:<input class="form-control input-sm" v-model="header.var3"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-md-offset-5" style="padding-left: 0">
+                <div class="form-group">
+                    <button class="btn btn-primary form-control" id="orderHeaderSubmit" @click="orderHeaderSubmit">提交
+                    </button>
                 </div>
             </div>
         </div>
@@ -184,11 +214,11 @@
                     this.pagination();
                 })
             },
-            orderHeaderSubmit(){
+            orderHeaderSubmit() {
                 const that = this;
                 console.log(that.header);
-                $.get(contextPath + "/admin/updateOrderTotal",that.header, data => {
-                    if(data.result){
+                $.get(contextPath + "/admin/updateOrderTotal", that.header, data => {
+                    if (data.result) {
                         alert('修改成功！');
                         location = '';
                     }

@@ -538,6 +538,10 @@ function findSensorDataCenetrTabAjax(labTypeCode, url, testUnitId) {
     mlabTypeCode = labTypeCode;
     murl = url;
     mtestUnitId = testUnitId;
+    $("#center_sybh_id_world").html('');
+    $("#center_ypbm_id_world").html('');
+    $("#center_cpxh_id_world").html('');
+    $("#center_testPro_id_world").html('');
     $.post(contextPath + "/lab/searchRealTimeDataCenterTabAjax", {
         "labTypeCode": labTypeCode,
         "url": url,

@@ -81,14 +81,13 @@
                     <header>
                         <div class="close" @click="closeCurve">×</div>
                         <ul class="title">
-                            <li>型号：HT10TG31SW</li>
-                            <li>实验项目：耗电量</li>
+                            <li>型号：{{orderList.header.xinghao}}</li>
+                            <li>实验项目：{{orderList.header.shiyanxiangmu}}</li>
                         </ul>
                         <ul class="btnGroup">
-                            <li :class="index===0?'active':''"
-                                v-for="(item,index) in ['S20180629003-01','S20180629003-02','S20180629003-03']">
-                                <button>{{item}}</button>
-                            </li>
+                            <li class="active"><button>{{orderList.header.var1}}</button></li>
+                            <li><button>{{orderList.header.var2}}</button></li>
+                            <li><button>{{orderList.header.var3}}</button></li>
                         </ul>
                     </header>
                     <div class="curveBox">
@@ -146,7 +145,6 @@
                 },
                 methods: {
                     getOrderList() {
-                        // $.get(contextPath + "/static/data/orderListForPage.json", data => {
                         $.get(contextPath + "/lab/orderListDataIndex", data => {
                             this.orderList = data;
                             let isInt = this.orderList.itemList.length % this.itemPerPage === 0;

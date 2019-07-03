@@ -235,7 +235,7 @@ public class HadoopTestData {
              testUnitStatus:试验项目
              */
             String testIdentification = metaData.getStr("testidentification");//实验编号
-            finalTestData.set("sybh", testIdentification);
+            finalTestData.set("sybh", metaData.getStr("reportno"));
             finalTestData.set("ybbh", metaData.get("sample_code"));
             finalTestData.set("cpxh", metaData.get("productmodel"));
             finalTestData.set("testunitstatus", metaData.get("testitemname"));

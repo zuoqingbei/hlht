@@ -274,7 +274,10 @@ function loadCurve() {
 
     myChartCurve1 = echarts.init($("#curve1")[0]);
     myChartWorld2 = echarts.init($("#curve2")[0]);
-
+    $("#center_sybh_id_world").html('');
+    $("#center_ypbm_id_world").html('');
+    $("#center_cpxh_id_world").html('');
+    // $("#center_testPro_id_world").html('');
     $.post("http://localhost:8080/hlht/lab/getJsonFile", {"fileName": "USLAB-B1.json"}, function (data) {
         console.log("----------", eval('(' + data + ')'));
         setTimeout(function () {

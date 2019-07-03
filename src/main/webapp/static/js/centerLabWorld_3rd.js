@@ -331,6 +331,10 @@ function findTestDataHadoop(labCode, testUnitId) {
     mtestUnitId = testUnitId;
     startTime = parseInt(new Date().getTime() / 1000); // 当前时间戳
     console.log(timestampFormat(startTime))
+    $("#center_sybh_id_world").html('');
+    $("#center_ypbm_id_world").html('');
+    $("#center_cpxh_id_world").html('');
+    $("#center_testPro_id_world").html('');
     $.post(contextPath + "/hadoop/testData", {
         "configName": configName,
         "labCode": labCode,
@@ -596,6 +600,10 @@ function findSensorDataCenetrTabAjaxWorld(labTypeCode, testUnitId, fileName) {
     }
     mlabTypeCode = labTypeCode;
     mtestUnitId = testUnitId;
+    $("#center_sybh_id_world").html('');
+    $("#center_ypbm_id_world").html('');
+    $("#center_cpxh_id_world").html('');
+    $("#center_testPro_id_world").html('');
     $.post(contextPath + "/lab/getJsonFile", {"fileName": fileName}, function (data) {
         // loadingAnimateOut("curve", 500);
         setTimeout(function () {
