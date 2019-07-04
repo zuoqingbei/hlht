@@ -1,13 +1,10 @@
 <component name="libraryTable">
   <library name="Maven: cn.dreampie:jfinal-quartz:0.2">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/cn/dreampie/jfinal-quartz/0.2/jfinal-quartz-0.2.jar!/" />
+      <root url="jar://D:/maven/repository/cn/dreampie/jfinal-quartz/0.2/jfinal-quartz-0.2.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/cn/dreampie/jfinal-quartz/0.2/jfinal-quartz-0.2-javadoc.jar!/" />
-    </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/cn/dreampie/jfinal-quartz/0.2/jfinal-quartz-0.2-sources.jar!/" />
+      <root url="jar://D:/maven/repository/cn/dreampie/jfinal-quartz/0.2/jfinal-quartz-0.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

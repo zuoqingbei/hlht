@@ -1,13 +1,10 @@
 <component name="libraryTable">
   <library name="Maven: org.apache.poi:poi-scratchpad:3.2-FINAL">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-scratchpad/3.2-FINAL/poi-scratchpad-3.2-FINAL.jar!/" />
+      <root url="jar://D:/maven/repository/org/apache/poi/poi-scratchpad/3.2-FINAL/poi-scratchpad-3.2-FINAL.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-scratchpad/3.2-FINAL/poi-scratchpad-3.2-FINAL-javadoc.jar!/" />
-    </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-scratchpad/3.2-FINAL/poi-scratchpad-3.2-FINAL-sources.jar!/" />
+      <root url="jar://D:/maven/repository/org/apache/poi/poi-scratchpad/3.2-FINAL/poi-scratchpad-3.2-FINAL-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
