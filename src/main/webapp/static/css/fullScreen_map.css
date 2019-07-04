@@ -43,6 +43,9 @@
     height: 50%;
     margin: 20% 3%;
 }
+#l .flat-left>div .chartBorder .myChart#myChartPie, #l .flat-right>div .chartBorder .myChart#myChartPie {
+    height: 64%;
+}
 #l.fullScreen_map .sphere-left-bottom .chartBorder .myChart,
 #l.fullScreen_map .sphere-right-top-temp .chartBorder .myChart{
     height: 70%;
