@@ -45,7 +45,8 @@
 }
 #l.fullScreen_map .sphere-left-bottom .chartBorder .myChart,
 #l.fullScreen_map .sphere-right-top-temp .chartBorder .myChart{
-    height: 53%;
+    height: 70%;
+    margin-top: 120px;
 }
 #l .sphere-right-bottom .chartBorder>ul.header {
     margin-top: 12%;
