@@ -14,7 +14,7 @@ import com.ulab.model.OrderNumModel;
  * 
  * @time   2017年5月25日 上午10:41:40
  * @author zuoqb
- * @todo   定时器测试
+ * @todo   订单量和通过率定时变化
  * 新增的定时器需要在quartz.properties进行配置
  */
 public class TestQuartzJobTwo implements Job {
