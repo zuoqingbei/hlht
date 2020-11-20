@@ -14,7 +14,7 @@ ulab.driver=oracle.jdbc.driver.OracleDriver
 #ulab.password= ouccs
 
 ulab.url = jdbc:oracle:thin:@10.130.96.113:1521:ORCL
-ulab.user = auth
+ulab.user = authnew
 ulab.password= ouccs
 
 #泰国实验室数据源 SQL Server 2008R2

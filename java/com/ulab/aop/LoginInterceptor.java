@@ -2,6 +2,8 @@ package com.ulab.aop;
 
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 import com.ulab.core.BaseController;
@@ -24,30 +26,34 @@ public class LoginInterceptor implements Interceptor {
         }
 
         UserModel user = c.getSessionAttr("user");
-
-        // 未登录
-        if (user == null) {
-            // 前台
-            if (!c.getRequestUrl().contains("/admin")) {
-                c.redirect("/login/home");
-            }
-            // 后台
-            if (c.getRequestUrl().contains("/admin")) {
-                c.redirect("/login/login");
-            }
-        }
-        // 已登录
-        else {
-            // 前台
-            if (!c.getRequestUrl().contains("/admin")) {
-                ai.invoke();
-            }
-            // 后台
-            else if (c.getRequestUrl().contains("/admin") && "1".equals(user.get("role"))) {
-                ai.invoke();
-            } else {
-                c.redirect("/login/login");
-            }
+        if("XMLHttpRequest".equalsIgnoreCase((c.getRequest()).getHeader("X-Requested-With"))||
+        		c.getRequestUrl().contains("/flatMap")){
+        	ai.invoke();
+        }else{
+        	// 未登录
+        	if (user == null) {
+        		// 前台
+        		if (!c.getRequestUrl().contains("/admin")) {
+        			c.redirect("/login/home");
+        		}
+        		// 后台
+        		if (c.getRequestUrl().contains("/admin")) {
+        			c.redirect("/login/login");
+        		}
+        	}
+        	// 已登录
+        	else {
+        		// 前台
+        		if (!c.getRequestUrl().contains("/admin")) {
+        			ai.invoke();
+        		}
+        		// 后台
+        		else if (c.getRequestUrl().contains("/admin") && "1".equals(user.get("role"))) {
+        			ai.invoke();
+        		} else {
+        			c.redirect("/login/login");
+        		}
+        	}
         }
     }
 

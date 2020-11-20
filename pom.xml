@@ -7,7 +7,19 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hlht Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<repositories>
+        <repository>
+            <id>com.e-iceblue</id>
+            <name>e-iceblue</name>
+            <url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>
+        </repository>
+</repositories>
 	<dependencies>
+	<dependency>
+        <groupId> e-iceblue </groupId>
+        <artifactId>spire.pdf</artifactId>
+        <version>2.2.0</version>
+    </dependency>
 		<dependency>
 			<groupId>com.jfinal</groupId>
 			<artifactId>jfinal</artifactId>
